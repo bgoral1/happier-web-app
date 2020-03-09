@@ -1,11 +1,12 @@
 import React from 'react';
+
 import styled from 'styled-components';
 
 const NavigationWrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
 `;
 
 const Navigation = () => (

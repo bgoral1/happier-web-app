@@ -3,8 +3,8 @@ import React from 'react';
 // import styled from 'styled-components';
 // import { Link } from 'gatsby'
 
-import SEO from 'components/seo';
-import Navigation from 'components/Navigation/Navigation';
+import SEO from './components/seo';
+import Navigation from './components/Navigation/Navigation';
 import Button from 'components/Button/Button';
 
 const IndexPage = () => (
