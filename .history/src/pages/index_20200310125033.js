@@ -10,7 +10,6 @@ import Button from 'components/Button/Button';
 
 const IndexPage = () => (
   <>
-    <GlobalStyle />
     <SEO title="Home" />
     <Navigation />
     <Button width="50px">Szukaj</Button>
