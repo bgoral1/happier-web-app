@@ -14,7 +14,7 @@ const IndexPage = () => (
   <div>
     <GlobalStyle />
     <SEO title="Home" />
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={}>
       <>
         <Navigation />
         <Button width="50px">Szukaj</Button>

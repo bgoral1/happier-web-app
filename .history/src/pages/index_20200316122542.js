@@ -5,7 +5,6 @@ import { ThemeProvider } from 'styled-components';
 // import { Link } from 'gatsby'
 
 import GlobalStyle from 'theme/GlobalStyle';
-import { theme } from 'theme/MainTheme';
 import SEO from 'components/seo';
 import Navigation from 'components/molecules/Navigation/Navigation';
 import Button from 'components/atoms/Button/Button';
@@ -14,7 +13,7 @@ const IndexPage = () => (
   <div>
     <GlobalStyle />
     <SEO title="Home" />
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={}>
       <>
         <Navigation />
         <Button width="50px">Szukaj</Button>

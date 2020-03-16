@@ -7,8 +7,8 @@ const Button = styled.button`
   border: none;
   border-radius: 50px;
   font-family: 'Montserrat';
-  font-size: ${({ theme }) => theme.fontSize.s};
-  font-weight: ${({ theme }) => theme.regular};
+  font-size: 16px;
+  font-weight: 600;
   color: ${({ theme }) => theme.white};
   text-transform: uppercase;
   transition: box-shadow 0.3s ease;
