@@ -2,7 +2,7 @@ import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../src/theme/MainTheme';
+import { theme } from 'src/theme/MainTheme';
 
 // automatically import all files ending in *.stories.js
 configure(require.context('../src', true, /\.stories\.js$/), module);
