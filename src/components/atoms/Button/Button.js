@@ -6,9 +6,9 @@ const Button = styled.button`
   height: 50px;
   border: none;
   border-radius: 50px;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
   font-size: ${({ theme }) => theme.fontSize.s};
-  font-weight: ${({ theme }) => theme.regular};
+  font-weight: ${({ theme }) => theme.semiBold};
   color: ${({ theme }) => theme.white};
   text-transform: uppercase;
   transition: box-shadow 0.3s ease;
@@ -17,23 +17,25 @@ const Button = styled.button`
     secondary &&
     css`
       background-color: ${({ theme }) => theme.grey200};
-      width: 100px;
-      height: 32px;
+      width: 140px;
+      height: 36px;
       color: ${({ theme }) => theme.black};
-      font-size: 10px;
-    `}
 
-  ${({ tertiary }) =>
-    tertiary &&
-    css`
-      background-color: #e91e63;
-      width: 100px;
-      height: 32px;
-      color: #fff;
-      font-size: 10px;
-    `}
+      ${({ reverse }) =>
+        reverse &&
+        css`
+          background-color: transparent;
+          border: 2px solid ${({ theme }) => theme.secondary};
+          color: ${({ theme }) => theme.secondary};
+          text-transform: lowercase;
 
-    :hover {
+          :first-letter {
+            text-transform: uppercase;
+          }
+        `}
+    `};
+
+  :hover {
     box-shadow: 0 10px 20px -15px #000;
   }
 `;

@@ -1,0 +1,32 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "globals": {
+    "window": true,
+    "document": true
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["src", "./src"],
+          ["pages", "./src/pages"],
+          ["components", "./src/components"],
+          ["images", "./src/assets/images"],
+          ["theme", "./src/theme"]
+        ],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "rules": {
+    "react/jsx-filename-extension": 0
+    // "import/no-unresolved": 0
+  }
+}

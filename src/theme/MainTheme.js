@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export const theme = {
   primary: 'hsl(178, 51%, 65%)',
   primaryDark: 'hsl(178, 56%, 40%)',
@@ -19,7 +20,7 @@ export const theme = {
     xxs: '1rem',
     xs: '1.2rem',
     s: '1.6rem',
-    m: '2.1rem',
+    m: '1.8rem',
     l: '2.4rem',
     xl: '2.8rem',
     xxl: '4rem',
