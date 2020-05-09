@@ -1,20 +1,11 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyle from 'theme/GlobalStyle';
-import { theme } from 'theme/MainTheme';
-import SEO from 'components/seo';
+import MainTemplate from 'templates/MainTemplate/MainTemplate';
 import Navigation from 'components/molecules/navigation';
 
 const IndexPage = () => (
-  <div>
-    <GlobalStyle />
-    <SEO title="Home" />
-    <ThemeProvider theme={theme}>
-      <>
-        <Navigation />
-      </>
-    </ThemeProvider>
-  </div>
+  <MainTemplate>
+    <Navigation />
+  </MainTemplate>
 );
 
 export default IndexPage;

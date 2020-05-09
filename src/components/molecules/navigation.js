@@ -19,7 +19,7 @@ const NavigationWrapper = styled.nav`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  font-family: 'Montserrat', sans-serif;
+  font-family: ${({ theme }) => theme.font.family.montserrat};
   height: 320px;
   width: 100vw;
   margin: 0 auto;
@@ -38,8 +38,8 @@ const NavigationWrapper = styled.nav`
   li {
     list-style: none;
     color: ${({ theme }) => theme.accent};
-    font-weight: ${({ theme }) => theme.semiBold};
-    font-size: ${({ theme }) => theme.fontSize.m};
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+    font-size: ${({ theme }) => theme.font.size.m};
     padding-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid ${({ theme }) => theme.grey100};

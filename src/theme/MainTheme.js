@@ -10,19 +10,25 @@ export const theme = {
   grey900: 'hsl(0, 0%, 15%)',
   black: 'hsl(0, 0%, 0%)',
 
-  light: 300,
-  regular: 400,
-  semiBold: 600,
-  bold: 700,
-  extraBold: 800,
-
-  fontSize: {
-    xxs: '1rem',
-    xs: '1.2rem',
-    s: '1.6rem',
-    m: '1.8rem',
-    l: '2.4rem',
-    xl: '2.8rem',
-    xxl: '4rem',
+  font: {
+    size: {
+      xxs: '1rem',
+      xs: '1.2rem',
+      s: '1.6rem',
+      m: '1.8rem',
+      l: '2.4rem',
+      xl: '2.8rem',
+      xxl: '4rem',
+    },
+    family: {
+      montserrat: '"Montserrat", sans-serif',
+    },
+    weight: {
+      light: 300,
+      regular: 400,
+      semiBold: 600,
+      bold: 700,
+      extraBold: 800,
+    },
   },
 };

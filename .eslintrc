@@ -17,6 +17,7 @@
         "map": [
           ["src", "./src"],
           ["pages", "./src/pages"],
+          ["templates", "./src/templates"],
           ["components", "./src/components"],
           ["images", "./src/assets/images"],
           ["theme", "./src/theme"]
@@ -26,7 +27,7 @@
     }
   },
   "rules": {
-    "react/jsx-filename-extension": 0
-    // "import/no-unresolved": 0
+    "react/jsx-filename-extension": 0,
+    "import/prefer-default-export": 0
   }
 }
