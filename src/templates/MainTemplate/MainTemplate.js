@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/MainTheme';
-import SEO from 'components/seo';
+import SEO from 'components/SEO/seo';
+import Header from 'components/molecules/Header/Header';
 
 const MainTemplate = ({ children }) => (
   <>
     <SEO />
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-      <>{children}</>
+      <>
+        <Header />
+        {children}
+      </>
     </ThemeProvider>
   </>
 );
