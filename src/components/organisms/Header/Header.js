@@ -15,6 +15,7 @@ const StyledWrapper = styled.nav`
   top: 34;
   left: 0;
   transform: translateY(${({ isOpen }) => (isOpen ? '-34px' : '0')});
+  background-color: ${({ theme }) => theme.white};
 `;
 
 const Header = () => {

@@ -33,7 +33,7 @@ const InnerHamburger = styled.div`
     top: -10px;
     transform: translateY(${({ isOpen }) => (isOpen ? '10px' : '0')})
       rotate(${({ isOpen }) => (isOpen ? '45deg' : '0')});
-    transition: transform 0.5s 0.3s ease-in-out;
+    transition: transform 0.3s 0.3s ease-in-out;
   }
   ::after {
     top: 10px;

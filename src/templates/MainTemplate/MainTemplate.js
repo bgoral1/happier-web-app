@@ -4,7 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/MainTheme';
 import SEO from 'components/SEO/seo';
-import Header from 'components/molecules/Header/Header';
+import Header from 'components/organisms/Header/Header';
+import Main from 'components/organisms/Main/Main';
 
 const MainTemplate = ({ children }) => (
   <>
@@ -13,6 +14,7 @@ const MainTemplate = ({ children }) => (
     <ThemeProvider theme={theme}>
       <>
         <Header />
+        <Main />
         {children}
       </>
     </ThemeProvider>

@@ -18,7 +18,7 @@ const UsefulLinksWrapper = styled.div`
   transform: translateY(
     ${({ isOpenMobileMenu }) => (isOpenMobileMenu ? '-100%' : '0')}
   );
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 `;
 
 const IconWrapper = styled.div`
