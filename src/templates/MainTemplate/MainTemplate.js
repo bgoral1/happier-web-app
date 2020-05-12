@@ -6,6 +6,7 @@ import { theme } from 'theme/MainTheme';
 import SEO from 'components/SEO/seo';
 import Header from 'components/organisms/Header/Header';
 import Main from 'components/organisms/Main/Main';
+import FeaturedSection from 'components/organisms/FeaturedSection/FeaturedSection';
 
 const MainTemplate = ({ children }) => (
   <>
@@ -15,6 +16,7 @@ const MainTemplate = ({ children }) => (
       <>
         <Header />
         <Main />
+        <FeaturedSection />
         {children}
       </>
     </ThemeProvider>

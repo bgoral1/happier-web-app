@@ -7,7 +7,7 @@ import Button from 'components/atoms/Button/Button';
 const MainWrapper = styled.main`
   margin: 73px auto 0 auto;
   width: 100vw;
-  min-height: 370px;
+  min-height: 425px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
