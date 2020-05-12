@@ -41,6 +41,10 @@ const NavigationWrapper = styled.nav`
     padding-bottom: 10px;
     border-bottom: 1px solid ${({ theme }) => theme.grey100};
   }
+
+  ${({ theme }) => theme.mq.desktop} {
+    display: none;
+  }
 `;
 
 const MobileMenu = ({ isOpen }) => (

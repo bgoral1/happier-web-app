@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Bookmarks from 'components/molecules/Bookmarks/Bookmarks';
+import BookmarksBar from 'components/molecules/BookmarksBar/BookmarksBar';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import Button from 'components/atoms/Button/Button';
 
@@ -16,7 +16,7 @@ const MainWrapper = styled.main`
 
 const Main = () => (
   <MainWrapper>
-    <Bookmarks />
+    <BookmarksBar />
     <InputSelect />
     <InputSelect />
     <InputSelect />

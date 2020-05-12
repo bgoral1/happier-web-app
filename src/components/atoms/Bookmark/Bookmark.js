@@ -1,26 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const BookmarkWrappper = styled.div`
+const BookmarkWrappper = styled.button`
   padding: 12px 29px;
   border-radius: 20px 20px 0 0;
-  background-color: ${({ theme }) => theme.primary};
+  border: none;
+  background-color: ${({ isActive, theme }) =>
+    isActive ? theme.primary : theme.primaryDark};
   font-size: ${({ theme }) => theme.font.size.m};
   font-weight: ${({ theme }) => theme.font.weight.extraBold};
   height: 45px;
-
-  input {
-    display: none;
-  }
+  cursor: pointer;
 `;
 
-const Bookmark = () => (
-  <BookmarkWrappper>
-    <label htmlFor="dog">
-      Szukaj psa
-      <input type="radio" id="dog" name="pets" checked />
-    </label>
+const Bookmark = ({ label, isActive, ...props }) => (
+  <BookmarkWrappper {...props} isActive={isActive}>
+    {label}
   </BookmarkWrappper>
 );
+
+Bookmark.propTypes = {
+  label: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+};
 
 export default Bookmark;

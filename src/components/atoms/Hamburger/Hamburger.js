@@ -16,7 +16,7 @@ const InnerHamburger = styled.div`
   background-color: ${({ theme, isOpen }) =>
     isOpen ? 'transparent' : theme.accent};
   border-radius: 4px;
-  transition: transform 0.3s ease-in-out;
+  transition: background-color 0.25s ease-in;
 
   ::before,
   ::after {
@@ -27,19 +27,18 @@ const InnerHamburger = styled.div`
     height: 4px;
     background-color: ${({ theme }) => theme.accent};
     border-radius: 4px;
+    transition: transform 0.25s ease-in-out;
   }
 
   ::before {
     top: -10px;
     transform: translateY(${({ isOpen }) => (isOpen ? '10px' : '0')})
       rotate(${({ isOpen }) => (isOpen ? '45deg' : '0')});
-    transition: transform 0.3s 0.3s ease-in-out;
   }
   ::after {
     top: 10px;
     transform: translateY(${({ isOpen }) => (isOpen ? '-10px' : '0')})
       rotate(${({ isOpen }) => (isOpen ? '-45deg' : '0')});
-    transition: transform 0.5s 0.3s ease-in-out;
   }
 `;
 
