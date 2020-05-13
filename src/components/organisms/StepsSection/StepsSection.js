@@ -23,7 +23,7 @@ const StepsWrapper = styled.div`
 
 const StepsSection = () => (
   <StepsSectionWrapper>
-    <Label toRight text="3 kroki do przygarnięcia pupila" />
+    <Label text="3 kroki do przygarnięcia pupila" />
     <StepsWrapper>
       <Step
         even
