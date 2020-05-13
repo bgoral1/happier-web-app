@@ -9,6 +9,7 @@ import Main from 'components/organisms/Main/Main';
 import FeaturedSection from 'components/organisms/FeaturedSection/FeaturedSection';
 import AboutSection from 'components/organisms/AboutSection/AboutSection';
 import StepsSection from 'components/organisms/StepsSection/StepsSection';
+import MottoSection from 'components/molecules/MottoSection/MottoSection';
 
 const MainTemplate = ({ children }) => (
   <>
@@ -21,6 +22,7 @@ const MainTemplate = ({ children }) => (
         <FeaturedSection />
         <AboutSection />
         <StepsSection />
+        <MottoSection />
         {children}
       </>
     </ThemeProvider>

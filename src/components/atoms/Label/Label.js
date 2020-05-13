@@ -10,9 +10,12 @@ const LabelWrappper = styled.div`
   border: none;
   background-color: ${({ theme }) => theme.accent};
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-  color: ${({ theme }) => theme.white};
-  font-size: ${({ theme }) => theme.font.size.m};
-  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+
+  h2 {
+    color: ${({ theme }) => theme.white};
+    font-size: ${({ theme }) => theme.font.size.m};
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  }
 
   ${({ toRight }) =>
     toRight &&
@@ -24,7 +27,9 @@ const LabelWrappper = styled.div`
 `;
 
 const Label = ({ text, ...props }) => (
-  <LabelWrappper {...props}>{text}</LabelWrappper>
+  <LabelWrappper {...props}>
+    <h2>{text}</h2>
+  </LabelWrappper>
 );
 
 Label.propTypes = {
