@@ -29,7 +29,7 @@ const Header = () => {
     <>
       <UsefulLinks isOpenMobileMenu={isMenuOpen} />
       <StyledWrapper isOpen={isMenuOpen}>
-        <LogoLink />
+        <LogoLink to="/" />
         <Hamburger onClick={toggleMobileMenu} isOpen={isMenuOpen} />
         <MobileMenu isOpen={isMenuOpen} />
       </StyledWrapper>

@@ -40,6 +40,10 @@ const InnerHamburger = styled.div`
     transform: translateY(${({ isOpen }) => (isOpen ? '-10px' : '0')})
       rotate(${({ isOpen }) => (isOpen ? '-45deg' : '0')});
   }
+
+  ${({ theme }) => theme.mq.desktop} {
+    display: none;
+  }
 `;
 
 const Hamburger = ({ isOpen, ...props }) => (
