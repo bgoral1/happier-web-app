@@ -13,7 +13,7 @@ const NavigationWrapper = styled.nav`
   justify-content: space-around;
   font-family: ${({ theme }) => theme.font.family.montserrat};
   height: 430px;
-  width: 100vw;
+  width: 100%;
   margin: 0 auto;
   padding: 114px 30px 20px 30px;
   background-color: ${({ theme }) => theme.white};

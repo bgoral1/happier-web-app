@@ -9,6 +9,7 @@ import iconInstitution from 'images/icon_institution.svg';
 const FeaturedWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 `;
 
 const FeaturedSection = () => (

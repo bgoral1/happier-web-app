@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const BookmarkWrappper = styled.button`
-  padding: 12px 29px;
+  padding: 12px 0px;
   border-radius: 20px 20px 0 0;
   border: none;
   background-color: ${({ isActive, theme }) =>
@@ -11,6 +11,7 @@ const BookmarkWrappper = styled.button`
   font-size: ${({ theme }) => theme.font.size.m};
   font-weight: ${({ theme }) => theme.font.weight.extraBold};
   height: 45px;
+  width: 160px;
   cursor: pointer;
 `;
 

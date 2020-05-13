@@ -7,7 +7,7 @@ const StyledBookmarks = styled.div`
   justify-content: center;
   align-items: flex-end;
   background-color: ${({ theme }) => theme.secondary};
-  width: 100vw;
+  width: 100%;
   height: 55px;
 `;
 

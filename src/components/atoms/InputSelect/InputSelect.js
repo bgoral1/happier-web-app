@@ -19,7 +19,7 @@ const InputSelectLabel = styled.label`
     background-repeat: no-repeat;
     background-position: 90% 50%;
     background-size: 12%;
-    min-width: 150px;
+    width: 150px;
     margin-top: 5px;
 
     :focus {

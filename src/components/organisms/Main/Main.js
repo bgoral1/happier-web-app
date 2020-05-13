@@ -5,8 +5,8 @@ import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import Button from 'components/atoms/Button/Button';
 
 const MainWrapper = styled.main`
-  margin: 73px auto 0 auto;
-  width: 100vw;
+  margin-top: 73px;
+  width: 100%;
   min-height: 425px;
   display: flex;
   flex-wrap: wrap;
