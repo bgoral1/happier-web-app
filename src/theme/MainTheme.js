@@ -22,6 +22,7 @@ export const theme = {
     },
     family: {
       montserrat: '"Montserrat", sans-serif',
+      libre: '"Libre Baskerville", serif',
     },
     weight: {
       light: 300,

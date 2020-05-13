@@ -48,6 +48,10 @@ module.exports = {
             family: `Montserrat`,
             variants: [`300`, `400`, `600`, `700`, `800`],
           },
+          {
+            family: `Libre Baskerville`,
+            variants: [`700`],
+          },
         ],
       },
     },
