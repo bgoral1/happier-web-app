@@ -30,7 +30,11 @@ const IconWrappper = styled.div`
 
   svg {
     width: 70px;
-    height: auto;
+    height: 65px;
+
+    path {
+      fill: ${({ theme }) => theme.grey900};
+    }
   }
 `;
 
@@ -41,11 +45,9 @@ const H4 = styled.h4`
   text-align: center;
 `;
 
-const Paragraph = styled.p`
-  font-size: ${({ theme }) => theme.font.size.xs};
-  font-size: ${({ theme }) => theme.font.weight.semiBold};
-  color: ${({ theme }) => theme.font.weight.grey900};
+const LocalizationWrapper = styled.div`
   display: flex;
+  align-items: center;
 
   svg {
     width: 20px;
@@ -54,16 +56,22 @@ const Paragraph = styled.p`
   }
 `;
 
+const Paragraph = styled.p`
+  font-size: ${({ theme }) => theme.font.size.xs};
+  font-size: ${({ theme }) => theme.font.weight.semiBold};
+  color: ${({ theme }) => theme.font.weight.grey900};
+`;
+
 const Institution = ({ name, localization, ...props }) => (
   <InstitutionWrapper {...props}>
     <IconWrappper>
       <Icon src={iconInstitution} />
     </IconWrappper>
     <H4>{name}</H4>
-    <Paragraph>
+    <LocalizationWrapper>
       <Icon src={iconLocalization} />
-      {localization}
-    </Paragraph>
+      <Paragraph> {localization}</Paragraph>
+    </LocalizationWrapper>
   </InstitutionWrapper>
 );
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import logo from 'images/logo_happier_default.svg';
 
 const Logo = styled.div`
@@ -10,6 +10,12 @@ const Logo = styled.div`
   background-position: 50% 50%;
   background-size: 100%;
   z-index: 9999;
+
+  ${({ shadowed }) =>
+    shadowed &&
+    css`
+      filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
+    `}
 `;
 
 export default Logo;
