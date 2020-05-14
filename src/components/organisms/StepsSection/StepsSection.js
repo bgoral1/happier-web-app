@@ -9,6 +9,11 @@ const StepsSectionWrapper = styled.div`
   height: 1000px;
   padding-top: 16px;
   background-color: ${({ theme }) => theme.primary};
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 70%;
+    margin: 0 auto;
+  }
 `;
 
 const StepsWrapper = styled.div`

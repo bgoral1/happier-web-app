@@ -11,6 +11,10 @@ const LabelWrappper = styled.div`
   background-color: ${({ theme }) => theme.accent};
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 
+  ${({ theme }) => theme.mq.desktop} {
+    width: 70%;
+  }
+
   h2 {
     color: ${({ theme }) => theme.white};
     font-size: ${({ theme }) => theme.font.size.m};

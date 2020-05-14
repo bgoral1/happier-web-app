@@ -13,6 +13,7 @@ const MottoSectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
 `;
 
 const Motto = styled.p`
@@ -22,6 +23,10 @@ const Motto = styled.p`
   padding: 30px;
   position: relative;
 
+  ${({ theme }) => theme.mq.tablet} {
+    max-width: 70%;
+  }
+
   ::before,
   ::after {
     content: url(${quote});
@@ -30,19 +35,20 @@ const Motto = styled.p`
 
   ::before {
     bottom: 10px;
-    left: 20px;
+    left: 0;
   }
 
   ::after {
     top: 10px;
-    right: 20px;
+    right: 0;
   }
 `;
 
 const MottoSection = () => (
   <MottoSectionWrapper>
     <Motto>
-      Szczęście to jedyna rzecz, która się mnoży, gdy się ją dzieli.
+      Szczęście to jedyna rzecz, <br />
+      która się mnoży, gdy się ją dzieli.
     </Motto>
   </MottoSectionWrapper>
 );

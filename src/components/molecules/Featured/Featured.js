@@ -13,7 +13,7 @@ const FeaturedWrapper = styled.div`
   flex-direction: column;
   font-weight: ${({ theme }) => theme.font.weight.semiBold};
   font-size: ${({ theme }) => theme.font.size.xs};
-  border: 1px solid ${({ theme }) => theme.grey100};
+  border: 1px solid ${({ theme }) => theme.grey200};
 
   ${({ theme }) => theme.mq.tablet} {
     width: 25%;

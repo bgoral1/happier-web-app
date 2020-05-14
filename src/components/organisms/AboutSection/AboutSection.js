@@ -9,6 +9,11 @@ const AboutSectionWrapper = styled.div`
   padding: 32px 31px 39px 31px;
   position: relative;
 
+  ${({ theme }) => theme.mq.desktop} {
+    width: 70%;
+    margin: 0 auto;
+  }
+
   img {
     text-align: center;
     position: absolute;

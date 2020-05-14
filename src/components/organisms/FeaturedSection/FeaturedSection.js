@@ -10,6 +10,11 @@ const FeaturedWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 70%;
+    margin: 0 auto;
+  }
 `;
 
 const FeaturedSection = () => (

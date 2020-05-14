@@ -13,6 +13,18 @@ const BookmarkWrappper = styled.button`
   height: 45px;
   width: 160px;
   cursor: pointer;
+
+  ${({ theme }) => theme.mq.tablet} {
+    border-radius: 0;
+    height: 100%;
+    width: 255px;
+    font-size: ${({ theme }) => theme.font.size.l};
+  }
+
+  ${({ theme }) => theme.mq.large} {
+    width: 340px;
+    font-size: ${({ theme }) => theme.font.size.xl};
+  }
 `;
 
 const Bookmark = ({ label, isActive, ...props }) => (

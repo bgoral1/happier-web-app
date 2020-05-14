@@ -5,6 +5,7 @@ import UsefulLinks from 'components/molecules/UsefulLinks/UsefulLinks';
 import Logo from 'components/atoms/Logo/Logo';
 import Hamburger from 'components/atoms/Hamburger/Hamburger';
 import MobileMenu from 'components/molecules/MobileMenu/MobileMenu';
+import BookmarksBar from 'components/molecules/BookmarksBar/BookmarksBar';
 
 const StyledWrapper = styled.nav`
   display: flex;
@@ -19,6 +20,10 @@ const StyledWrapper = styled.nav`
   background-color: ${({ theme }) => theme.white};
 `;
 
+const LogoLink = styled(Link)`
+  z-index: 9999;
+`;
+
 const Header = () => {
   const [isMenuOpen, setMenuState] = useState(false);
 
@@ -30,12 +35,13 @@ const Header = () => {
     <>
       <UsefulLinks isOpenMobileMenu={isMenuOpen} />
       <StyledWrapper isOpen={isMenuOpen}>
-        <Link to="/">
+        <LogoLink to="/">
           <Logo width="176px" height="50px" />
-        </Link>
+        </LogoLink>
         <Hamburger onClick={toggleMobileMenu} isOpen={isMenuOpen} />
         <MobileMenu isOpen={isMenuOpen} />
       </StyledWrapper>
+      <BookmarksBar />
     </>
   );
 };

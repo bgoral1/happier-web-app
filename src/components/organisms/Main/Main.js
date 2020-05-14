@@ -1,22 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
-import BookmarksBar from 'components/molecules/BookmarksBar/BookmarksBar';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import Button from 'components/atoms/Button/Button';
 
 const MainWrapper = styled.main`
-  margin-top: 73px;
   width: 100%;
   min-height: 425px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   background-color: ${({ theme }) => theme.primary};
+  padding: 15px 20px 22px 20px;
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.78);
+    padding-top: 65px;
+  }
 `;
 
 const Main = () => (
   <MainWrapper>
-    <BookmarksBar />
     <InputSelect />
     <InputSelect />
     <InputSelect />

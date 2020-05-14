@@ -9,6 +9,11 @@ const StyledBookmarks = styled.div`
   background-color: ${({ theme }) => theme.secondary};
   width: 100%;
   height: 55px;
+  margin-top: 73px;
+
+  ${({ theme }) => theme.mq.large} {
+    height: 65px;
+  }
 `;
 
 const BookmarksBar = () => {

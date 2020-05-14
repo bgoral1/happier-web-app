@@ -8,6 +8,11 @@ const StepsSectionWrapper = styled.div`
   width: 100%;
   padding-top: 16px;
   background-color: ${({ theme }) => theme.grey100};
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 70%;
+    margin: 0 auto;
+  }
 `;
 
 const InstitutionWrapper = styled.div`

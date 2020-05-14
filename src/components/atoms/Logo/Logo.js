@@ -9,7 +9,6 @@ const Logo = styled.div`
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 100%;
-  z-index: 9999;
 
   ${({ shadowed }) =>
     shadowed &&

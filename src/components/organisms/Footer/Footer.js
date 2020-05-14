@@ -19,39 +19,75 @@ const FooterWrapper = styled.div`
   font-weight: ${({ theme }) => theme.font.weight.semiBold};
 `;
 
-const SocialIconsWrapper = styled.div`
+const FooterRowrapper = styled.div`
   display: flex;
   padding-top: 22px;
-  padding-bottom: 13px;
-  justify-content: space-between;
-  width: 70px;
+  flex-wrap: wrap;
+  max-width: 320px;
+  justify-content: center;
+
+  ${({ theme }) => theme.mq.tablet} {
+    max-width: 1000px;
+  }
 `;
 
 const IconImage = styled(Icon)`
   fill: ${({ theme }) => theme.primary};
+
+  :first-of-type {
+    padding-right: 20px;
+  }
 `;
 
 const FooterLink = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.white};
-  padding-top: 22px;
+
+  :first-of-type {
+    padding-right: 16px;
+    border-right: 2px solid ${({ theme }) => theme.white};
+  }
+
+  :last-of-type {
+    padding-left: 16px;
+  }
+
+  ${({ theme }) => theme.mq.tablet} {
+    :nth-child(1) {
+      order: 2;
+      padding-left: 16px;
+    }
+    :nth-child(2) {
+      order: 3;
+    }
+    :nth-child(3) {
+      order: 1;
+    }
+  }
 `;
 
 const FooterText = styled.p`
   color: ${({ theme }) => theme.primary};
-  padding-top: 26px;
+  padding-top: 22px;
+
+  ${({ theme }) => theme.mq.tablet} {
+    padding-top: 0;
+    color: ${({ theme }) => theme.white};
+  }
 `;
 
 const Footer = () => (
   <FooterWrapper>
     <Logo shadowed />
-    <SocialIconsWrapper>
+    <FooterRowrapper>
       <IconImage src={iconInstagram} />
       <IconImage src={iconFacebook} />
-    </SocialIconsWrapper>
-    <FooterLink to="/">Regulamin</FooterLink>
-    <FooterLink to="/">Polityka prywatności</FooterLink>
-    <FooterText>© 2020 Happier. All rights reserved</FooterText>
+    </FooterRowrapper>
+    <FooterRowrapper>
+      <FooterLink to="/">Regulamin</FooterLink>
+      <FooterLink to="/">Polityka prywatności</FooterLink>
+      <FooterText>© 2020 Happier. All rights reserved</FooterText>
+    </FooterRowrapper>
   </FooterWrapper>
 );
 
