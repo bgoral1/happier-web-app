@@ -12,6 +12,10 @@ const InstitutionWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+
+  ${({ theme }) => theme.mq.tablet} {
+    width: 25%;
+  }
 `;
 
 const IconWrappper = styled.div`

@@ -15,6 +15,10 @@ const FeaturedWrapper = styled.div`
   font-size: ${({ theme }) => theme.font.size.xs};
   border: 1px solid ${({ theme }) => theme.grey100};
 
+  ${({ theme }) => theme.mq.tablet} {
+    width: 25%;
+  }
+
   p {
     padding-top: 10px;
   }

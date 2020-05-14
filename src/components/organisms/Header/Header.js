@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import UsefulLinks from 'components/molecules/UsefulLinks/UsefulLinks';
-import LogoLink from 'components/atoms/Logo/Logo';
+import Logo from 'components/atoms/Logo/Logo';
 import Hamburger from 'components/atoms/Hamburger/Hamburger';
 import MobileMenu from 'components/molecules/MobileMenu/MobileMenu';
 
@@ -29,7 +30,9 @@ const Header = () => {
     <>
       <UsefulLinks isOpenMobileMenu={isMenuOpen} />
       <StyledWrapper isOpen={isMenuOpen}>
-        <LogoLink to="/" />
+        <Link to="/">
+          <Logo width="176px" height="50px" />
+        </Link>
         <Hamburger onClick={toggleMobileMenu} isOpen={isMenuOpen} />
         <MobileMenu isOpen={isMenuOpen} />
       </StyledWrapper>

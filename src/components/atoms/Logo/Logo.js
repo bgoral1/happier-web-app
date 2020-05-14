@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 import logo from 'images/logo_happier_default.svg';
 
-const LogoLink = styled(Link)`
+const Logo = styled.div`
   display: block;
-  width: 176px;
-  height: 50px;
+  width: ${({ width }) => width || '232px'};
+  height: ${({ height }) => height || '65px'};
   background-image: url(${logo});
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -13,4 +12,4 @@ const LogoLink = styled(Link)`
   z-index: 9999;
 `;
 
-export default LogoLink;
+export default Logo;

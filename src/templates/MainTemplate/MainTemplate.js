@@ -11,6 +11,7 @@ import AboutSection from 'components/organisms/AboutSection/AboutSection';
 import StepsSection from 'components/organisms/StepsSection/StepsSection';
 import MottoSection from 'components/molecules/MottoSection/MottoSection';
 import InstitutionSection from 'components/organisms/InstitutionSection/InstitutionSection';
+import Footer from 'components/organisms/Footer/Footer';
 
 const MainTemplate = ({ children }) => (
   <>
@@ -26,6 +27,7 @@ const MainTemplate = ({ children }) => (
         <MottoSection />
         <InstitutionSection />
         {children}
+        <Footer />
       </>
     </ThemeProvider>
   </>
