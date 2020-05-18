@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import { AnchorLink } from 'gatsby-plugin-anchor-links';
 
 const MenuWrapper = styled.ul`
   display: flex;
@@ -38,13 +39,13 @@ const MenuWrapper = styled.ul`
 const Menu = () => (
   <MenuWrapper>
     <li>
-      <Link to="/">O programie</Link>
+      <AnchorLink to="/#about">O programie</AnchorLink>
     </li>
     <li>
       <Link to="/pets">Do adopcji</Link>
     </li>
     <li>
-      <Link to="/">Instytucje</Link>
+      <AnchorLink to="/#institutions">Instytucje</AnchorLink>
     </li>
     <li>
       <Link to="/contact">Kontakt</Link>

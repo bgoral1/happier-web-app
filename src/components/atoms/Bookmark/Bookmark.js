@@ -22,8 +22,7 @@ const BookmarkWrappper = styled.button`
   }
 
   ${({ theme }) => theme.mq.large} {
-    width: 340px;
-    font-size: ${({ theme }) => theme.font.size.xl};
+    width: 300px;
   }
 `;
 

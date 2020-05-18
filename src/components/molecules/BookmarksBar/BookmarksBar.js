@@ -10,10 +10,6 @@ const StyledBookmarks = styled.div`
   width: 100%;
   height: 55px;
   margin-top: 73px;
-
-  ${({ theme }) => theme.mq.large} {
-    height: 65px;
-  }
 `;
 
 const BookmarksBar = () => {

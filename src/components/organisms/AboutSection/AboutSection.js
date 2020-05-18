@@ -29,7 +29,7 @@ const AboutProgramWrappper = styled(AboutProgram)`
 `;
 
 const AboutSection = () => (
-  <AboutSectionWrapper>
+  <AboutSectionWrapper id="about">
     <img src={Hand} alt="Hand" height="150px" width="auto" />
     <AboutProgramWrappper />
   </AboutSectionWrapper>

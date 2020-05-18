@@ -7,6 +7,7 @@ import Hamburger from 'components/atoms/Hamburger/Hamburger';
 import DesktopMenu from 'components/molecules/DesktopMenu/DesktopMenu';
 import MobileMenu from 'components/molecules/MobileMenu/MobileMenu';
 import BookmarksBar from 'components/molecules/BookmarksBar/BookmarksBar';
+import BackgroundImg from 'components/atoms/BackgroundImg/BackgroundImg';
 
 const StyledWrapper = styled.nav`
   display: flex;
@@ -15,7 +16,7 @@ const StyledWrapper = styled.nav`
   width: 100%;
   padding: 12px 20px;
   position: absolute;
-  top: 34;
+  top: 34px;
   left: 0;
   transform: translateY(${({ isOpen }) => (isOpen ? '-34px' : '0')});
   background-color: ${({ theme }) => theme.white};
@@ -49,6 +50,7 @@ const Header = () => {
         <MobileMenu isOpen={isMenuOpen} />
       </StyledWrapper>
       <BookmarksBar />
+      <BackgroundImg />
     </>
   );
 };

@@ -17,7 +17,7 @@ const MottoSectionWrapper = styled.div`
 `;
 
 const Motto = styled.p`
-  font-size: ${({ theme }) => theme.font.weight.semiBold};
+  font-size: ${({ theme }) => theme.font.size.l};
   color: ${({ theme }) => theme.white};
   text-align: center;
   padding: 30px;

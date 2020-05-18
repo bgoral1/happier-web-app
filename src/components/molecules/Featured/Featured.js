@@ -22,7 +22,7 @@ const FeaturedWrapper = styled.div`
   ${({ theme }) => theme.mq.desktop} {
     height: 150px;
     svg {
-      height: 70px;
+      height: 65px;
       width: auto;
     }
   }

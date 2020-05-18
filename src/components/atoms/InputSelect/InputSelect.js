@@ -7,6 +7,11 @@ const InputSelectLabel = styled.label`
   font-weight: ${({ theme }) => theme.font.weight.semiBold};
   display: flex;
   flex-direction: column;
+  padding: 5px 5px;
+
+  ${({ theme }) => theme.mq.tablet} {
+    padding: 5px 10px;
+  }
 
   select {
     background-color: white;

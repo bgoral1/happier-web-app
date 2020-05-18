@@ -23,7 +23,7 @@ const InstitutionWrapper = styled.div`
 `;
 
 const InstitutionSection = () => (
-  <StepsSectionWrapper>
+  <StepsSectionWrapper id="institutions">
     <Label toRight text="Instytucje biorące udział w programie" />
     <InstitutionWrapper>
       <Institution name="Schronisko Paluch" localization="Warszawa" />
