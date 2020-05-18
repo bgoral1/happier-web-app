@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import Icon from 'components/atoms/Icon/Icon';
-import iconInstagram from 'images/icon_instagram.svg';
-import iconFacebook from 'images/icon_facebook.svg';
-import iconLogin from 'images/icon_login.svg';
+import iconInstagram from 'images/icons/icon_instagram.svg';
+import iconFacebook from 'images/icons/icon_facebook.svg';
+import iconLogin from 'images/icons/icon_login.svg';
 
 const UsefulLinksWrapper = styled.div`
   display: flex;
@@ -19,6 +19,20 @@ const UsefulLinksWrapper = styled.div`
     ${({ isOpenMobileMenu }) => (isOpenMobileMenu ? '-100%' : '0')}
   );
   transition: transform 0.5s ease-in-out;
+
+  ${({ theme }) => theme.mq.desktop} {
+    justify-content: flex-end;
+  }
+`;
+
+const FAQLink = styled(Link)`
+  color: ${({ theme }) => theme.black};
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  padding: 7px 0px;
+  ${({ theme }) => theme.mq.desktop} {
+    margin-left: 35px;
+    order: 2;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -26,24 +40,31 @@ const IconWrapper = styled.div`
 `;
 
 const IconImage = styled(Icon)`
-  padding-left: 20px;
+  margin-left: 20px;
   height: 30px;
-`;
-
-const FAQLink = styled(Link)`
-  text-decoration: none;
+  display: flex;
+  align-items: center;
   color: ${({ theme }) => theme.black};
-  font-weight: ${({ theme }) => theme.font.weight.semiBold};
-  padding: 7px 0;
+
+  p {
+    display: none;
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+
+    ${({ theme }) => theme.mq.desktop} {
+      display: inline-block;
+    }
+  }
 `;
 
 const UsefulLinks = ({ isOpenMobileMenu }) => (
   <UsefulLinksWrapper isOpenMobileMenu={isOpenMobileMenu}>
     <FAQLink to="/">FAQ</FAQLink>
     <IconWrapper>
-      <IconImage src={iconInstagram} />
-      <IconImage src={iconFacebook} />
-      <IconImage src={iconLogin} />
+      <IconImage to="/" src={iconInstagram} />
+      <IconImage to="/" src={iconFacebook} />
+      <IconImage to="/" src={iconLogin}>
+        Zaloguj się
+      </IconImage>
     </IconWrapper>
   </UsefulLinksWrapper>
 );

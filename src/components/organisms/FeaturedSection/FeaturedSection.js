@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Featured from 'components/molecules/Featured/Featured';
-import iconLocalization from 'images/icon_localization.svg';
-import iconPaw from 'images/icon_paw.svg';
+import iconLocalization from 'images/icons/icon_localization.svg';
+import iconPaw from 'images/icons/icon_paw.svg';
 import logoHappierHeart from 'images/logo_happier_heart.svg';
-import iconInstitution from 'images/icon_institution.svg';
+import iconInstitution from 'images/icons/icon_institution.svg';
 
 const FeaturedWrapper = styled.div`
   display: flex;

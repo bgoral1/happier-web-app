@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import bearBcg from 'images/bear_background.png';
-import quote from 'images/icon_quote.svg';
+import quote from 'images/icons/icon_quote.svg';
 
 const MottoSectionWrapper = styled.div`
   width: 100%;

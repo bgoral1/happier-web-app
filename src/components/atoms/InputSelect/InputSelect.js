@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import iconArrow from 'images/icon_arrow.svg';
+import iconArrow from 'images/icons/icon_arrow.svg';
 
 const InputSelectLabel = styled.label`
   font-size: ${({ theme }) => theme.font.size.xs};

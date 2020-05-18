@@ -5,7 +5,7 @@ import Button from 'components/atoms/Button/Button';
 
 const MainWrapper = styled.main`
   width: 100%;
-  min-height: 425px;
+  min-height: 325px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -16,7 +16,7 @@ const MainWrapper = styled.main`
     width: 70%;
     margin-right: auto;
     margin-left: auto;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.78);
+    /* box-shadow: 0 0 30px rgba(0, 0, 0, 0.78); */
     padding-top: 65px;
   }
 `;

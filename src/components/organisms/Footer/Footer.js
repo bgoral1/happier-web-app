@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Logo from 'components/atoms/Logo/Logo';
 import Icon from 'components/atoms/Icon/Icon';
-import iconInstagram from 'images/icon_instagram.svg';
-import iconFacebook from 'images/icon_facebook.svg';
+import iconInstagram from 'images/icons/icon_instagram.svg';
+import iconFacebook from 'images/icons/icon_facebook.svg';
 
 const FooterWrapper = styled.div`
   width: 100%;
@@ -35,12 +35,11 @@ const IconImage = styled(Icon)`
   fill: ${({ theme }) => theme.primary};
 
   :first-of-type {
-    padding-right: 20px;
+    margin-right: 20px;
   }
 `;
 
 const FooterLink = styled(Link)`
-  text-decoration: none;
   color: ${({ theme }) => theme.white};
 
   :first-of-type {
@@ -49,13 +48,13 @@ const FooterLink = styled(Link)`
   }
 
   :last-of-type {
-    padding-left: 16px;
+    margin-left: 16px;
   }
 
   ${({ theme }) => theme.mq.tablet} {
     :nth-child(1) {
       order: 2;
-      padding-left: 16px;
+      margin-left: 16px;
     }
     :nth-child(2) {
       order: 3;
@@ -80,8 +79,8 @@ const Footer = () => (
   <FooterWrapper>
     <Logo shadowed />
     <FooterRowrapper>
-      <IconImage src={iconInstagram} />
-      <IconImage src={iconFacebook} />
+      <IconImage to="/" src={iconInstagram} />
+      <IconImage to="/" src={iconFacebook} />
     </FooterRowrapper>
     <FooterRowrapper>
       <FooterLink to="/">Regulamin</FooterLink>

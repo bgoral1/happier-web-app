@@ -19,6 +19,14 @@ const FeaturedWrapper = styled.div`
     width: 25%;
   }
 
+  ${({ theme }) => theme.mq.desktop} {
+    height: 150px;
+    svg {
+      height: 70px;
+      width: auto;
+    }
+  }
+
   p {
     padding-top: 10px;
   }

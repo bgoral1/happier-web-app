@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Icon from 'components/atoms/Icon/Icon';
-import iconLocalization from 'images/icon_localization.svg';
-import iconInstitution from 'images/icon_institution.svg';
+import iconLocalization from 'images/icons/icon_localization.svg';
+import iconInstitution from 'images/icons/icon_institution.svg';
 
 const InstitutionWrapper = styled.div`
   width: 50%;
