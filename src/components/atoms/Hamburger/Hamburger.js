@@ -7,6 +7,10 @@ const StyledHamburger = styled.button`
   background: none;
   padding: 15px;
   z-index: 9999;
+
+  ${({ theme }) => theme.mq.desktop} {
+    display: none;
+  }
 `;
 
 const InnerHamburger = styled.div`
@@ -39,10 +43,6 @@ const InnerHamburger = styled.div`
     top: 10px;
     transform: translateY(${({ isOpen }) => (isOpen ? '-10px' : '0')})
       rotate(${({ isOpen }) => (isOpen ? '-45deg' : '0')});
-  }
-
-  ${({ theme }) => theme.mq.desktop} {
-    display: none;
   }
 `;
 

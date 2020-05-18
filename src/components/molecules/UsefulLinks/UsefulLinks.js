@@ -60,8 +60,12 @@ const UsefulLinks = ({ isOpenMobileMenu }) => (
   <UsefulLinksWrapper isOpenMobileMenu={isOpenMobileMenu}>
     <FAQLink to="/">FAQ</FAQLink>
     <IconWrapper>
-      <IconImage to="/" src={iconInstagram} />
-      <IconImage to="/" src={iconFacebook} />
+      <a href="https://www.instagram.com/">
+        <IconImage src={iconInstagram} />
+      </a>
+      <a href="https://www.facebook.com/">
+        <IconImage src={iconFacebook} />
+      </a>
       <IconImage to="/" src={iconLogin}>
         Zaloguj się
       </IconImage>

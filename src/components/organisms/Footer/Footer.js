@@ -19,7 +19,7 @@ const FooterWrapper = styled.div`
   font-weight: ${({ theme }) => theme.font.weight.semiBold};
 `;
 
-const FooterRowrapper = styled.div`
+const FooterRowWrapper = styled.div`
   display: flex;
   padding-top: 22px;
   flex-wrap: wrap;
@@ -78,15 +78,19 @@ const FooterText = styled.p`
 const Footer = () => (
   <FooterWrapper>
     <Logo shadowed />
-    <FooterRowrapper>
-      <IconImage to="/" src={iconInstagram} />
-      <IconImage to="/" src={iconFacebook} />
-    </FooterRowrapper>
-    <FooterRowrapper>
+    <FooterRowWrapper>
+      <a href="https://www.instagram.com/">
+        <IconImage src={iconInstagram} />
+      </a>
+      <a href="https://www.facebook.com/">
+        <IconImage src={iconFacebook} />
+      </a>
+    </FooterRowWrapper>
+    <FooterRowWrapper>
       <FooterLink to="/">Regulamin</FooterLink>
       <FooterLink to="/">Polityka prywatności</FooterLink>
       <FooterText>© 2020 Happier. All rights reserved</FooterText>
-    </FooterRowrapper>
+    </FooterRowWrapper>
   </FooterWrapper>
 );
 

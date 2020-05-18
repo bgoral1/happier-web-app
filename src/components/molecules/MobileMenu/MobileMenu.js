@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Menu from 'components/molecules/Menu/Menu';
 import Button from 'components/atoms/Button/Button';
 
 const NavigationWrapper = styled.nav`
@@ -22,26 +23,6 @@ const NavigationWrapper = styled.nav`
   transform: translateY(${({ isOpen }) => (isOpen ? '0' : '-100%')});
   transition: transform 0.6s 0.3s ease-in-out;
 
-  ul {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    text-align: center;
-  }
-
-  li {
-    list-style: none;
-    color: ${({ theme }) => theme.accent};
-    font-weight: ${({ theme }) => theme.font.weight.semiBold};
-    font-size: ${({ theme }) => theme.font.size.m};
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid ${({ theme }) => theme.grey100};
-  }
-
   ${({ theme }) => theme.mq.desktop} {
     display: none;
   }
@@ -49,12 +30,7 @@ const NavigationWrapper = styled.nav`
 
 const MobileMenu = ({ isOpen }) => (
   <NavigationWrapper isOpen={isOpen}>
-    <ul>
-      <li>O programie</li>
-      <li>Do adopcji</li>
-      <li>Instytucje</li>
-      <li>Kontakt</li>
-    </ul>
+    <Menu />
     <Button secondary reverse>
       Zaloguj się
     </Button>
