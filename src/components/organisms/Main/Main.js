@@ -4,12 +4,17 @@ import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
 import iconHelp from 'images/icons/icon_help.svg';
 import Button from 'components/atoms/Button/Button';
-import PetImage from 'components/atoms/PetImage/PetImage';
-import dog from 'images/dogMain.png';
+import pawsMainImg from 'images/pawsMain.svg';
+import DogImage from 'components/atoms/DogImage/DogImage';
+import CatImage from 'components/atoms/CatImage/CatImage';
+// import dogImg from 'images/dogMain.png';
+// import catImg from 'images/catMain.png';
+import BookmarksBar from 'components/molecules/BookmarksBar/BookmarksBar';
+import BackgroundImg from 'components/atoms/BackgroundImg/BackgroundImg';
 
 const MainWrapper = styled.main`
   width: 100%;
-  min-height: 370px;
+  min-height: 300px;
   background-color: ${({ theme }) => theme.primary};
   padding: 15px 20px 22px 20px;
 
@@ -19,7 +24,25 @@ const MainWrapper = styled.main`
     width: 70%;
     margin-right: auto;
     margin-left: auto;
-    /* box-shadow: 0 0 30px rgba(0, 0, 0, 0.78); */
+
+    :before,
+    :after {
+      content: ' ';
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 15px;
+    }
+
+    :before {
+      box-shadow: -15px 0 15px -15px inset;
+      left: -15px;
+    }
+
+    :after {
+      box-shadow: 15px 0 15px -15px inset;
+      right: -15px;
+    }
   }
 `;
 
@@ -28,13 +51,25 @@ const MainForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   align-content: space-around;
 
+  ${({ theme }) => theme.mq.tablet} {
+    min-height: 270px;
+    background-image: url(${pawsMainImg});
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: 25%;
+    padding-left: 50px;
+  }
+
   ${({ theme }) => theme.mq.desktop} {
+    background-size: 30%;
+    padding-left: 0;
     min-height: 0px;
     width: 60%;
     position: absolute;
+    /* change to left:20px for catImg */
     right: 20px;
     top: 25px;
   }
@@ -47,24 +82,33 @@ const FilterWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: space-around;
+
+  ${({ theme }) => theme.mq.tablet} {
+    width: 90%;
+  }
 `;
 
 const Main = () => (
-  <MainWrapper>
-    <PetImage src={dog} />
-    <MainForm>
-      <FilterWrapper>
-        <InputSelect />
-        <InputSelect />
-        <InputSelect />
-        <InputSelect />
-        <LinkWithIcon to="/" src={iconHelp}>
-          Pomoc
-        </LinkWithIcon>
-      </FilterWrapper>
-      <Button>Szukaj</Button>
-    </MainForm>
-  </MainWrapper>
+  <>
+    <BookmarksBar />
+    <BackgroundImg />
+    <MainWrapper>
+      <DogImage />
+      <CatImage />
+      <MainForm>
+        <FilterWrapper>
+          <InputSelect />
+          <InputSelect />
+          <InputSelect />
+          <InputSelect />
+          <LinkWithIcon to="/" src={iconHelp}>
+            Pomoc
+          </LinkWithIcon>
+        </FilterWrapper>
+        <Button>Szukaj</Button>
+      </MainForm>
+    </MainWrapper>
+  </>
 );
 
 export default Main;

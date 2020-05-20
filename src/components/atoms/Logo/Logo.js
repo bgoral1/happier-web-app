@@ -4,7 +4,7 @@ import logo from 'images/logo_happier_default.svg';
 const Logo = styled.div`
   display: block;
   width: ${({ width }) => width || '232px'};
-  height: ${({ height }) => height || '65px'};
+  height: ${({ height }) => height || '66px'};
   background-image: url(${logo});
   background-repeat: no-repeat;
   background-position: 50% 50%;

@@ -6,8 +6,6 @@ import Logo from 'components/atoms/Logo/Logo';
 import Hamburger from 'components/atoms/Hamburger/Hamburger';
 import DesktopMenu from 'components/molecules/DesktopMenu/DesktopMenu';
 import MobileMenu from 'components/molecules/MobileMenu/MobileMenu';
-import BookmarksBar from 'components/molecules/BookmarksBar/BookmarksBar';
-import BackgroundImg from 'components/atoms/BackgroundImg/BackgroundImg';
 
 const StyledWrapper = styled.nav`
   display: flex;
@@ -49,8 +47,6 @@ const Header = () => {
         <Hamburger onClick={toggleMobileMenu} isOpen={isMenuOpen} />
         <MobileMenu isOpen={isMenuOpen} />
       </StyledWrapper>
-      <BookmarksBar />
-      <BackgroundImg />
     </>
   );
 };
