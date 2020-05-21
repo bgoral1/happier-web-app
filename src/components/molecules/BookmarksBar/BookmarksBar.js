@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Bookmark from 'components/atoms/Bookmark/Bookmark';
+import { GlobalDispatchContext } from 'src/context/GlobalContextProvider';
 
 const StyledBookmarks = styled.div`
   display: flex;
@@ -13,10 +14,13 @@ const StyledBookmarks = styled.div`
 `;
 
 const BookmarksBar = () => {
+  const dispatch = useContext(GlobalDispatchContext);
+
   const [on, setState] = useState(true);
 
   const changeActive = isActive => {
     if (isActive === false) {
+      dispatch({ type: 'TOOGLE_ACTIVE_PET' });
       setState(!on);
     }
   };

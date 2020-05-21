@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { GlobalStateContext } from 'src/context/GlobalContextProvider';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
 import iconHelp from 'images/icons/icon_help.svg';
 import Button from 'components/atoms/Button/Button';
 import pawsMainImg from 'images/pawsMain.svg';
+import pawsMainImgRev from 'images/pawsMainRev.svg';
 import DogImage from 'components/atoms/DogImage/DogImage';
 import CatImage from 'components/atoms/CatImage/CatImage';
 // import dogImg from 'images/dogMain.png';
@@ -51,27 +53,32 @@ const MainForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: ${({ activePet }) =>
+    activePet === 'dog' ? 'flex-start' : 'flex-end'};
   align-content: space-around;
 
   ${({ theme }) => theme.mq.tablet} {
     min-height: 270px;
-    background-image: url(${pawsMainImg});
+    background-image: ${({ activePet }) =>
+      activePet === 'dog' ? `url(${pawsMainImg})` : `url(${pawsMainImgRev})`};
     background-repeat: no-repeat;
-    background-position: 100% 100%;
+    background-position: ${({ activePet }) =>
+      activePet === 'dog' ? '100% 100%' : '0% 100%'};
     background-size: 25%;
-    padding-left: 50px;
+    padding-left: ${({ activePet }) => (activePet === 'dog' ? '50px' : '0')};
+    padding-right: ${({ activePet }) => (activePet === 'dog' ? '0' : '50px')};
   }
 
   ${({ theme }) => theme.mq.desktop} {
     background-size: 30%;
-    padding-left: 0;
     min-height: 0px;
     width: 60%;
     position: absolute;
-    /* change to left:20px for catImg */
+    left: ${({ activePet }) => (activePet === 'dog' ? 'auto' : '20px')};
+    right: ${({ activePet }) => (activePet === 'dog' ? '20px' : 'auto')};
     right: 20px;
     top: 25px;
+    padding-left: ${({ activePet }) => (activePet === 'dog' ? '0' : '70px')};
   }
 `;
 
@@ -88,27 +95,30 @@ const FilterWrapper = styled.div`
   }
 `;
 
-const Main = () => (
-  <>
-    <BookmarksBar />
-    <BackgroundImg />
-    <MainWrapper>
-      <DogImage />
-      <CatImage />
-      <MainForm>
-        <FilterWrapper>
-          <InputSelect />
-          <InputSelect />
-          <InputSelect />
-          <InputSelect />
-          <LinkWithIcon to="/" src={iconHelp}>
-            Pomoc
-          </LinkWithIcon>
-        </FilterWrapper>
-        <Button>Szukaj</Button>
-      </MainForm>
-    </MainWrapper>
-  </>
-);
+const Main = () => {
+  const state = useContext(GlobalStateContext);
+
+  return (
+    <>
+      <BookmarksBar />
+      <BackgroundImg />
+      <MainWrapper>
+        {state.activePet === 'dog' ? <DogImage /> : <CatImage />}
+        <MainForm activePet={state.activePet}>
+          <FilterWrapper activePet={state.activePet}>
+            <InputSelect />
+            <InputSelect />
+            <InputSelect />
+            <InputSelect />
+            <LinkWithIcon to="/" src={iconHelp}>
+              Pomoc
+            </LinkWithIcon>
+          </FilterWrapper>
+          <Button>Szukaj</Button>
+        </MainForm>
+      </MainWrapper>
+    </>
+  );
+};
 
 export default Main;

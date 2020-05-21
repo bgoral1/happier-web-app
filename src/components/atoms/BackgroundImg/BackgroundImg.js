@@ -23,7 +23,7 @@ const BackgroundImg = () => {
       file(name: { eq: "bcg" }) {
         childImageSharp {
           fluid(maxWidth: 1920, quality: 100) {
-            ...GatsbyImageSharpFluid_noBase64
+            ...GatsbyImageSharpFluid_tracedSVG
           }
         }
       }
