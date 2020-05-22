@@ -12,6 +12,7 @@ const Button = styled.button`
   color: ${({ theme }) => theme.white};
   text-transform: uppercase;
   transition: box-shadow 0.3s ease;
+  cursor: pointer;
 
   ${({ secondary }) =>
     secondary &&

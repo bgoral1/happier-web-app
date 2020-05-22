@@ -22,11 +22,11 @@ const MainTemplate = ({ children }) => (
         <Header />
         <Main />
         <FeaturedSection />
+        {children}
         <AboutSection />
         <StepsSection />
         <MottoSection />
         <InstitutionSection />
-        {children}
         <Footer />
       </>
     </ThemeProvider>
