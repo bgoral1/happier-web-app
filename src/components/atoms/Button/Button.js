@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const Button = styled.button`
   background-color: ${({ theme }) => theme.accent};
   width: ${({ width }) => width || '280px'};
-  height: 50px;
+  height: ${({ height }) => height || '50px'};
   border: none;
   border-radius: 50px;
   font-family: ${({ theme }) => theme.font.family.montserrat};
