@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from 'components/atoms/Button/Button';
 
@@ -32,7 +33,7 @@ const HeadingWrapper = styled.div`
   text-align: center;
 `;
 
-const Card = () => (
+const Card = ({ name }) => (
   <StyledWrapper>
     <ImageWrapper>
       <img src="http://unsplash.it/200/200" alt="dog" />
@@ -41,9 +42,13 @@ const Card = () => (
       </StyledButton>
     </ImageWrapper>
     <HeadingWrapper>
-      <h2>Rudolf</h2>
+      <h2>{name}</h2>
     </HeadingWrapper>
   </StyledWrapper>
 );
+
+Card.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default Card;

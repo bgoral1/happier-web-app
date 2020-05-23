@@ -56,6 +56,7 @@ typings/
 
 # dotenv environment variable files
 .env*
+firebase.json
 
 # gatsby files
 .cache/

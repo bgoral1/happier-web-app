@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const path = require('path');
 
 module.exports = {
@@ -7,6 +8,32 @@ module.exports = {
     author: `Barbara Góral`,
   },
   plugins: [
+    {
+      resolve: 'gatsby-firesource',
+      options: {
+        credential: require('./firebase.json'),
+        types: [
+          {
+            type: 'Pet',
+            collection: 'pets',
+            map: doc => ({
+              name: doc.name,
+              lead: doc.lead,
+              description: doc.description,
+              institution___NODE: doc.institution.id,
+            }),
+          },
+          {
+            type: 'Institution',
+            collection: 'institutions',
+            map: doc => ({
+              name: doc.name,
+              city: doc.city,
+            }),
+          },
+        ],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-anchor-links',

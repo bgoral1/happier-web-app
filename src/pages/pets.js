@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
+import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
 import MainTemplate from 'templates/MainTemplate/MainTemplate';
 import Card from 'components/molecules/Card/Card';
@@ -39,24 +41,35 @@ const PetsWrapper = styled.div`
   }
 `;
 
-const PetsPage = () => (
+const PetsPage = ({ data }) => (
   <MainTemplate>
     <PetsWrapper>
       <h1>Do adopcji</h1>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {data.allPet.edges.map(edge => (
+        <Link key={edge.node.id} to={`/pet/${edge.node.id}`}>
+          <Card name={edge.node.name} />
+        </Link>
+      ))}
     </PetsWrapper>
   </MainTemplate>
 );
+
+export const query = graphql`
+  {
+    allPet {
+      edges {
+        node {
+          id
+          description
+          lead
+          name
+          institution {
+            name
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default PetsPage;
