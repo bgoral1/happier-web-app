@@ -13,6 +13,13 @@ const PetDetails = styled.div`
   margin-top: 73px;
 `;
 
+const PetDetailsImg = styled.img`
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  object-position: 50% 0;
+`;
+
 const PetTemplate = ({ pageContext }) => (
   <>
     {/* <SEO /> */}
@@ -21,6 +28,7 @@ const PetTemplate = ({ pageContext }) => (
       <>
         <Header />
         <PetDetails>
+          <PetDetailsImg src={pageContext.localImage.publicURL} alt="pet" />
           <h1>Imię: {pageContext.name}</h1>
           <small>{pageContext.institution.name}</small>
           <h2>{pageContext.lead}</h2>

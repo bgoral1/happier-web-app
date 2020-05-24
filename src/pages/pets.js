@@ -47,7 +47,10 @@ const PetsPage = ({ data }) => (
       <h1>Do adopcji</h1>
       {data.allPet.edges.map(edge => (
         <Link key={edge.node.id} to={`/pet/${edge.node.id}`}>
-          <Card name={edge.node.name} />
+          <Card
+            petImage={edge.node.localImage.childImageSharp.fluid}
+            name={edge.node.name}
+          />
         </Link>
       ))}
     </PetsWrapper>
@@ -63,6 +66,13 @@ export const query = graphql`
           description
           lead
           name
+          localImage {
+            childImageSharp {
+              fluid(maxWidth: 320, quality: 90) {
+                ...GatsbyImageSharpFluid_tracedSVG
+              }
+            }
+          }
           institution {
             name
           }

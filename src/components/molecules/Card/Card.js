@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Image from 'gatsby-image';
 import Button from 'components/atoms/Button/Button';
 
 const StyledWrapper = styled.div`
@@ -15,10 +16,15 @@ const ImageWrapper = styled.div`
   background-color: ${({ theme }) => theme.primary};
   padding: 20px;
   position: relative;
+  width: 320px;
+  height: 320px;
+`;
 
-  img {
-    width: 100%;
-  }
+const PetImg = styled(Image)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
 `;
 
 const StyledButton = styled(Button)`
@@ -33,10 +39,10 @@ const HeadingWrapper = styled.div`
   text-align: center;
 `;
 
-const Card = ({ name }) => (
+const Card = ({ name, petImage }) => (
   <StyledWrapper>
     <ImageWrapper>
-      <img src="http://unsplash.it/200/200" alt="dog" />
+      <PetImg fluid={petImage} alt="dog" />
       <StyledButton width="100px" height="32px">
         Zobacz
       </StyledButton>
@@ -49,6 +55,7 @@ const Card = ({ name }) => (
 
 Card.propTypes = {
   name: PropTypes.string.isRequired,
+  petImage: PropTypes.string.isRequired,
 };
 
 export default Card;

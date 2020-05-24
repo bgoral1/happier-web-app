@@ -13,6 +13,9 @@ exports.createPages = ({ graphql, actions }) => {
             description
             lead
             name
+            localImage {
+              publicURL
+            }
             institution {
               name
             }
