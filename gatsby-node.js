@@ -10,15 +10,6 @@ exports.createPages = ({ graphql, actions }) => {
         edges {
           node {
             id
-            description
-            lead
-            name
-            localImage {
-              publicURL
-            }
-            institution {
-              name
-            }
           }
         }
       }
@@ -31,7 +22,7 @@ exports.createPages = ({ graphql, actions }) => {
       createPage({
         path: `/pet/${pet.node.id}`,
         component: petTemplate,
-        context: pet.node,
+        context: { petId: pet.node.id },
       });
     });
   });
