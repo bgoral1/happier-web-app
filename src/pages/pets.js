@@ -30,7 +30,7 @@ const PetsWrapper = styled.div`
   ${({ theme }) => theme.mq.desktop} {
     width: 70%;
     margin: 0 auto;
-    padding: 50px;
+    padding: 40px;
     box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
   }
 

@@ -16,15 +16,23 @@ const ImageWrapper = styled.div`
   background-color: ${({ theme }) => theme.primary};
   padding: 20px;
   position: relative;
-  width: 320px;
-  height: 320px;
 `;
 
 const PetImg = styled(Image)`
-  width: 100%;
-  height: 100%;
+  width: 280px;
+  height: 280px;
   object-fit: cover;
   object-position: 50% 0;
+
+  ${({ theme }) => theme.mq.tablet} {
+    width: 190px;
+    height: 190px;
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const StyledButton = styled(Button)`
