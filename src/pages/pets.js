@@ -43,7 +43,7 @@ const PetsWrapper = styled.div`
 
 const PetsPage = ({ data }) => (
   <MainTemplate>
-    <PetsWrapper>
+    <PetsWrapper id="petListing">
       <h1>Do adopcji</h1>
       {data.allPet.edges.map(edge => (
         <Link key={edge.node.id} to={`/pet/${edge.node.id}`}>

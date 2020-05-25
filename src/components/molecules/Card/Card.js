@@ -61,9 +61,27 @@ const Card = ({ name, petImage }) => (
   </StyledWrapper>
 );
 
+const fluidObject = PropTypes.shape({
+  aspectRatio: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  srcSet: PropTypes.string.isRequired,
+  sizes: PropTypes.string.isRequired,
+  base64: PropTypes.string,
+  tracedSVG: PropTypes.string,
+  srcWebp: PropTypes.string,
+  srcSetWebp: PropTypes.string,
+  media: PropTypes.string,
+  maxWidth: PropTypes.number,
+  maxHeight: PropTypes.number,
+});
+
 Card.propTypes = {
   name: PropTypes.string.isRequired,
-  petImage: PropTypes.string.isRequired,
+  petImage: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
+};
+
+Card.defaultProps = {
+  petImage: [],
 };
 
 export default Card;

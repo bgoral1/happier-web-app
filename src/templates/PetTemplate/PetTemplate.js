@@ -7,19 +7,70 @@ import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 // import SEO from 'components/SEO/seo';
 import Header from 'components/organisms/Header/Header';
+import ReturnBar from 'components/molecules/ReturnBar/ReturnBar';
+import BackgroundImg from 'components/atoms/BackgroundImg/BackgroundImg';
 import Footer from 'components/organisms/Footer/Footer';
 
 const PetDetails = styled.div`
-  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  ${theme.mq.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 30px;
+    background-color: ${theme.primary};
+  }
+
+  ${theme.mq.desktop} {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+`;
+
+const ImageWrapper = styled.div`
   background-color: ${theme.primary};
-  margin-top: 73px;
+  padding: 20px;
+  position: relative;
+  z-index: -1;
+
+  ${theme.mq.tablet} {
+    order: 2;
+    padding: 0;
+    z-index: 1;
+  }
 `;
 
 const PetDetailsImg = styled(Image)`
-  width: 500px;
-  height: 500px;
+  width: 320px;
+  height: 320px;
   object-fit: cover;
   object-position: 50% 0;
+
+  ${theme.mq.desktop} {
+    width: 500px;
+    height: 500px;
+  }
+`;
+
+const PetDetailsDesc = styled.div`
+  background-color: ${theme.white};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  height: 30vh;
+
+  ${theme.mq.tablet} {
+    order: 1;
+    margin-right: 40px;
+    height: 30vh;
+  }
+  ${theme.mq.desktop} {
+    height: 60vh;
+  }
 `;
 
 const PetTemplate = ({ data }) => (
@@ -29,15 +80,21 @@ const PetTemplate = ({ data }) => (
     <ThemeProvider theme={theme}>
       <>
         <Header />
+        <ReturnBar />
+        <BackgroundImg />
         <PetDetails>
-          <PetDetailsImg
-            fluid={data.pet.localImage.childImageSharp.fluid}
-            alt="pet"
-          />
-          <h1>Imię: {data.pet.name}</h1>
-          <small>{data.pet.institution.name}</small>
-          <h2>{data.pet.lead}</h2>
-          <p>Opis: {data.pet.description}</p>
+          <ImageWrapper>
+            <PetDetailsImg
+              fluid={data.pet.localImage.childImageSharp.fluid}
+              alt="pet"
+            />
+          </ImageWrapper>
+          <PetDetailsDesc>
+            <h1>{data.pet.name}</h1>
+            <small>{data.pet.institution.name}</small>
+            <h3>{data.pet.lead}</h3>
+            <p>{data.pet.description}</p>
+          </PetDetailsDesc>
         </PetDetails>
         <Footer />
       </>
@@ -55,7 +112,7 @@ export const query = graphql`
       localImage {
         childImageSharp {
           fluid(maxWidth: 500, quality: 90) {
-            ...GatsbyImageSharpFluid_tracedSVG
+            ...GatsbyImageSharpFluid_noBase64
           }
         }
       }
