@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Bookmark from 'components/atoms/Bookmark/Bookmark';
-import { GlobalDispatchContext } from 'src/context/GlobalContextProvider';
+import { FilterPetsDispatchContext } from 'src/context/FilterPetsContextProvider';
 
 const StyledBookmarks = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const StyledBookmarks = styled.div`
 `;
 
 const BookmarksBar = () => {
-  const dispatch = useContext(GlobalDispatchContext);
+  const dispatch = useContext(FilterPetsDispatchContext);
 
   const [on, setState] = useState(true);
 

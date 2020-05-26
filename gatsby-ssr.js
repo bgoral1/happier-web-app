@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 const React = require('react');
-const GlobalContextProvider = require('src/context/GlobalContextProvider')
+const FirebaseContextProvider = require('src/components/Firebase/context')
   .default;
 
-exports.wrapRootElement = ({ element }) => {
-  return <GlobalContextProvider>{element}</GlobalContextProvider>;
+exports.wrapRootElement = ({ element, props }) => {
+  return (
+    <FirebaseContextProvider {...props}>{element}</FirebaseContextProvider>
+  );
 };

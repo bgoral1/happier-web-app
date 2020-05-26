@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
 import MainTemplate from 'templates/MainTemplate/MainTemplate';
+import Main from 'components/organisms/Main/Main';
 import Card from 'components/molecules/Card/Card';
 
 const PetsWrapper = styled.div`
@@ -43,6 +44,7 @@ const PetsWrapper = styled.div`
 
 const PetsPage = ({ data }) => (
   <MainTemplate>
+    <Main />
     <PetsWrapper id="petListing">
       <h1>Do adopcji</h1>
       {data.allPet.edges.map(edge => (

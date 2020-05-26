@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import { Link } from 'gatsby';
+import React, { useState, useContext } from 'react';
+import { Link, navigate } from 'gatsby';
 import styled from 'styled-components';
 import UsefulLinks from 'components/molecules/UsefulLinks/UsefulLinks';
 import Logo from 'components/atoms/Logo/Logo';
 import Hamburger from 'components/atoms/Hamburger/Hamburger';
 import DesktopMenu from 'components/molecules/DesktopMenu/DesktopMenu';
 import MobileMenu from 'components/molecules/MobileMenu/MobileMenu';
+import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
+import iconLogin from 'images/icons/icon_login.svg';
+import iconLogout from 'images/icons/icon_logout.svg';
+import { FirebaseContext } from 'components/Firebase/context';
 
 const StyledWrapper = styled.nav`
   display: flex;
@@ -29,8 +33,40 @@ const LogoLink = styled(Link)`
   z-index: 9999;
 `;
 
+const UserInfo = styled.div`
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+
+  span {
+    display: none;
+    ${({ theme }) => theme.mq.tablet} {
+      display: inline;
+      padding-right: 5px;
+    }
+  }
+
+  strong {
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+    color: ${({ theme }) => theme.primary};
+  }
+
+  div {
+    :hover {
+      color: ${({ theme }) => theme.primaryDark};
+      cursor: pointer;
+      fill: ${({ theme }) => theme.primaryDark};
+    }
+  }
+`;
+
 const Header = () => {
+  const { firebase, user } = useContext(FirebaseContext);
   const [isMenuOpen, setMenuState] = useState(false);
+
+  const handleLogoutClick = () => {
+    firebase.logout().then(() => navigate('/'));
+  };
 
   const toggleMobileMenu = () => {
     setMenuState(!isMenuOpen);
@@ -38,7 +74,22 @@ const Header = () => {
 
   return (
     <>
-      <UsefulLinks isOpenMobileMenu={isMenuOpen} />
+      <UsefulLinks isOpenMobileMenu={isMenuOpen}>
+        {!!user && !!user.email && (
+          <UserInfo>
+            <span>Witaj, </span>
+            <strong>{user.email}</strong>
+            <LinkWithIcon src={iconLogout} onClick={handleLogoutClick}>
+              Wyloguj się
+            </LinkWithIcon>
+          </UserInfo>
+        )}
+        {(!user || !user.email) && (
+          <LinkWithIcon to="/login" src={iconLogin}>
+            Zaloguj się
+          </LinkWithIcon>
+        )}
+      </UsefulLinks>
       <StyledWrapper isOpen={isMenuOpen}>
         <LogoLink to="/">
           <Logo width="176px" height="50px" />

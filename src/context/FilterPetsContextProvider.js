@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useReducer, createContext } from 'react';
 
-export const GlobalStateContext = createContext();
-export const GlobalDispatchContext = createContext();
+export const FilterPetsStateContext = createContext();
+export const FilterPetsDispatchContext = createContext();
 
 const initialState = { activePet: 'dog' };
 
@@ -19,15 +19,15 @@ const reducer = (state, action) => {
   }
 };
 
-const GlobalContextProvider = ({ children }) => {
+const FilterPetsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <GlobalStateContext.Provider value={state}>
-      <GlobalDispatchContext.Provider value={dispatch}>
+    <FilterPetsStateContext.Provider value={state}>
+      <FilterPetsDispatchContext.Provider value={dispatch}>
         {children}
-      </GlobalDispatchContext.Provider>
-    </GlobalStateContext.Provider>
+      </FilterPetsDispatchContext.Provider>
+    </FilterPetsStateContext.Provider>
   );
 };
 
-export default GlobalContextProvider;
+export default FilterPetsContextProvider;

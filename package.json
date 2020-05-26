@@ -5,7 +5,9 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.7",
+    "firebase": "^7.14.5",
     "gatsby": "^2.19.7",
     "gatsby-background-image": "^1.1.1",
     "gatsby-firesource": "^2.0.3",
@@ -81,8 +83,7 @@
     "src/**/*.js": [
       "prettier --config .prettierrc --write",
       "eslint --fix",
-      "stylelint --fix",
-      "git add"
+      "stylelint --fix"
     ]
   }
 }

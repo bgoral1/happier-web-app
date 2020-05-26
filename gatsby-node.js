@@ -2,7 +2,9 @@ const path = require('path');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
-  const petTemplate = path.resolve('src/templates/PetTemplate/PetTemplate.js');
+  const PetPageTemplate = path.resolve(
+    'src/templates/PetPageTemplate/PetPageTemplate.js'
+  );
 
   return graphql(`
     {
@@ -21,7 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
     result.data.allPet.edges.forEach(pet => {
       createPage({
         path: `/pet/${pet.node.id}`,
-        component: petTemplate,
+        component: PetPageTemplate,
         context: { petId: pet.node.id },
       });
     });

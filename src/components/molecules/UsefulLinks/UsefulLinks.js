@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
 import iconInstagram from 'images/icons/icon_instagram.svg';
 import iconFacebook from 'images/icons/icon_facebook.svg';
-import iconLogin from 'images/icons/icon_login.svg';
 
 const UsefulLinksWrapper = styled.div`
   display: flex;
@@ -29,23 +27,12 @@ const UsefulLinksWrapper = styled.div`
   }
 `;
 
-const FAQLink = styled(Link)`
-  color: ${({ theme }) => theme.black};
-  font-weight: ${({ theme }) => theme.font.weight.semiBold};
-  padding: 7px 0px;
-  ${({ theme }) => theme.mq.desktop} {
-    margin-left: 35px;
-    order: 2;
-  }
-`;
-
 const IconWrapper = styled.div`
   display: flex;
 `;
 
-const UsefulLinks = ({ isOpenMobileMenu }) => (
+const UsefulLinks = ({ isOpenMobileMenu, children }) => (
   <UsefulLinksWrapper isOpenMobileMenu={isOpenMobileMenu}>
-    <FAQLink to="/">FAQ</FAQLink>
     <IconWrapper>
       <a href="https://www.instagram.com/">
         <LinkWithIcon src={iconInstagram} />
@@ -53,15 +40,21 @@ const UsefulLinks = ({ isOpenMobileMenu }) => (
       <a href="https://www.facebook.com/">
         <LinkWithIcon src={iconFacebook} />
       </a>
-      <LinkWithIcon to="/" src={iconLogin}>
-        Zaloguj się
-      </LinkWithIcon>
     </IconWrapper>
+    {children}
   </UsefulLinksWrapper>
 );
 
 UsefulLinks.propTypes = {
   isOpenMobileMenu: PropTypes.bool.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+};
+
+UsefulLinks.defaultProps = {
+  children: [],
 };
 
 export default UsefulLinks;

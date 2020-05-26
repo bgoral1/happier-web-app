@@ -1,26 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyle from 'theme/GlobalStyle';
-import { theme } from 'theme/MainTheme';
-// import SEO from 'components/SEO/seo';
+import FilterPetsContextProvider from 'src/context/FilterPetsContextProvider';
 import Header from 'components/organisms/Header/Header';
-import Main from 'components/organisms/Main/Main';
 import Footer from 'components/organisms/Footer/Footer';
 
 const MainTemplate = ({ children }) => (
-  <>
-    {/* <SEO /> */}
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <>
-        <Header />
-        <Main />
-        {children}
-        <Footer />
-      </>
-    </ThemeProvider>
-  </>
+  <FilterPetsContextProvider>
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
+  </FilterPetsContextProvider>
 );
 
 MainTemplate.propTypes = {

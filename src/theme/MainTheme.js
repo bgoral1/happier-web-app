@@ -7,6 +7,7 @@ export const theme = {
   white: 'hsl(0, 0%, 100%)',
   grey100: 'hsl(0, 0%, 96%)',
   grey200: 'hsl(0, 0%, 90%)',
+  grey500: 'hsl(0, 0%, 51%)',
   grey900: 'hsl(0, 0%, 15%)',
   black: 'hsl(0, 0%, 0%)',
 

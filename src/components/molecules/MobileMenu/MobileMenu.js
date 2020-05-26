@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 import Menu from 'components/molecules/Menu/Menu';
 import Button from 'components/atoms/Button/Button';
 
@@ -28,12 +29,27 @@ const NavigationWrapper = styled.nav`
   }
 `;
 
+const StyledButton = styled(Button)`
+  text-align: center;
+  line-height: 1.6;
+`;
+
 const MobileMenu = ({ isOpen }) => (
   <NavigationWrapper isOpen={isOpen}>
     <Menu />
-    <Button secondary reverse>
+    <StyledButton as={Link} to="/login" secondary reverse>
       Zaloguj się
-    </Button>
+    </StyledButton>
+    {/* {!!user && !!user.email && (
+      <StyledButton as={Link} to="/login" secondary reverse>
+        Wyloguj się
+      </StyledButton>
+    )}
+    {(!user || !user.email) && (
+      <StyledButton as={Link} to="/login" secondary reverse>
+        Zaloguj się
+      </StyledButton>
+    )} */}
   </NavigationWrapper>
 );
 

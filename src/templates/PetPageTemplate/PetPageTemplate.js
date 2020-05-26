@@ -1,41 +1,38 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import GlobalStyle from 'theme/GlobalStyle';
-import { theme } from 'theme/MainTheme';
+import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 // import SEO from 'components/SEO/seo';
 import Header from 'components/organisms/Header/Header';
 import ReturnBar from 'components/molecules/ReturnBar/ReturnBar';
-import BackgroundImg from 'components/atoms/BackgroundImg/BackgroundImg';
+import MainBackground from 'components/molecules/MainBackground/MainBackground';
 import Footer from 'components/organisms/Footer/Footer';
+
+const StyledMainBackground = styled(MainBackground)`
+  background-image: none;
+  background-position: 0 0;
+  background-size: auto;
+`;
 
 const PetDetails = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
 
-  ${theme.mq.tablet} {
+  ${({ theme }) => theme.mq.tablet} {
     grid-template-columns: repeat(2, 1fr);
     padding: 30px;
-    background-color: ${theme.primary};
-  }
-
-  ${theme.mq.desktop} {
-    width: 70%;
-    margin-right: auto;
-    margin-left: auto;
+    background-color: ${({ theme }) => theme.primary};
   }
 `;
 
 const ImageWrapper = styled.div`
-  background-color: ${theme.primary};
+  background-color: ${({ theme }) => theme.primary};
   padding: 20px;
   position: relative;
-  z-index: -1;
 
-  ${theme.mq.tablet} {
+  ${({ theme }) => theme.mq.tablet} {
     order: 2;
     padding: 0;
     z-index: 1;
@@ -43,19 +40,19 @@ const ImageWrapper = styled.div`
 `;
 
 const PetDetailsImg = styled(Image)`
-  width: 320px;
-  height: 320px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   object-position: 50% 0;
 
-  ${theme.mq.desktop} {
+  ${({ theme }) => theme.mq.desktop} {
     width: 500px;
     height: 500px;
   }
 `;
 
 const PetDetailsDesc = styled.div`
-  background-color: ${theme.white};
+  background-color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,12 +60,12 @@ const PetDetailsDesc = styled.div`
   padding: 20px;
   height: 30vh;
 
-  ${theme.mq.tablet} {
+  ${({ theme }) => theme.mq.tablet} {
     order: 1;
     margin-right: 40px;
     height: 30vh;
   }
-  ${theme.mq.desktop} {
+  ${({ theme }) => theme.mq.desktop} {
     height: 60vh;
   }
 `;
@@ -76,29 +73,25 @@ const PetDetailsDesc = styled.div`
 const PetTemplate = ({ data }) => (
   <>
     {/* <SEO /> */}
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <>
-        <Header />
-        <ReturnBar />
-        <BackgroundImg />
-        <PetDetails>
-          <ImageWrapper>
-            <PetDetailsImg
-              fluid={data.pet.localImage.childImageSharp.fluid}
-              alt="pet"
-            />
-          </ImageWrapper>
-          <PetDetailsDesc>
-            <h1>{data.pet.name}</h1>
-            <small>{data.pet.institution.name}</small>
-            <h3>{data.pet.lead}</h3>
-            <p>{data.pet.description}</p>
-          </PetDetailsDesc>
-        </PetDetails>
-        <Footer />
-      </>
-    </ThemeProvider>
+    <Header />
+    <ReturnBar />
+    <StyledMainBackground>
+      <PetDetails>
+        <ImageWrapper>
+          <PetDetailsImg
+            fluid={data.pet.localImage.childImageSharp.fluid}
+            alt="pet"
+          />
+        </ImageWrapper>
+        <PetDetailsDesc>
+          <h1>{data.pet.name}</h1>
+          <small>{data.pet.institution.name}</small>
+          <h3>{data.pet.lead}</h3>
+          <p>{data.pet.description}</p>
+        </PetDetailsDesc>
+      </PetDetails>
+    </StyledMainBackground>
+    <Footer />
   </>
 );
 
