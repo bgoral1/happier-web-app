@@ -49,6 +49,7 @@ const UserInfo = styled.div`
   strong {
     font-weight: ${({ theme }) => theme.font.weight.semiBold};
     color: ${({ theme }) => theme.primary};
+    text-transform: capitalize;
   }
 
   div {
@@ -64,6 +65,8 @@ const Header = () => {
   const { firebase, user } = useContext(FirebaseContext);
   const [isMenuOpen, setMenuState] = useState(false);
 
+  // console.log(user);
+
   const handleLogoutClick = () => {
     firebase.logout().then(() => navigate('/'));
   };
@@ -78,7 +81,7 @@ const Header = () => {
         {!!user && !!user.email && (
           <UserInfo>
             <span>Witaj, </span>
-            <strong>{user.email}</strong>
+            <strong>{user.userName || user.email}</strong>
             <LinkWithIcon src={iconLogout} onClick={handleLogoutClick}>
               Wyloguj się
             </LinkWithIcon>
