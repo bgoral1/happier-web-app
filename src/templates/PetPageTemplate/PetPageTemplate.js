@@ -17,6 +17,7 @@ import iconLocalization from 'images/icons/icon_localization.svg';
 import iconMale from 'images/icons/icon_sexMale.svg';
 import iconFemale from 'images/icons/icon_sexFemale.svg';
 import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
+import ContactSection from 'components/organisms/ContactSection/ContactSection';
 
 const StyledMainBackground = styled(MainBackground)`
   background-image: none;
@@ -51,11 +52,6 @@ const PetDetailsImg = styled(Image)`
   height: 320px;
   object-fit: cover;
   object-position: 50% 0;
-
-  ${({ theme }) => theme.mq.desktop} {
-    width: 400px;
-    height: 400px;
-  }
 
   ${({ theme }) => theme.mq.large} {
     width: 500px;
@@ -154,6 +150,7 @@ const PetTemplate = ({ data }) => (
         </PetDetailsDesc>
       </PetDetails>
     </StyledMainBackground>
+    <ContactSection />
     <Footer />
   </>
 );

@@ -15,6 +15,10 @@ const BackgroundImgWrappper = styled(Image)`
   ${({ theme }) => theme.mq.desktop} {
     display: block;
   }
+
+  ${({ theme }) => theme.mq.large} {
+    height: 550px;
+  }
 `;
 
 const BackgroundImg = () => {

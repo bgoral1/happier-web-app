@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
 
 const AboutWrapper = styled.div`
   padding: 31px 35px 37px 35px;
@@ -13,11 +14,6 @@ const H2 = styled.h2`
   font-size: ${({ theme }) => theme.font.weight.semiBold};
   color: ${({ theme }) => theme.accent};
   margin-bottom: 18px;
-`;
-
-const Paragraph = styled.p`
-  font-size: ${({ theme }) => theme.font.size.s};
-  font-size: ${({ theme }) => theme.font.weight.light};
 `;
 
 const AboutProgram = ({ className, children }) => (
