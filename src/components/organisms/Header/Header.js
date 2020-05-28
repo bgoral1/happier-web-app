@@ -9,6 +9,7 @@ import MobileMenu from 'components/molecules/MobileMenu/MobileMenu';
 import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
 import iconLogin from 'images/icons/icon_login.svg';
 import iconLogout from 'images/icons/icon_logout.svg';
+import Button from 'components/atoms/Button/Button';
 import { FirebaseContext } from 'components/Firebase/context';
 
 const StyledWrapper = styled.nav`
@@ -62,14 +63,17 @@ const UserInfo = styled.div`
   }
 `;
 
+const StyledButton = styled(Button)`
+  text-align: center;
+  line-height: 1.8;
+`;
+
 const Header = () => {
   const { firebase, user } = useContext(FirebaseContext);
   const [isMenuOpen, setMenuState] = useState(false);
 
-  // console.log(user);
-
   const handleLogoutClick = () => {
-    firebase.logout().then(() => navigate('/'));
+    firebase.logout().then(() => navigate('/login'));
   };
 
   const toggleMobileMenu = () => {
@@ -100,7 +104,24 @@ const Header = () => {
         </LogoLink>
         <DesktopMenu />
         <Hamburger onClick={toggleMobileMenu} isOpen={isMenuOpen} />
-        <MobileMenu isOpen={isMenuOpen} />
+        <MobileMenu isOpen={isMenuOpen}>
+          {!!user && !!user.email && (
+            <StyledButton
+              as={Link}
+              to="/login"
+              secondary
+              reverse
+              onClick={handleLogoutClick}
+            >
+              Wyloguj się
+            </StyledButton>
+          )}
+          {(!user || !user.email) && (
+            <StyledButton as={Link} to="/login" secondary reverse>
+              Zaloguj się
+            </StyledButton>
+          )}
+        </MobileMenu>
       </StyledWrapper>
     </>
   );

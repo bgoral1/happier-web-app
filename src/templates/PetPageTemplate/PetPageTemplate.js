@@ -84,6 +84,7 @@ const PetTemplate = ({ data }) => (
           <small>{data.pet.institution.name}</small>
           <h3>{data.pet.lead}</h3>
           <p>{data.pet.description}</p>
+          <p>{data.pet.id}</p>
         </PetDetailsDesc>
       </PetDetails>
     </StyledMainBackground>

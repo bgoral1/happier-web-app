@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
 import Menu from 'components/molecules/Menu/Menu';
-import Button from 'components/atoms/Button/Button';
 
 const NavigationWrapper = styled.nav`
   position: fixed;
@@ -29,32 +27,23 @@ const NavigationWrapper = styled.nav`
   }
 `;
 
-const StyledButton = styled(Button)`
-  text-align: center;
-  line-height: 1.6;
-`;
-
-const MobileMenu = ({ isOpen }) => (
+const MobileMenu = ({ isOpen, children }) => (
   <NavigationWrapper isOpen={isOpen}>
     <Menu />
-    <StyledButton as={Link} to="/login" secondary reverse>
-      Zaloguj się
-    </StyledButton>
-    {/* {!!user && !!user.email && (
-      <StyledButton as={Link} to="/login" secondary reverse>
-        Wyloguj się
-      </StyledButton>
-    )}
-    {(!user || !user.email) && (
-      <StyledButton as={Link} to="/login" secondary reverse>
-        Zaloguj się
-      </StyledButton>
-    )} */}
+    {children}
   </NavigationWrapper>
 );
 
 MobileMenu.propTypes = {
   isOpen: PropTypes.bool.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+};
+
+MobileMenu.defaultProps = {
+  children: [],
 };
 
 export default MobileMenu;
