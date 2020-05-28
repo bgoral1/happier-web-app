@@ -6,7 +6,6 @@ const LinkWithIcon = styled(Icon)`
   height: 30px;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.black};
 
   p {
     display: none;

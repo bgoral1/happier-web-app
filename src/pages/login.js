@@ -2,11 +2,12 @@
 import React, { useState, useContext } from 'react';
 // import styled from 'styled-components';
 import { FirebaseContext } from 'components/Firebase/context';
-import { Link, navigate } from 'gatsby';
+import { navigate } from 'gatsby';
 import AuthTemplate from 'templates/AuthTemplate/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
+import StyledLink from 'components/atoms/StyledLink/StyledLink';
 
 const LoginPage = () => {
   const { firebase } = useContext(FirebaseContext);
@@ -55,7 +56,9 @@ const LoginPage = () => {
         required
       />
       <Button type="submit">Zaloguj się</Button>
-      <Link to="/register">Nie masz konta? Zarejestruj się!</Link>
+      <StyledLink white to="/register">
+        Nie masz konta? Zarejestruj się!
+      </StyledLink>
     </AuthTemplate>
   );
 };

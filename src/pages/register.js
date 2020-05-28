@@ -7,6 +7,7 @@ import AuthTemplate from 'templates/AuthTemplate/AuthTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
+import StyledLink from 'components/atoms/StyledLink/StyledLink';
 
 const RegisterPage = () => {
   const { firebase } = useContext(FirebaseContext);
@@ -84,6 +85,9 @@ const RegisterPage = () => {
         required
       />
       <Button type="submit">Zarejestruj się</Button>
+      <StyledLink white to="/login">
+        Masz już konto? Zaloguj się!
+      </StyledLink>
     </AuthTemplate>
   );
 };

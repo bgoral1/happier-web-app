@@ -8,6 +8,7 @@ import Header from 'components/organisms/Header/Header';
 import ReturnBar from 'components/molecules/ReturnBar/ReturnBar';
 import MainBackground from 'components/molecules/MainBackground/MainBackground';
 import Footer from 'components/organisms/Footer/Footer';
+import Heading from 'components/atoms/Heading/Heading';
 
 const StyledMainBackground = styled(MainBackground)`
   background-image: none;
@@ -22,26 +23,22 @@ const PetDetails = styled.div`
 
   ${({ theme }) => theme.mq.tablet} {
     grid-template-columns: repeat(2, 1fr);
-    padding: 30px;
     background-color: ${({ theme }) => theme.primary};
   }
 `;
 
 const ImageWrapper = styled.div`
   background-color: ${({ theme }) => theme.primary};
-  padding: 20px;
-  position: relative;
 
   ${({ theme }) => theme.mq.tablet} {
     order: 2;
-    padding: 0;
     z-index: 1;
   }
 `;
 
 const PetDetailsImg = styled(Image)`
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   object-fit: cover;
   object-position: 50% 0;
 
@@ -57,12 +54,11 @@ const PetDetailsDesc = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 20px;
   height: 30vh;
+  width: 100%;
 
   ${({ theme }) => theme.mq.tablet} {
     order: 1;
-    margin-right: 40px;
     height: 30vh;
   }
   ${({ theme }) => theme.mq.desktop} {
@@ -84,7 +80,7 @@ const PetTemplate = ({ data }) => (
           />
         </ImageWrapper>
         <PetDetailsDesc>
-          <h1>{data.pet.name}</h1>
+          <Heading>{data.pet.name}</Heading>
           <small>{data.pet.institution.name}</small>
           <h3>{data.pet.lead}</h3>
           <p>{data.pet.description}</p>

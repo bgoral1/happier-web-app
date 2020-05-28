@@ -1,15 +1,15 @@
 import React from 'react';
 import SVG from 'react-inlinesvg';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import StyledLink from 'components/atoms/StyledLink/StyledLink';
 
 const Icon = ({ src, children, to, ...props }) => (
   <>
     {to ? (
-      <Link to={to} {...props}>
+      <StyledLink to={to} {...props}>
         <SVG src={src} />
         <p>{children}</p>
-      </Link>
+      </StyledLink>
     ) : (
       <div {...props}>
         <SVG src={src} />

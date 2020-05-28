@@ -3,11 +3,13 @@ import iconSearch from 'images/icons/icon_search.svg';
 
 const Input = styled.input`
   padding: 15px 30px;
-  font-size: ${({ theme }) => theme.font.size.s};
-  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  margin-bottom: 10px;
+  font-size: ${({ theme }) => theme.font.size.xs};
+  font-weight: ${({ theme }) => theme.font.weight.regular};
   background-color: ${({ theme }) => theme.grey100};
   border: none;
   border-radius: 50px;
+  width: 100%;
 
   ::placeholder {
     color: ${({ theme }) => theme.grey500};

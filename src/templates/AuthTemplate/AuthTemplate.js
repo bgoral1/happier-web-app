@@ -51,11 +51,11 @@ const FormWrapper = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 0 20px;
-  height: 55vh;
+  padding: 0 20px 20px 20px;
+  min-height: 55vh;
 
   ${({ theme }) => theme.mq.tablet} {
-    height: 45vh;
+    min-height: 45vh;
   }
 `;
 

@@ -47,6 +47,10 @@ const HeadingWrapper = styled.div`
   text-align: center;
 `;
 
+const H2 = styled.h2`
+  color: ${({ theme }) => theme.grey900};
+`;
+
 const Card = ({ name, petImage }) => (
   <StyledWrapper>
     <ImageWrapper>
@@ -56,7 +60,7 @@ const Card = ({ name, petImage }) => (
       </StyledButton>
     </ImageWrapper>
     <HeadingWrapper>
-      <h2>{name}</h2>
+      <H2>{name}</H2>
     </HeadingWrapper>
   </StyledWrapper>
 );

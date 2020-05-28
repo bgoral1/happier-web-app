@@ -25,10 +25,9 @@ const StyledLinkWithIcon = styled(LinkWithIcon)`
   }
   svg {
     transform: rotate(90deg);
-  }
-
-  path {
-    fill: ${({ theme }) => theme.white};
+    path {
+      fill: ${({ theme }) => theme.white};
+    }
   }
 `;
 

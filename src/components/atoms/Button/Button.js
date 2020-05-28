@@ -13,6 +13,7 @@ const Button = styled.button`
   text-transform: uppercase;
   transition: box-shadow 0.3s ease;
   cursor: pointer;
+  margin: 15px 0;
 
   ${({ secondary }) =>
     secondary &&

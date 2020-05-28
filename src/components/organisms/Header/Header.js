@@ -20,6 +20,7 @@ const StyledWrapper = styled.nav`
   position: absolute;
   top: 34px;
   left: 0;
+  z-index: 9998;
   transform: translateY(${({ isOpen }) => (isOpen ? '-34px' : '0')});
   background-color: ${({ theme }) => theme.white};
 
