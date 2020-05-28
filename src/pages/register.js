@@ -4,7 +4,7 @@ import React, { useState, useContext } from 'react';
 import { FirebaseContext } from 'components/Firebase/context';
 import { navigate } from 'gatsby';
 import AuthTemplate from 'templates/AuthTemplate/AuthTemplate';
-import Heading from 'components/atoms/Heading/Heading';
+import H1 from 'components/atoms/H1/H1';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import StyledLink from 'components/atoms/StyledLink/StyledLink';
@@ -48,7 +48,7 @@ const RegisterPage = () => {
 
   return (
     <AuthTemplate onSubmit={handleSubmit}>
-      <Heading white>Zarejestruj się</Heading>
+      <H1 white>Zarejestruj się</H1>
       {!!errMessage && <p color="red">{errMessage}</p>}
       <Input
         value={formValues.userName}

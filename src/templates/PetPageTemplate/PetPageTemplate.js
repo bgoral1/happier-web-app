@@ -8,7 +8,15 @@ import Header from 'components/organisms/Header/Header';
 import ReturnBar from 'components/molecules/ReturnBar/ReturnBar';
 import MainBackground from 'components/molecules/MainBackground/MainBackground';
 import Footer from 'components/organisms/Footer/Footer';
-import Heading from 'components/atoms/Heading/Heading';
+import H1 from 'components/atoms/H1/H1';
+import H2 from 'components/atoms/H2/H2';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
+import PetFeature from 'components/atoms/PetFeature/PetFeature';
+import Icon from 'components/atoms/Icon/Icon';
+import iconLocalization from 'images/icons/icon_localization.svg';
+import iconMale from 'images/icons/icon_sexMale.svg';
+import iconFemale from 'images/icons/icon_sexFemale.svg';
+import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
 
 const StyledMainBackground = styled(MainBackground)`
   background-image: none;
@@ -22,8 +30,9 @@ const PetDetails = styled.div`
   grid-template-columns: 1fr;
 
   ${({ theme }) => theme.mq.tablet} {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr, 1fr;
     background-color: ${({ theme }) => theme.primary};
+    grid-template-areas: 'section section img';
   }
 `;
 
@@ -33,6 +42,7 @@ const ImageWrapper = styled.div`
   ${({ theme }) => theme.mq.tablet} {
     order: 2;
     z-index: 1;
+    grid-area: 'img';
   }
 `;
 
@@ -43,6 +53,11 @@ const PetDetailsImg = styled(Image)`
   object-position: 50% 0;
 
   ${({ theme }) => theme.mq.desktop} {
+    width: 400px;
+    height: 400px;
+  }
+
+  ${({ theme }) => theme.mq.large} {
     width: 500px;
     height: 500px;
   }
@@ -54,16 +69,51 @@ const PetDetailsDesc = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 30vh;
   width: 100%;
 
   ${({ theme }) => theme.mq.tablet} {
     order: 1;
-    height: 30vh;
+    min-height: 30vh;
+    grid-area: 'section';
   }
+
+  ${H1} {
+    border-bottom: 3px solid ${({ theme }) => theme.grey200};
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  ${LinkWithIcon} p {
+    display: inline-block;
+    color: ${({ theme }) => theme.grey300};
+    font-size: ${({ theme }) => theme.font.size.s};
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  }
+
+  ${LinkWithIcon} svg {
+    height: 25px;
+  }
+
+  article {
+    padding: 20px;
+  }
+`;
+
+const FeaturedWrapper = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 120px;
   ${({ theme }) => theme.mq.desktop} {
-    height: 60vh;
+    min-height: 80px;
   }
+`;
+
+const StyledIcon = styled(Icon)`
+  margin-left: 15px;
 `;
 
 const PetTemplate = ({ data }) => (
@@ -80,11 +130,27 @@ const PetTemplate = ({ data }) => (
           />
         </ImageWrapper>
         <PetDetailsDesc>
-          <Heading>{data.pet.name}</Heading>
-          <small>{data.pet.institution.name}</small>
-          <h3>{data.pet.lead}</h3>
-          <p>{data.pet.description}</p>
-          <p>{data.pet.id}</p>
+          <H1>
+            {data.pet.name}
+            <StyledIcon src={data.pet.sex === 'male' ? iconMale : iconFemale} />
+          </H1>
+          <LinkWithIcon src={iconLocalization}>
+            {data.pet.institution.city}, {data.pet.institution.name}
+          </LinkWithIcon>
+          <article>
+            <H2>{data.pet.lead}</H2>
+            <Paragraph>{data.pet.description}</Paragraph>
+          </article>
+          <FeaturedWrapper>
+            <PetFeature>mały</PetFeature>
+            <PetFeature>aktywny</PetFeature>
+            <PetFeature>junior</PetFeature>
+            <PetFeature>mały</PetFeature>
+            <PetFeature>aktywny</PetFeature>
+            <PetFeature>junior</PetFeature>
+            <PetFeature>aktywny</PetFeature>
+            <PetFeature>junior</PetFeature>
+          </FeaturedWrapper>
         </PetDetailsDesc>
       </PetDetails>
     </StyledMainBackground>
@@ -96,9 +162,10 @@ export const query = graphql`
   query PetQuery($petId: String!) {
     pet(id: { eq: $petId }) {
       id
-      description
-      lead
       name
+      sex
+      lead
+      description
       localImage {
         childImageSharp {
           fluid(maxWidth: 500, quality: 90) {
@@ -108,6 +175,7 @@ export const query = graphql`
       }
       institution {
         name
+        city
       }
     }
   }
