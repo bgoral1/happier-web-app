@@ -1,4 +1,4 @@
-export const mainFilters = [
+export const mainDogFilters = [
   {
     field: 'size',
     name: 'Wielkość',
@@ -21,7 +21,7 @@ export const mainFilters = [
   },
 ];
 
-export const allFilters = [
+export const allDogFilters = [
   {
     field: 'size',
     name: 'Wielkość',
@@ -64,7 +64,84 @@ export const allFilters = [
   {
     field: 'kids',
     name: 'Dzieci',
-    values: ['Bez dzieci', '0-7 lat', '7-12 lat', '>12 lat'],
+    values: ['Bez dzieci', 'dzieci >7 lat', 'dzieci >12 lat', 'w każdym wieku'],
+  },
+  {
+    field: 'tolerant',
+    name: 'Inne zwierzęta',
+    values: ['Tylko psy', 'Tylko koty', 'Żadne'],
+  },
+  {
+    field: 'localization',
+    name: 'lokalizacja',
+    values: ['Warszawa', 'Poznań', 'Kraków', 'Wrocław', 'Gdańsk'],
+  },
+  {
+    field: 'sex',
+    name: 'płeć',
+    values: ['samiec', 'samica'],
+  },
+];
+
+export const mainCatFilters = [
+  {
+    field: 'age',
+    name: 'Wiek',
+    values: ['Kocię', 'Junior', 'Dorosły', 'Senior'],
+  },
+  {
+    field: 'activity',
+    name: 'Aktywność',
+    values: ['Kanapowiec', 'Aktywny', 'Bardzo aktywny'],
+  },
+  {
+    field: 'color',
+    name: 'Umaszczenie',
+    values: ['Biały', 'Czarny', 'Szary', 'Rudy', 'Mieszane'],
+  },
+  {
+    field: 'localization',
+    name: 'Lokalizacja',
+    values: ['Warszawa', 'Poznań', 'Kraków', 'Wrocław', 'Gdańsk'],
+  },
+];
+
+export const allCatFilters = [
+  {
+    field: 'age',
+    name: 'Wiek',
+    values: ['Kocię', 'Junior', 'Dorosły', 'Senior'],
+  },
+  {
+    field: 'activity',
+    name: 'Aktywność',
+    values: ['Kanapowiec', 'Aktywny', 'Bardzo aktywny'],
+  },
+  {
+    field: 'color',
+    name: 'Umaszczenie',
+    values: ['Biały', 'Czarny', 'Szary', 'Rudy', 'Mieszane'],
+  },
+  {
+    field: 'bread',
+    name: 'W typie rasy',
+    values: [
+      'Mieszaniec',
+      'Kot europejski',
+      'Kot brytyjski',
+      'Syjamski',
+      'Perski',
+    ],
+  },
+  {
+    field: 'time',
+    name: 'Czas bez opieki',
+    values: ['<6h', '6-9h', 'Stała opieka'],
+  },
+  {
+    field: 'kids',
+    name: 'Dzieci',
+    values: ['Bez dzieci', 'dzieci >7 lat', 'dzieci >12 lat', 'w każdym wieku'],
   },
   {
     field: 'tolerant',

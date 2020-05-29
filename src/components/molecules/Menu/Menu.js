@@ -42,7 +42,7 @@ const Menu = () => (
       <AnchorLink to="/#about">O programie</AnchorLink>
     </li>
     <li>
-      <Link to="/pets/#petListing">Do adopcji</Link>
+      <Link to="/pets">Do adopcji</Link>
     </li>
     <li>
       <AnchorLink to="/#institutions">Instytucje</AnchorLink>

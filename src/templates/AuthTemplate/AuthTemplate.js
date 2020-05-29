@@ -44,6 +44,10 @@ const LogoWrapper = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  :hover {
+    background-color: ${({ theme }) => theme.grey100};
+  }
 `;
 
 const FormWrapper = styled.form`

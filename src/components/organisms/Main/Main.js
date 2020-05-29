@@ -2,7 +2,12 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { FilterPetsStateContext } from 'src/context/FilterPetsContextProvider';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
-import { mainFilters, allFilters } from 'src/data/filters';
+import {
+  mainDogFilters,
+  allDogFilters,
+  mainCatFilters,
+  allCatFilters,
+} from 'src/data/filters';
 import MainBackground from 'components/molecules/MainBackground/MainBackground';
 import Button from 'components/atoms/Button/Button';
 import DogImage from 'components/atoms/DogImage/DogImage';
@@ -96,6 +101,27 @@ const Main = () => {
     e.preventDefault();
   };
 
+  const renderFilters = () => {
+    if (state.activePet === 'dog' && showAllFilters) {
+      return allDogFilters.map(item => (
+        <InputSelect key={item.field} {...item} />
+      ));
+    }
+    if (state.activePet === 'dog' && !showAllFilters) {
+      return mainDogFilters.map(item => (
+        <InputSelect key={item.field} {...item} />
+      ));
+    }
+    if (state.activePet !== 'dog' && showAllFilters) {
+      return allCatFilters.map(item => (
+        <InputSelect key={item.field} {...item} />
+      ));
+    }
+    return mainCatFilters.map(item => (
+      <InputSelect key={item.field} {...item} />
+    ));
+  };
+
   return (
     <>
       <BookmarksBar />
@@ -106,11 +132,7 @@ const Main = () => {
           activePet={state.activePet}
           onSubmit={filterPets}
         >
-          {showAllFilters
-            ? allFilters.map(item => <InputSelect key={item.field} {...item} />)
-            : mainFilters.map(item => (
-                <InputSelect key={item.field} {...item} />
-              ))}
+          {renderFilters()}
           <ShowFiltersLink onClick={toggleFilters}>
             {showAllFilters ? 'Pokaż mniej filtrów' : 'Pokaż więcej filtrów'}
           </ShowFiltersLink>

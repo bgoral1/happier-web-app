@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'gatsby-image';
 import Button from 'components/atoms/Button/Button';
+import Icon from 'components/atoms/Icon/Icon';
+import iconMale from 'images/icons/icon_sexMale.svg';
+import iconFemale from 'images/icons/icon_sexFemale.svg';
 
 const StyledWrapper = styled.div`
   box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
@@ -42,7 +45,7 @@ const PetImg = styled(Image)`
 const StyledButton = styled(Button)`
   position: absolute;
   right: 22px;
-  bottom: -16px;
+  bottom: -32px;
   font-size: ${({ theme }) => theme.font.size.xxs};
 `;
 
@@ -55,7 +58,16 @@ const H2 = styled.h2`
   color: ${({ theme }) => theme.grey900};
 `;
 
-const Card = ({ name, petImage }) => (
+const StyledIcon = styled(Icon)`
+  margin-left: 15px;
+  display: inline-block;
+
+  svg {
+    height: 35px;
+  }
+`;
+
+const Card = ({ name, sex, petImage }) => (
   <StyledWrapper>
     <ImageWrapper>
       <PetImg fluid={petImage} alt="dog" />
@@ -64,7 +76,10 @@ const Card = ({ name, petImage }) => (
       </StyledButton>
     </ImageWrapper>
     <HeadingWrapper>
-      <H2>{name}</H2>
+      <H2>
+        {name}
+        <StyledIcon src={sex === 'male' ? iconMale : iconFemale} />
+      </H2>
     </HeadingWrapper>
   </StyledWrapper>
 );
@@ -85,6 +100,7 @@ const fluidObject = PropTypes.shape({
 
 Card.propTypes = {
   name: PropTypes.string.isRequired,
+  sex: PropTypes.string.isRequired,
   petImage: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
 };
 

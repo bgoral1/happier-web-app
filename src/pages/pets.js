@@ -46,13 +46,14 @@ const PetsWrapper = styled.div`
 const PetsPage = ({ data }) => (
   <MainTemplate>
     <Main />
-    <PetsWrapper id="petListing">
+    <PetsWrapper>
       <h1>Do adopcji</h1>
       {data.allPet.edges.map(edge => (
         <Link key={edge.node.id} to={`/pet/${edge.node.id}`}>
           <Card
             petImage={edge.node.localImage.childImageSharp.fluid}
             name={edge.node.name}
+            sex={edge.node.sex}
           />
         </Link>
       ))}
@@ -69,6 +70,7 @@ export const query = graphql`
           description
           lead
           name
+          sex
           localImage {
             childImageSharp {
               fluid(maxWidth: 320, quality: 90) {
