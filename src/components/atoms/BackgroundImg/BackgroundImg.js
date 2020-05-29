@@ -12,12 +12,9 @@ const BackgroundImgWrappper = styled(Image)`
   top: 162px;
   left: 0;
 
-  ${({ theme }) => theme.mq.desktop} {
-    display: block;
-  }
-
   ${({ theme }) => theme.mq.large} {
     height: 550px;
+    display: block;
   }
 `;
 

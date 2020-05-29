@@ -51,6 +51,10 @@ const StyledTextArea = styled(Input)`
   height: 30vh;
   border-radius: 20px;
 
+  ${({ theme }) => theme.mq.desktop} {
+    height: 35vh;
+  }
+
   ::placeholder {
     font-size: ${({ theme }) => theme.font.size.xxs};
     font-family: ${({ theme }) => theme.font.family.montserrat};

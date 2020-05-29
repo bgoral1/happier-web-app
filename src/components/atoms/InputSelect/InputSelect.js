@@ -6,6 +6,9 @@ import iconMale from 'images/icons/icon_sexMale.svg';
 import iconFemale from 'images/icons/icon_sexFemale.svg';
 
 const InputSelectLabel = styled.label`
+  @media (max-width: 359px) {
+    width: 100%;
+  }
   font-size: ${({ theme }) => theme.font.size.xs};
   font-weight: ${({ theme }) => theme.font.weight.semiBold};
   display: flex;

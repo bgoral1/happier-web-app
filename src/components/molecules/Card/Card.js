@@ -19,6 +19,10 @@ const ImageWrapper = styled.div`
 `;
 
 const PetImg = styled(Image)`
+  @media (max-width: 359px) {
+    width: 240px;
+    height: 240px;
+  }
   width: 280px;
   height: 280px;
   object-fit: cover;

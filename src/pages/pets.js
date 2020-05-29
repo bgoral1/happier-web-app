@@ -29,7 +29,7 @@ const PetsWrapper = styled.div`
   }
 
   ${({ theme }) => theme.mq.desktop} {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
     padding: 40px;
     box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
@@ -39,6 +39,7 @@ const PetsWrapper = styled.div`
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 'header header header header';
     padding: 30px;
+    width: 70%;
   }
 `;
 

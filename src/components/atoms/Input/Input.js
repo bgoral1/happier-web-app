@@ -17,10 +17,6 @@ const Input = styled.input`
     letter-spacing: 1px;
   }
 
-  :focus {
-    outline-color: ${({ theme }) => theme.priamryDark};
-  }
-
   ${({ search }) =>
     search &&
     css`

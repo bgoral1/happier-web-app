@@ -18,7 +18,9 @@ module.exports = {
             collection: 'pets',
             map: doc => ({
               name: doc.name,
+              filters: doc.filters,
               sex: doc.sex,
+              species: doc.species,
               lead: doc.lead,
               description: doc.description,
               imageUrl: doc.imageUrl,

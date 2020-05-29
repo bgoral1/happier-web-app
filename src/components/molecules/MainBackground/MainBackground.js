@@ -7,7 +7,6 @@ import BackgroundImg from 'components/atoms/BackgroundImg/BackgroundImg';
 
 const MainWrapper = styled.main`
   width: 100%;
-  min-height: 300px;
   background-color: ${({ theme }) => theme.primary};
   padding: 15px 20px 22px 20px;
 
@@ -25,10 +24,14 @@ const MainWrapper = styled.main`
     background-image: ${({ activePet }) =>
       activePet === 'dog' ? `url(${pawsMainImg})` : `url(${pawsMainImgRev})`};
     position: relative;
-    min-height: 400px;
-    width: 70%;
+    min-height: ${({ bigger }) => (bigger ? '400px' : '300px')};
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
+  }
+
+  ${({ theme }) => theme.mq.large} {
+    width: 70%;
 
     :before,
     :after {
@@ -51,16 +54,17 @@ const MainWrapper = styled.main`
   }
 `;
 
-const MainBackground = ({ activePet, className, children }) => (
+const MainBackground = ({ bigger, activePet, className, children }) => (
   <>
     <BackgroundImg />
-    <MainWrapper activePet={activePet} className={className}>
+    <MainWrapper bigger={bigger} activePet={activePet} className={className}>
       {children}
     </MainWrapper>
   </>
 );
 
 MainBackground.propTypes = {
+  bigger: PropTypes.bool,
   activePet: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
@@ -70,6 +74,7 @@ MainBackground.propTypes = {
 };
 
 MainBackground.defaultProps = {
+  bigger: false,
   activePet: '',
   className: '',
   children: [],

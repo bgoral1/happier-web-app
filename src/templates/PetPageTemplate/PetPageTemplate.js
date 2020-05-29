@@ -11,13 +11,24 @@ import Footer from 'components/organisms/Footer/Footer';
 import H1 from 'components/atoms/H1/H1';
 import H2 from 'components/atoms/H2/H2';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
-import PetFeature from 'components/atoms/PetFeature/PetFeature';
 import Icon from 'components/atoms/Icon/Icon';
 import iconLocalization from 'images/icons/icon_localization.svg';
 import iconMale from 'images/icons/icon_sexMale.svg';
 import iconFemale from 'images/icons/icon_sexFemale.svg';
 import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
 import ContactSection from 'components/organisms/ContactSection/ContactSection';
+// import PetFeatureSection from 'components/molecules/PetFeatureSection/PetFeatureSection';
+import PetFeature from 'components/atoms/PetFeature/PetFeature';
+
+const PetFeatureSection = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 120px;
+  ${({ theme }) => theme.mq.desktop} {
+    min-height: 80px;
+  }
+`;
 
 const StyledMainBackground = styled(MainBackground)`
   background-image: none;
@@ -48,6 +59,11 @@ const ImageWrapper = styled.div`
 `;
 
 const PetDetailsImg = styled(Image)`
+  @media (max-width: 359px) {
+    width: 280px;
+    height: 280px;
+  }
+
   width: 320px;
   height: 320px;
   object-fit: cover;
@@ -98,16 +114,6 @@ const PetDetailsDesc = styled.div`
   }
 `;
 
-const FeaturedWrapper = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  min-height: 120px;
-  ${({ theme }) => theme.mq.desktop} {
-    min-height: 80px;
-  }
-`;
-
 const StyledIcon = styled(Icon)`
   margin-left: 15px;
 `;
@@ -137,16 +143,11 @@ const PetTemplate = ({ data }) => (
             <H2>{data.pet.lead}</H2>
             <Paragraph>{data.pet.description}</Paragraph>
           </article>
-          <FeaturedWrapper>
-            <PetFeature>mały</PetFeature>
-            <PetFeature>aktywny</PetFeature>
-            <PetFeature>junior</PetFeature>
-            <PetFeature>mały</PetFeature>
-            <PetFeature>aktywny</PetFeature>
-            <PetFeature>junior</PetFeature>
-            <PetFeature>aktywny</PetFeature>
-            <PetFeature>junior</PetFeature>
-          </FeaturedWrapper>
+          <PetFeatureSection>
+            {Object.entries(data.pet.filters).map(([key, value]) => (
+              <PetFeature key={key}>{value}</PetFeature>
+            ))}
+          </PetFeatureSection>
         </PetDetailsDesc>
       </PetDetails>
     </StyledMainBackground>
@@ -160,7 +161,16 @@ export const query = graphql`
     pet(id: { eq: $petId }) {
       id
       name
+      filters {
+        activity
+        age
+        bread
+        place
+        size
+        time
+      }
       sex
+      species
       lead
       description
       localImage {
