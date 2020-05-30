@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Label from 'components/atoms/Label/Label';
 import H2 from 'components/atoms/H2/H2';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
-
-const ContactSectionWrapper = styled.div`
-  width: 100%;
-  background-color: ${({ theme }) => theme.grey200};
-  padding: 16px 0;
-  position: relative;
-
-  ${({ theme }) => theme.mq.desktop} {
-    width: 70%;
-    margin: 0 auto;
-  }
-`;
 
 const MessageWrappper = styled.div`
   padding: 0 20px 20px 20px;
@@ -61,7 +50,7 @@ const StyledTextArea = styled(Input)`
   }
 `;
 
-const ContactSection = () => {
+const ContactSection = ({ labelText, headingText, paragraphText }) => {
   const [formValues, setFormValues] = useState({
     topic: '',
     email: '',
@@ -81,13 +70,11 @@ const ContactSection = () => {
   };
 
   return (
-    <ContactSectionWrapper>
-      <Label text="Zapytaj o możliwość adopcji" />
+    <>
+      <Label text={labelText} />
       <MessageWrappper>
-        <H2>Napisz wiadomość do schroniska</H2>
-        <Paragraph>
-          Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor.
-        </Paragraph>
+        <H2>{headingText}</H2>
+        <Paragraph>{paragraphText}</Paragraph>
         <form onSubmit={handleSubmit}>
           <Input
             value={formValues.topic}
@@ -117,8 +104,19 @@ const ContactSection = () => {
           <Button type="submit">Wyślij</Button>
         </form>
       </MessageWrappper>
-    </ContactSectionWrapper>
+    </>
   );
+};
+
+ContactSection.propTypes = {
+  labelText: PropTypes.string.isRequired,
+  headingText: PropTypes.string.isRequired,
+  paragraphText: PropTypes.string,
+};
+
+ContactSection.defaultProps = {
+  paragraphText:
+    'Aenean quis lectus ex. Praesent mattis ante et nisl gravida, ac tincidunt',
 };
 
 export default ContactSection;

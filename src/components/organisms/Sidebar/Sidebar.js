@@ -36,12 +36,18 @@ const SidebarWrapper = styled.div`
 
 const Sidebar = () => (
   <SidebarWrapper>
-    <ButtonIcon logo icon={logoHeart} as={Link} to="/" />
+    <ButtonIcon
+      logo
+      icon={logoHeart}
+      as={Link}
+      to="/"
+      title="Przejdź do strony głównej"
+    />
     <div>
-      <ButtonIcon icon={iconPaw} active />
-      <ButtonIcon icon={iconAdd} />
+      <ButtonIcon icon={iconPaw} active title="Zarządzaj pupilami" />
+      <ButtonIcon icon={iconAdd} title="Dodaj pupila do adopcji" />
     </div>
-    <ButtonIcon icon={iconLogout} />
+    <ButtonIcon icon={iconLogout} title="Wyloguj się" />
   </SidebarWrapper>
 );
 

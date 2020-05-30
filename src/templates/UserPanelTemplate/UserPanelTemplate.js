@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FilterPetsContextProvider from 'src/context/FilterPetsContextProvider';
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
 
 const UserPanelTemplate = ({ children }) => (
-  <FilterPetsContextProvider>
-    <>
-      <Sidebar />
-      {children}
-    </>
-  </FilterPetsContextProvider>
+  <>
+    <Sidebar />
+    {children}
+  </>
 );
 
 UserPanelTemplate.propTypes = {

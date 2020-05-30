@@ -13,6 +13,10 @@ const ButtonIcon = styled.button`
   cursor: pointer;
   margin-bottom: 3vh;
 
+  :hover {
+    background-color: ${({ theme }) => theme.primaryDark};
+  }
+
   ${({ active }) =>
     active &&
     css`
@@ -29,6 +33,9 @@ const ButtonIcon = styled.button`
       background-size: 80% 80%;
       margin-bottom: 10vh;
       margin-top: 5px;
+      :hover {
+        background-color: ${({ theme }) => theme.white};
+      }
     `}
 `;
 

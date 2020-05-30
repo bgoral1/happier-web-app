@@ -17,8 +17,19 @@ import iconMale from 'images/icons/icon_sexMale.svg';
 import iconFemale from 'images/icons/icon_sexFemale.svg';
 import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
 import ContactSection from 'components/organisms/ContactSection/ContactSection';
-// import PetFeatureSection from 'components/molecules/PetFeatureSection/PetFeatureSection';
 import PetFeature from 'components/atoms/PetFeature/PetFeature';
+
+const ContactSectionWrapper = styled.div`
+  width: 100%;
+  background-color: ${({ theme }) => theme.grey200};
+  padding: 16px 0;
+  position: relative;
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 70%;
+    margin: 0 auto;
+  }
+`;
 
 const PetFeatureSection = styled.section`
   display: flex;
@@ -151,7 +162,12 @@ const PetTemplate = ({ data }) => (
         </PetDetailsDesc>
       </PetDetails>
     </StyledMainBackground>
-    <ContactSection />
+    <ContactSectionWrapper>
+      <ContactSection
+        labelText="Zapytaj o możliwość adopcji"
+        headingText="Napisz wiadomość do schroniska"
+      />
+    </ContactSectionWrapper>
     <Footer />
   </>
 );
