@@ -129,8 +129,8 @@ export const allCatFilters = [
       'Mieszaniec',
       'Kot europejski',
       'Kot brytyjski',
-      'Syjamski',
-      'Perski',
+      'Kot Syjamski',
+      'Kot Perski',
     ],
   },
   {

@@ -1,6 +1,6 @@
 import React from 'react';
-import MainTemplate from 'templates/MainTemplate/MainTemplate';
+import UserPanelTemplate from 'templates/UserPanelTemplate/UserPanelTemplate';
 
-const ContactPage = () => <MainTemplate>Kontakt</MainTemplate>;
+const ContactPage = () => <UserPanelTemplate />;
 
 export default ContactPage;
