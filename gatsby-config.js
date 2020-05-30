@@ -32,6 +32,7 @@ module.exports = {
             collection: 'institutions',
             map: doc => ({
               name: doc.name,
+              email: doc.email,
               city: doc.city,
             }),
           },

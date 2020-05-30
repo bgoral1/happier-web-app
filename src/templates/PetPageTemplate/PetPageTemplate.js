@@ -153,6 +153,7 @@ const PetTemplate = ({ data }) => (
           <article>
             <H2>{data.pet.lead}</H2>
             <Paragraph>{data.pet.description}</Paragraph>
+            <Paragraph>{data.pet.institution.email}</Paragraph>
           </article>
           <PetFeatureSection>
             {Object.entries(data.pet.filters).map(([key, value]) => (
@@ -198,6 +199,7 @@ export const query = graphql`
       }
       institution {
         name
+        email
         city
       }
     }

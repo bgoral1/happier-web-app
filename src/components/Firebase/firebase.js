@@ -14,24 +14,20 @@ class Firebase {
     }
   }
 
-  async getUserProfile({ userId }) {
+  getUserProfile({ userId, onSnapshot }) {
     return this.db
       .collection('publicProfiles')
       .where('userId', '==', userId)
-      .get();
+      .limit(1)
+      .onSnapshot(onSnapshot);
   }
 
   async register({ email, password, userName }) {
-    const newUser = await this.auth.createUserWithEmailAndPassword(
-      email,
-      password
+    await this.auth.createUserWithEmailAndPassword(email, password);
+    const createProfileCallable = this.functions.httpsCallable(
+      'createPublicProfile'
     );
-    return this.db
-      .collection('publicProfiles')
-      .doc(userName)
-      .set({
-        userId: newUser.user.uid,
-      });
+    return createProfileCallable({ userName });
   }
 
   async login({ email, password }) {
