@@ -11,7 +11,13 @@ const ButtonIcon = styled.button`
   background-size: 60% 60%;
   background-repeat: no-repeat;
   cursor: pointer;
-  margin-bottom: 3vh;
+  margin-bottom: 0;
+  margin-right: 5vw;
+
+  ${({ theme }) => theme.mq.tablet} {
+    margin-bottom: 3vh;
+    margin-right: 0;
+  }
 
   :hover {
     background-color: ${({ theme }) => theme.primaryDark};
@@ -31,8 +37,15 @@ const ButtonIcon = styled.button`
       border-radius: 5px;
       background-color: ${({ theme }) => theme.white};
       background-size: 80% 80%;
-      margin-bottom: 10vh;
-      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-left: 5px;
+
+      ${({ theme }) => theme.mq.tablet} {
+        margin-bottom: 10vh;
+        margin-top: 5px;
+        margin-left: 0;
+      }
+
       :hover {
         background-color: ${({ theme }) => theme.white};
       }

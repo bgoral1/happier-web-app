@@ -44,14 +44,23 @@ const UserInfo = styled.div`
     display: none;
     ${({ theme }) => theme.mq.tablet} {
       display: inline;
-      padding-right: 5px;
+      padding-right: 8px;
     }
   }
 
   strong {
-    font-weight: ${({ theme }) => theme.font.weight.semiBold};
-    color: ${({ theme }) => theme.primary};
+    font-weight: ${({ theme }) => theme.font.weight.regular};
     text-transform: capitalize;
+  }
+
+  a {
+    padding-left: 15px;
+    color: ${({ theme }) => theme.secondary};
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+
+    :hover {
+      color: ${({ theme }) => theme.primaryDark};
+    }
   }
 
   div {
@@ -70,6 +79,9 @@ const StyledButton = styled(Button)`
 
 const Header = () => {
   const { firebase, user } = useContext(FirebaseContext);
+  // eslint-disable-next-line no-console
+  console.log(user);
+
   const [isMenuOpen, setMenuState] = useState(false);
 
   const handleLogoutClick = () => {
@@ -87,6 +99,7 @@ const Header = () => {
           <UserInfo>
             <span>Witaj, </span>
             <strong>{user.userName || user.email}</strong>
+            {!!user.isAdmin && <Link to="/admin">Panel</Link>}
             <LinkWithIcon src={iconLogout} onClick={handleLogoutClick}>
               Wyloguj się
             </LinkWithIcon>

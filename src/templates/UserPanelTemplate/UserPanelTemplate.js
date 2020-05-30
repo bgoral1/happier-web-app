@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
+import { FirebaseContext } from 'components/Firebase/context';
 
-const UserPanelTemplate = ({ children }) => (
-  <>
-    <Sidebar />
-    {children}
-  </>
-);
+const UserPanelTemplate = ({ children }) => {
+  const { firebase } = useContext(FirebaseContext);
 
+  const handleLogoutClick = () => {
+    firebase.logout().then(() => navigate('/login'));
+  };
+
+  return (
+    <>
+      <Sidebar handleLogoutClick={handleLogoutClick} />
+      {children}
+    </>
+  );
+};
 UserPanelTemplate.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
