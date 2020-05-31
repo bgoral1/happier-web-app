@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 // import styled from 'styled-components';
 import { FirebaseContext } from 'components/Firebase/context';
 import { navigate } from 'gatsby';
@@ -20,6 +20,14 @@ const RegisterPage = () => {
     userName: '',
   });
 
+  let isMounted = true;
+
+  useEffect(() => {
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -31,7 +39,9 @@ const RegisterPage = () => {
           password: formValues.password,
         })
         .catch(err => {
-          setErrMessage(err.message);
+          if (isMounted) {
+            setErrMessage(err.message);
+          }
         })
         .then(() => navigate('/'));
     } else setErrMessage('Password and confirmed password must match');

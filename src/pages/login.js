@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 // import styled from 'styled-components';
 import { FirebaseContext } from 'components/Firebase/context';
 import { navigate } from 'gatsby';
@@ -11,17 +11,25 @@ import StyledLink from 'components/atoms/StyledLink/StyledLink';
 
 const LoginPage = () => {
   const { firebase } = useContext(FirebaseContext);
-
   const [errMessage, setErrMessage] = useState('');
-
   const [formValues, setFormValues] = useState({ email: '', password: '' });
+
+  let isMounted = true;
+
+  useEffect(() => {
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
     firebase
       .login({ email: formValues.email, password: formValues.password })
       .catch(err => {
-        setErrMessage(err.message);
+        if (isMounted) {
+          setErrMessage(err.message);
+        }
       })
       .then(() => navigate('/'));
   };
