@@ -8,7 +8,8 @@ const UserPanelTemplate = ({ children }) => {
   const { firebase } = useContext(FirebaseContext);
 
   const handleLogoutClick = () => {
-    firebase.logout().then(() => navigate('/login'));
+    firebase.logout();
+    navigate('/login');
   };
 
   return (

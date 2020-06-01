@@ -30,6 +30,20 @@ class Firebase {
     return createProfileCallable({ userName });
   }
 
+  async addInstitutionRole({ email }) {
+    const addInstitutionCallable = this.functions.httpsCallable(
+      'addInstitutionRole'
+    );
+    return addInstitutionCallable({ email });
+  }
+
+  async addToInstitutions({ name, email, city }) {
+    const addToInstitutionsCallable = this.functions.httpsCallable(
+      'addToInstitutions'
+    );
+    return addToInstitutionsCallable({ name, email, city });
+  }
+
   async login({ email, password }) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }

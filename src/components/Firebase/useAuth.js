@@ -26,6 +26,7 @@ function useAuth() {
                   setUser({
                     ...userResult,
                     isAdmin: token.claims.admin,
+                    isInstitution: token.claims.institution,
                     userName: r.empty ? null : r.docs[0].id,
                   });
                 });

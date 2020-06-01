@@ -99,7 +99,9 @@ const Header = () => {
           <UserInfo>
             <span>Witaj, </span>
             <strong>{user.userName || user.email}</strong>
-            {!!user.isAdmin && <Link to="/admin">Panel</Link>}
+            {(!!user.isAdmin || !!user.isInstitution) && (
+              <Link to="/panel">Panel</Link>
+            )}
             <LinkWithIcon src={iconLogout} onClick={handleLogoutClick}>
               Wyloguj się
             </LinkWithIcon>
