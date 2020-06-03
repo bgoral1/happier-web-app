@@ -14,20 +14,19 @@ const ButtonIcon = styled.button`
   margin-bottom: 0;
   margin-right: 5vw;
 
+  :nth-child(2) {
+    background-size: 50% 50%;
+  }
+
+  :hover,
+  :focus {
+    background-color: ${({ theme }) => theme.white};
+  }
+
   ${({ theme }) => theme.mq.tablet} {
     margin-bottom: 3vh;
     margin-right: 0;
   }
-
-  :hover {
-    background-color: ${({ theme }) => theme.primaryDark};
-  }
-
-  ${({ active }) =>
-    active &&
-    css`
-      background-color: ${({ theme }) => theme.white};
-    `}
 
   ${({ logo }) =>
     logo &&

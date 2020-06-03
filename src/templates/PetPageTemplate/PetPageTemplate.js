@@ -145,10 +145,12 @@ const PetTemplate = ({ data }) => (
         <PetDetailsDesc>
           <H1>
             {data.pet.name}
-            <StyledIcon src={data.pet.sex === 'male' ? iconMale : iconFemale} />
+            <StyledIcon
+              src={data.pet.filters.sex === 'samiec' ? iconMale : iconFemale}
+            />
           </H1>
           <LinkWithIcon src={iconLocalization}>
-            {data.pet.institution.city}, {data.pet.institution.name}
+            {data.pet.institution.city}, {data.pet.institution.id}
           </LinkWithIcon>
           <article>
             <H2>{data.pet.lead}</H2>
@@ -185,8 +187,8 @@ export const query = graphql`
         place
         size
         time
+        sex
       }
-      sex
       species
       lead
       description
@@ -198,7 +200,7 @@ export const query = graphql`
         }
       }
       institution {
-        name
+        id
         email
         city
       }

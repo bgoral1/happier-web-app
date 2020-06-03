@@ -28,7 +28,7 @@ const SidebarWrapper = styled.div`
 
   button:last-of-type {
     margin-top: 0;
-    background-size: 80% 80%;
+    background-size: 70% 70%;
 
     ${({ theme }) => theme.mq.tablet} {
       margin-top: auto;
@@ -42,10 +42,6 @@ const SidebarWrapper = styled.div`
 
     ${({ theme }) => theme.mq.tablet} {
       flex-direction: column;
-    }
-
-    button:nth-child(2) {
-      background-size: 45% 45%;
     }
   }
 `;
@@ -61,8 +57,18 @@ const Sidebar = ({ handleLogoutClick }) => (
       title="Przejdź do strony głównej"
     />
     <div>
-      <ButtonIcon icon={iconPaw} active title="Zarządzaj pupilami" />
-      <ButtonIcon icon={iconAdd} title="Dodaj pupila do adopcji" />
+      <ButtonIcon
+        icon={iconPaw}
+        title="Zarządzaj pupilami"
+        as={Link}
+        to="/panel"
+      />
+      <ButtonIcon
+        icon={iconAdd}
+        title="Dodaj pupila do adopcji"
+        as={Link}
+        to="/panel/add-pet"
+      />
     </div>
     <ButtonIcon
       icon={iconLogout}

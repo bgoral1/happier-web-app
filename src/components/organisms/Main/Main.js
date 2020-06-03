@@ -96,6 +96,15 @@ const Main = () => {
     setFiltersState(!showAllFilters);
   };
 
+  const handleInputChange = e => {
+    e.persist();
+    // setErrMessage('');
+    // setFormValues(currentValues => ({
+    //   ...currentValues,
+    //   [e.target.name]: e.target.value,
+    // }));
+  };
+
   const filterPets = e => {
     // console.log(`Your choice is: ${event.target.value}`);
     e.preventDefault();
@@ -104,21 +113,45 @@ const Main = () => {
   const renderFilters = () => {
     if (state.activePet === 'dog' && showAllFilters) {
       return allDogFilters.map(item => (
-        <InputSelect key={item.field} {...item} />
+        <InputSelect
+          key={`${item.field}Dog`}
+          opKey="Dog"
+          {...item}
+          onChange={handleInputChange}
+          mainPage
+        />
       ));
     }
     if (state.activePet === 'dog' && !showAllFilters) {
       return mainDogFilters.map(item => (
-        <InputSelect key={item.field} {...item} />
+        <InputSelect
+          key={`${item.field}Dog`}
+          opKey="Dog"
+          {...item}
+          onChange={handleInputChange}
+          mainPage
+        />
       ));
     }
     if (state.activePet !== 'dog' && showAllFilters) {
       return allCatFilters.map(item => (
-        <InputSelect key={item.field} {...item} />
+        <InputSelect
+          key={`${item.field}Cat`}
+          opKey="Cat"
+          {...item}
+          onChange={handleInputChange}
+          mainPage
+        />
       ));
     }
     return mainCatFilters.map(item => (
-      <InputSelect key={item.field} {...item} />
+      <InputSelect
+        key={`${item.field}Cat`}
+        opKey="Cat"
+        {...item}
+        onChange={handleInputChange}
+        mainPage
+      />
     ));
   };
 
@@ -133,6 +166,13 @@ const Main = () => {
           onSubmit={filterPets}
         >
           {renderFilters()}
+          <InputSelect
+            field="localization"
+            name="lokalizacja"
+            values={['Warszwa', 'Kraków']}
+            onChange={handleInputChange}
+            mainPage
+          />
           <ShowFiltersLink onClick={toggleFilters}>
             {showAllFilters ? 'Pokaż mniej filtrów' : 'Pokaż więcej filtrów'}
           </ShowFiltersLink>

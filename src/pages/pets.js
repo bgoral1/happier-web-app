@@ -53,7 +53,7 @@ const PetsPage = ({ data }) => (
           <Card
             petImage={edge.node.localImage.childImageSharp.fluid}
             name={edge.node.name}
-            sex={edge.node.sex}
+            sex={edge.node.filters.sex}
           />
         </Link>
       ))}
@@ -70,16 +70,15 @@ export const query = graphql`
           description
           lead
           name
-          sex
+          filters {
+            sex
+          }
           localImage {
             childImageSharp {
               fluid(maxWidth: 320, quality: 90) {
                 ...GatsbyImageSharpFluid_tracedSVG
               }
             }
-          }
-          institution {
-            name
           }
         }
       }

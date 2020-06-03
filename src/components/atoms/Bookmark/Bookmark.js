@@ -26,15 +26,20 @@ const BookmarkWrappper = styled.button`
   }
 `;
 
-const Bookmark = ({ label, isActive, ...props }) => (
-  <BookmarkWrappper {...props} isActive={isActive}>
+const Bookmark = ({ label, className, isActive, ...props }) => (
+  <BookmarkWrappper {...props} className={className} isActive={isActive}>
     {label}
   </BookmarkWrappper>
 );
 
 Bookmark.propTypes = {
   label: PropTypes.string.isRequired,
+  className: PropTypes.string,
   isActive: PropTypes.bool.isRequired,
+};
+
+Bookmark.defaultProps = {
+  className: '',
 };
 
 export default Bookmark;

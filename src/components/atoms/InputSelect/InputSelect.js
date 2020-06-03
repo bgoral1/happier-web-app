@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import iconArrow from 'images/icons/icon_arrow.svg';
-import iconMale from 'images/icons/icon_sexMale.svg';
-import iconFemale from 'images/icons/icon_sexFemale.svg';
 
 const InputSelectLabel = styled.label`
   @media (max-width: 359px) {
@@ -44,62 +42,17 @@ const InputSelectLabel = styled.label`
   }
 `;
 
-const RadioWrapper = styled.div`
-  display: inline-flex;
-  align-items: center;
-
-  div {
-    background-image: url(${iconMale});
-    background-repeat: no-repeat;
-    background-position: 100% 0%;
-    background-size: 50%;
-    width: 50px;
-    margin-top: 5px;
-    padding: 10px;
-    margin-left: 10px;
-  }
-
-  div:last-child {
-    background-image: url(${iconFemale});
-    background-size: 48%;
-    margin-top: 10px;
-  }
-`;
-
-const InputSelect = ({ field, name, values, checked }) => (
+const InputSelect = ({ field, name, values, opKey, onChange, mainPage }) => (
   <InputSelectLabel htmlFor={field}>
     {name}
-    {field === 'sex' ? (
-      <RadioWrapper>
-        <div>
-          <input
-            type="radio"
-            id={values[0]}
-            name={field}
-            value={name}
-            checked={checked}
-          />
-        </div>
-        <div>
-          <input
-            type="radio"
-            id={values[1]}
-            name={field}
-            value={name}
-            checked={checked}
-          />
-        </div>
-      </RadioWrapper>
-    ) : (
-      <select name={name} id={field}>
-        <option value="all">Wszystkie</option>
-        {values.map(item => (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        ))}
-      </select>
-    )}
+    <select name={field} onChange={onChange}>
+      {mainPage && <option value="all">Wszystkie</option>}
+      {values.map(item => (
+        <option key={`${item}${opKey}`} value={item}>
+          {item}
+        </option>
+      ))}
+    </select>
   </InputSelectLabel>
 );
 
@@ -107,11 +60,13 @@ InputSelect.propTypes = {
   field: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
-  checked: PropTypes.bool,
+  opKey: PropTypes.arrayOf(PropTypes.string).isRequired,
+  mainPage: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
 };
 
 InputSelect.defaultProps = {
-  checked: null,
+  mainPage: false,
 };
 
 export default InputSelect;

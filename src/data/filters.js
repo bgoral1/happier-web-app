@@ -2,22 +2,17 @@ export const mainDogFilters = [
   {
     field: 'size',
     name: 'Wielkość',
-    values: ['Mały', 'Średni', 'Duży', 'Bardzo duży'],
+    values: ['mały', 'średni', 'duży', 'bardzo duży'],
   },
   {
     field: 'age',
     name: 'Wiek',
-    values: ['Szczenię', 'Junior', 'Dorosły', 'Senior'],
+    values: ['szczenię', 'junior', 'dorosły', 'senior'],
   },
   {
     field: 'activity',
     name: 'Aktywność',
-    values: ['Kanapowiec', 'Aktywny', 'Bardzo aktywny'],
-  },
-  {
-    field: 'localization',
-    name: 'Lokalizacja',
-    values: ['Warszawa', 'Poznań', 'Kraków', 'Wrocław', 'Gdańsk'],
+    values: ['kanapowiec', 'aktywny', 'bardzo aktywny'],
   },
 ];
 
@@ -25,56 +20,51 @@ export const allDogFilters = [
   {
     field: 'size',
     name: 'Wielkość',
-    values: ['Mały', 'Średni', 'Duży', 'Bardzo duży'],
+    values: ['mały', 'średni', 'duży', 'bardzo duży'],
   },
   {
     field: 'age',
     name: 'Wiek',
-    values: ['Szczenię', 'Junior', 'Dorosły', 'Senior'],
+    values: ['szczenię', 'junior', 'dorosły', 'senior'],
   },
   {
     field: 'activity',
     name: 'Aktywność',
-    values: ['Kanapowiec', 'Aktywny', 'Bardzo aktywny'],
+    values: ['kanapowiec', 'aktywny', 'bardzo aktywny'],
   },
   {
     field: 'bread',
     name: 'W typie rasy',
     values: [
-      'Mieszaniec',
-      'Owczarek niem.',
-      'Labrador',
-      'York',
-      'Nowofunland',
-      'Husky',
-      'Jamnik',
-      'Border colie',
+      'mieszaniec',
+      'owczarek niem.',
+      'labrador',
+      'york',
+      'nowofunland',
+      'husky',
+      'jamnik',
+      'border colie',
     ],
   },
   {
     field: 'place',
     name: 'Miejsce',
-    values: ['Mieszkanie', 'Dom z ogrodem', 'Kojec'],
+    values: ['mieszkanie', 'dom z ogrodem', 'kojec'],
   },
   {
     field: 'time',
     name: 'Czas bez opieki',
-    values: ['<6h', '6-9h', 'Stała opieka'],
+    values: ['<6h', '6-9h', 'stała opieka'],
   },
   {
     field: 'kids',
     name: 'Dzieci',
-    values: ['Bez dzieci', 'dzieci >7 lat', 'dzieci >12 lat', 'w każdym wieku'],
+    values: ['w każdym wieku', 'dzieci >7 lat', 'dzieci >12 lat', 'bez dzieci'],
   },
   {
-    field: 'tolerant',
+    field: 'tolerance',
     name: 'Inne zwierzęta',
-    values: ['Tylko psy', 'Tylko koty', 'Żadne'],
-  },
-  {
-    field: 'localization',
-    name: 'lokalizacja',
-    values: ['Warszawa', 'Poznań', 'Kraków', 'Wrocław', 'Gdańsk'],
+    values: ['niekonfliktowy', 'tylko psy', 'tylko koty', 'żadne'],
   },
   {
     field: 'sex',
@@ -87,22 +77,17 @@ export const mainCatFilters = [
   {
     field: 'age',
     name: 'Wiek',
-    values: ['Kocię', 'Junior', 'Dorosły', 'Senior'],
+    values: ['kocię', 'junior', 'dorosły', 'senior'],
   },
   {
     field: 'activity',
     name: 'Aktywność',
-    values: ['Kanapowiec', 'Aktywny', 'Bardzo aktywny'],
+    values: ['kanapowiec', 'aktywny', 'bardzo aktywny'],
   },
   {
     field: 'color',
     name: 'Umaszczenie',
-    values: ['Biały', 'Czarny', 'Szary', 'Rudy', 'Mieszane'],
-  },
-  {
-    field: 'localization',
-    name: 'Lokalizacja',
-    values: ['Warszawa', 'Poznań', 'Kraków', 'Wrocław', 'Gdańsk'],
+    values: ['mieszane', 'biały', 'czarny', 'szary', 'rudy'],
   },
 ];
 
@@ -110,48 +95,43 @@ export const allCatFilters = [
   {
     field: 'age',
     name: 'Wiek',
-    values: ['Kocię', 'Junior', 'Dorosły', 'Senior'],
+    values: ['kocię', 'junior', 'dorosły', 'senior'],
   },
   {
     field: 'activity',
     name: 'Aktywność',
-    values: ['Kanapowiec', 'Aktywny', 'Bardzo aktywny'],
+    values: ['kanapowiec', 'aktywny', 'bardzo aktywny'],
   },
   {
     field: 'color',
     name: 'Umaszczenie',
-    values: ['Biały', 'Czarny', 'Szary', 'Rudy', 'Mieszane'],
+    values: ['mieszane', 'biały', 'czarny', 'szary', 'rudy'],
   },
   {
     field: 'bread',
     name: 'W typie rasy',
     values: [
-      'Mieszaniec',
-      'Kot europejski',
-      'Kot brytyjski',
-      'Kot Syjamski',
-      'Kot Perski',
+      'mieszaniec',
+      'kot europejski',
+      'kot brytyjski',
+      'kot Syjamski',
+      'kot Perski',
     ],
   },
   {
     field: 'time',
     name: 'Czas bez opieki',
-    values: ['<6h', '6-9h', 'Stała opieka'],
+    values: ['<6h', '6-9h', 'stała opieka'],
   },
   {
     field: 'kids',
     name: 'Dzieci',
-    values: ['Bez dzieci', 'dzieci >7 lat', 'dzieci >12 lat', 'w każdym wieku'],
+    values: ['w każdym wieku', 'dzieci >7 lat', 'dzieci >12 lat', 'bez dzieci'],
   },
   {
-    field: 'tolerant',
+    field: 'tolerance',
     name: 'Inne zwierzęta',
-    values: ['Tylko psy', 'Tylko koty', 'Żadne'],
-  },
-  {
-    field: 'localization',
-    name: 'lokalizacja',
-    values: ['Warszawa', 'Poznań', 'Kraków', 'Wrocław', 'Gdańsk'],
+    values: ['niekonfliktowy', 'tylko psy', 'tylko koty', 'żadne'],
   },
   {
     field: 'sex',

@@ -44,6 +44,34 @@ class Firebase {
     return addToInstitutionsCallable({ name, email, city });
   }
 
+  async getInstitutionId({ email }) {
+    return this.db
+      .collection('institutions')
+      .where('email', '==', email)
+      .get();
+  }
+
+  async addPet({
+    species,
+    name,
+    lead,
+    description,
+    institutionId,
+    filters,
+    petImage,
+  }) {
+    const addPetCallable = this.functions.httpsCallable('addPet');
+    return addPetCallable({
+      species,
+      name,
+      lead,
+      description,
+      institutionId,
+      filters,
+      petImage,
+    });
+  }
+
   async login({ email, password }) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }

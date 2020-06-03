@@ -19,7 +19,6 @@ module.exports = {
             map: doc => ({
               name: doc.name,
               filters: doc.filters,
-              sex: doc.sex,
               species: doc.species,
               lead: doc.lead,
               description: doc.description,
@@ -31,7 +30,6 @@ module.exports = {
             type: 'Institution',
             collection: 'institutions',
             map: doc => ({
-              name: doc.name,
               email: doc.email,
               city: doc.city,
             }),

@@ -32,6 +32,7 @@ const FormWrapper = styled.form`
 const AddInstitution = () => {
   const { firebase } = useContext(FirebaseContext);
   const [errMessage, setErrMessage] = useState('');
+  const [success, setSuccess] = useState(false);
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -65,6 +66,9 @@ const AddInstitution = () => {
         email: formValues.email,
         city: formValues.city,
       })
+      .then(() => {
+        setSuccess(true);
+      })
       .catch(err => {
         if (isMounted) {
           setErrMessage(err.message);
@@ -75,6 +79,7 @@ const AddInstitution = () => {
   const handleInputChange = e => {
     e.persist();
     setErrMessage('');
+    setSuccess(false);
     setFormValues(currentValues => ({
       ...currentValues,
       [e.target.name]: e.target.value,
@@ -110,6 +115,7 @@ const AddInstitution = () => {
           type="city"
           required
         />
+        {!!success && <span>Instytucja została dodana do bazy</span>}
         <Button type="submit">Zatwierdź</Button>
         <Link to="/">Wróć do strony głównej</Link>
       </FormWrapper>

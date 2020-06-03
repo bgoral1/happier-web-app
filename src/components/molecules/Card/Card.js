@@ -78,7 +78,7 @@ const Card = ({ name, sex, petImage }) => (
     <HeadingWrapper>
       <H2>
         {name}
-        <StyledIcon src={sex === 'male' ? iconMale : iconFemale} />
+        <StyledIcon src={sex === 'samiec' ? iconMale : iconFemale} />
       </H2>
     </HeadingWrapper>
   </StyledWrapper>
