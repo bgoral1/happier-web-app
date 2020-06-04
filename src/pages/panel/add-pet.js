@@ -11,7 +11,7 @@ import H1 from 'components/atoms/H1/H1';
 import Input from 'components/atoms/Input/Input';
 
 const Heading = styled(H1)`
-  padding-left: 20px;
+  padding: 15px 0 10px 20px;
   ${({ theme }) => theme.mq.tablet} {
     margin-left: 110px;
     padding-left: 0;
@@ -95,12 +95,9 @@ const PetDescWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  padding-left: 10px;
 
   ${({ theme }) => theme.mq.tablet} {
-    input[type='text'] {
-      width: calc(50% - 10px);
-    }
+    padding-left: 10px;
   }
 `;
 
@@ -108,10 +105,6 @@ const StyledTextArea = styled(Input)`
   width: 100%;
   height: 15vh;
   border-radius: 20px;
-
-  ${({ theme }) => theme.mq.desktop} {
-    height: 30vh;
-  }
 
   ::placeholder {
     font-size: ${({ theme }) => theme.font.size.xxs};
@@ -155,6 +148,33 @@ const StyledBookmark = styled(Bookmark)`
     height: 35px;
     width: 120px;
   }
+`;
+
+const InputLabel = styled.label`
+  width: 100%;
+  font-size: ${({ theme }) => theme.font.size.xs};
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  display: flex;
+  flex-direction: column;
+
+  ${({ theme }) => theme.mq.desktop} {
+    :nth-child(1),
+    :nth-child(2) {
+      width: calc(50% - 10px);
+    }
+  }
+
+  input,
+  textarea {
+    margin-top: 5px;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  background-color: ${({ theme }) => theme.grey100};
+  width: 140px;
+  height: 36px;
+  color: ${({ theme }) => theme.black};
 `;
 
 let fileReader;
@@ -371,47 +391,60 @@ const AddPetPage = () => {
         >
           <FiltersWrappper>{renderFilters()}</FiltersWrappper>
           <PetDescWrapper>
-            <Input
-              value={formValues.name}
-              name="name"
-              onChange={handleInputChange}
-              placeholder="Imię zwierzaka"
-              type="text"
-              required
-            />
-            <Input
-              value={formValues.lead}
-              name="lead"
-              onChange={handleInputChange}
-              placeholder='Lead (np. "Przyjacielski i chętny do zabawy")'
-              type="text"
-              required
-            />
-            <StyledTextArea
-              as="textarea"
-              value={formValues.description}
-              name="description"
-              onChange={handleInputChange}
-              placeholder="Opis historii zwierzaka i jego usposobienia..."
-              required
-            />
-            <Input
-              type="file"
-              onChange={e => {
-                e.persist();
-                setSuccess(false);
-                fileReader.readAsDataURL(e.target.files[0]);
-              }}
-            />
+            <InputLabel htmlFor="name">
+              Imię zwierzaka
+              <Input
+                value={formValues.name}
+                name="name"
+                onChange={handleInputChange}
+                placeholder="Imię zwierzaka"
+                type="text"
+                required
+              />
+            </InputLabel>
+            <InputLabel htmlFor="lead">
+              Nagłówek opisu
+              <Input
+                value={formValues.lead}
+                name="lead"
+                onChange={handleInputChange}
+                placeholder='Lead (np. "Przyjacielski i chętny do zabawy")'
+                type="text"
+                required
+              />
+            </InputLabel>
+            <InputLabel htmlFor="description">
+              Opis zwierzaka
+              <StyledTextArea
+                as="textarea"
+                value={formValues.description}
+                name="description"
+                onChange={handleInputChange}
+                placeholder="Opis historii zwierzaka i jego usposobienia..."
+                required
+              />
+            </InputLabel>
+            <InputLabel htmlFor="photo">
+              Zdjęcie
+              <Input
+                type="file"
+                name="photo"
+                onChange={e => {
+                  e.persist();
+                  setSuccess(false);
+                  fileReader.readAsDataURL(e.target.files[0]);
+                }}
+              />
+            </InputLabel>
             {!!success && <span>Zwierzak został dodany do bazy</span>}
           </PetDescWrapper>
           <ButtonsWrapper>
             <Button type="submit" value="Submit" width="140px" height="36px">
               Dodaj
             </Button>
-            <Button secondary value="Anuluj" onClick={() => navigate('/panel')}>
+            <StyledButton value="Anuluj" onClick={() => navigate('/panel')}>
               Anuluj
-            </Button>
+            </StyledButton>
           </ButtonsWrapper>
         </MainForm>
       </MainFormWrapper>

@@ -21,7 +21,7 @@ const Icon = ({ src, children, to, ...props }) => (
 
 Icon.propTypes = {
   src: PropTypes.string.isRequired,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   to: PropTypes.string,
 };
 

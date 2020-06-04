@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext, useEffect } from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import { FirebaseContext } from 'components/Firebase/context';
 import { navigate } from 'gatsby';
 import AuthTemplate from 'templates/AuthTemplate/AuthTemplate';
@@ -8,6 +8,13 @@ import H1 from 'components/atoms/H1/H1';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import StyledLink from 'components/atoms/StyledLink/StyledLink';
+
+const H1White = styled(H1)`
+  color: ${({ theme }) => theme.white};
+`;
+const StyledLinkWhite = styled(StyledLink)`
+  color: ${({ theme }) => theme.white};
+`;
 
 const RegisterPage = () => {
   const { firebase } = useContext(FirebaseContext);
@@ -58,7 +65,7 @@ const RegisterPage = () => {
 
   return (
     <AuthTemplate onSubmit={handleSubmit}>
-      <H1 white>Zarejestruj się</H1>
+      <H1White>Zarejestruj się</H1White>
       {!!errMessage && <p color="red">{errMessage}</p>}
       <Input
         value={formValues.userName}
@@ -95,9 +102,9 @@ const RegisterPage = () => {
         required
       />
       <Button type="submit">Zarejestruj się</Button>
-      <StyledLink white to="/login">
+      <StyledLinkWhite to="/login">
         Masz już konto? Zaloguj się!
-      </StyledLink>
+      </StyledLinkWhite>
     </AuthTemplate>
   );
 };

@@ -1,6 +1,8 @@
-import styled, { css } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Button = styled.button`
+const StyledButton = styled.button`
   background-color: ${({ theme }) => theme.accent};
   width: ${({ width }) => width || '280px'};
   height: ${({ height }) => height || '50px'};
@@ -15,31 +17,21 @@ const Button = styled.button`
   cursor: pointer;
   margin: 15px 0;
 
-  ${({ secondary }) =>
-    secondary &&
-    css`
-      background-color: ${({ theme }) => theme.grey100};
-      width: 140px;
-      height: 36px;
-      color: ${({ theme }) => theme.black};
-
-      ${({ reverse }) =>
-        reverse &&
-        css`
-          background-color: transparent;
-          border: 2px solid ${({ theme }) => theme.secondary};
-          color: ${({ theme }) => theme.secondary};
-          text-transform: lowercase;
-
-          :first-letter {
-            text-transform: uppercase;
-          }
-        `}
-    `};
-
   :hover {
     box-shadow: 0 10px 20px -15px #000;
   }
 `;
+
+const Button = ({ className, ...props }) => (
+  <StyledButton {...props} className={className} />
+);
+
+Button.propTypes = {
+  className: PropTypes.string,
+};
+
+Button.defaultProps = {
+  className: '',
+};
 
 export default Button;

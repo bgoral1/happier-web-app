@@ -50,6 +50,7 @@ const UserInfo = styled.div`
 
   strong {
     font-weight: ${({ theme }) => theme.font.weight.regular};
+    font-size: 1.4rem;
     text-transform: capitalize;
   }
 
@@ -75,6 +76,17 @@ const UserInfo = styled.div`
 const StyledButton = styled(Button)`
   text-align: center;
   line-height: 1.8;
+  background-color: transparent;
+  border: 2px solid ${({ theme }) => theme.secondary};
+  text-transform: lowercase;
+  width: 140px;
+  height: 36px;
+  color: ${({ theme }) => theme.black};
+  border-radius: 50px;
+
+  :first-letter {
+    text-transform: uppercase;
+  }
 `;
 
 const Header = () => {
@@ -121,18 +133,12 @@ const Header = () => {
         <Hamburger onClick={toggleMobileMenu} isOpen={isMenuOpen} />
         <MobileMenu isOpen={isMenuOpen}>
           {!!user && !!user.email && (
-            <StyledButton
-              as={Link}
-              to="/login"
-              secondary
-              reverse
-              onClick={handleLogoutClick}
-            >
+            <StyledButton as={Link} to="/login" onClick={handleLogoutClick}>
               Wyloguj się
             </StyledButton>
           )}
           {(!user || !user.email) && (
-            <StyledButton as={Link} to="/login" secondary reverse>
+            <StyledButton as={Link} to="/login">
               Zaloguj się
             </StyledButton>
           )}

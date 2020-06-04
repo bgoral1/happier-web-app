@@ -114,6 +114,7 @@ const PetDetailsDesc = styled.div`
     color: ${({ theme }) => theme.grey300};
     font-size: ${({ theme }) => theme.font.size.s};
     font-weight: ${({ theme }) => theme.font.weight.semiBold};
+    text-transform: capitalize;
   }
 
   ${LinkWithIcon} svg {
@@ -121,7 +122,12 @@ const PetDetailsDesc = styled.div`
   }
 
   article {
-    padding: 20px;
+    padding: 0 20px 20px 20px;
+    width: 100%;
+
+    p:first-of-type {
+      min-height: 100px;
+    }
   }
 `;
 
@@ -158,9 +164,11 @@ const PetTemplate = ({ data }) => (
             <Paragraph>{data.pet.institution.email}</Paragraph>
           </article>
           <PetFeatureSection>
-            {Object.entries(data.pet.filters).map(([key, value]) => (
-              <PetFeature key={key}>{value}</PetFeature>
-            ))}
+            {Object.entries(data.pet.filters)
+              .filter(([, value]) => !(value === null))
+              .map(([key, value]) => (
+                <PetFeature key={key}>{value}</PetFeature>
+              ))}
           </PetFeatureSection>
         </PetDetailsDesc>
       </PetDetails>
@@ -183,6 +191,7 @@ export const query = graphql`
       filters {
         activity
         age
+        color
         bread
         place
         size

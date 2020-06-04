@@ -60,13 +60,17 @@ InputSelect.propTypes = {
   field: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
-  opKey: PropTypes.arrayOf(PropTypes.string).isRequired,
+  opKey: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   mainPage: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
 };
 
 InputSelect.defaultProps = {
   mainPage: false,
+  opKey: '',
 };
 
 export default InputSelect;
