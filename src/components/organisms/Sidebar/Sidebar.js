@@ -17,6 +17,7 @@ const SidebarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 9999;
 
   ${({ theme }) => theme.mq.tablet} {
     width: 100px;
@@ -57,12 +58,7 @@ const Sidebar = ({ handleLogoutClick }) => (
       title="Przejdź do strony głównej"
     />
     <div>
-      <ButtonIcon
-        icon={iconPaw}
-        title="Zarządzaj pupilami"
-        as={Link}
-        to="/panel"
-      />
+      <ButtonIcon icon={iconPaw} title="Pupile" as={Link} to="/panel" />
       <ButtonIcon
         icon={iconAdd}
         title="Dodaj pupila do adopcji"

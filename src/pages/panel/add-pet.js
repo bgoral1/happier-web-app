@@ -228,7 +228,6 @@ const AddPetPage = () => {
   const [filterValuesCat, setFilterValuesCat] = useState(initialValuesCat);
   const [institutionId, setInstitutionId] = useState('');
   const [petImage, setPetImage] = useState('');
-  const [errMessage, setErrMessage] = useState('');
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -253,9 +252,14 @@ const AddPetPage = () => {
     }
   };
 
+  const resetState = () => {
+    setFormValues(initialFormValues);
+    setFilterValuesDog(initialValuesDog);
+    setFilterValuesCat(initialValuesCat);
+  };
+
   const handleFilterInputChange = e => {
     e.persist();
-    setErrMessage('');
     setSuccess(false);
     if (!activeDog) {
       setFilterValuesCat(currentValues => ({
@@ -272,7 +276,6 @@ const AddPetPage = () => {
 
   const handleInputChange = e => {
     e.persist();
-    setErrMessage('');
     setSuccess(false);
     setFormValues(currentValues => ({
       ...currentValues,
@@ -336,7 +339,7 @@ const AddPetPage = () => {
         })
         .catch(err => {
           if (isMounted) {
-            setErrMessage(err.message);
+            console.log(err.message);
           }
         });
     } else {
@@ -357,21 +360,18 @@ const AddPetPage = () => {
         })
         .catch(err => {
           if (isMounted) {
-            setErrMessage(err.message);
+            console.log(err.message);
           }
         });
     }
 
-    // setFormValues(initialFormValues);
-    // setFilterValuesDog(initialValuesDog);
-    // setFilterValuesCat(initialValuesCat);
+    resetState();
   };
 
   return (
     <UserPanelTemplate>
       <Heading>Dodaj zwierzę</Heading>
       <MainFormWrapper>
-        {!!errMessage && <p color="red">{errMessage}</p>}
         <BookmarkWrapper>
           <StyledBookmark
             label="Pies"
@@ -442,7 +442,13 @@ const AddPetPage = () => {
             <Button type="submit" value="Submit" width="140px" height="36px">
               Dodaj
             </Button>
-            <StyledButton value="Anuluj" onClick={() => navigate('/panel')}>
+            <StyledButton
+              value="Anuluj"
+              onClick={() => {
+                resetState();
+                navigate('/panel');
+              }}
+            >
               Anuluj
             </StyledButton>
           </ButtonsWrapper>

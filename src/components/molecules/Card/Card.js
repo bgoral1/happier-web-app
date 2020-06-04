@@ -11,8 +11,6 @@ const StyledWrapper = styled.div`
   box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
   border-radius: 7px;
   overflow: hidden;
-  /* min-height: 390px;
-  width: 350px; */
 `;
 
 const ImageWrapper = styled.div`
@@ -30,6 +28,7 @@ const PetImg = styled(Image)`
   height: 280px;
   object-fit: cover;
   object-position: 50% 0;
+  margin: 0 auto;
 
   ${({ theme }) => theme.mq.tablet} {
     width: 190px;
@@ -68,7 +67,7 @@ const StyledIcon = styled(Icon)`
 `;
 
 const Card = ({ name, sex, petImage }) => (
-  <StyledWrapper>
+  <StyledWrapper title="Zobacz">
     <ImageWrapper>
       <PetImg fluid={petImage} alt="dog" />
       <StyledButton width="100px" height="32px">
