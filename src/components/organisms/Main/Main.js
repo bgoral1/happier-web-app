@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import { graphql, useStaticQuery } from 'gatsby';
 import { FilterPetsStateContext } from 'src/context/FilterPetsContextProvider';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import {
@@ -88,6 +89,23 @@ const ShowFiltersLink = styled.button`
 `;
 
 const Main = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      allInstitution {
+        edges {
+          node {
+            city
+          }
+        }
+      }
+    }
+  `);
+
+  const cities = [];
+  data.allInstitution.edges.forEach(edge => {
+    cities.push(edge.node.city);
+  });
+
   const state = useContext(FilterPetsStateContext);
 
   const [showAllFilters, setFiltersState] = useState(false);
@@ -169,7 +187,7 @@ const Main = () => {
           <InputSelect
             field="localization"
             name="lokalizacja"
-            values={['Warszwa', 'Kraków']}
+            values={cities}
             onChange={handleInputChange}
             mainPage
           />

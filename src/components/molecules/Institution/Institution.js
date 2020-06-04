@@ -43,6 +43,7 @@ const H4 = styled.h4`
   font-size: ${({ theme }) => theme.font.weight.semiBold};
   margin: 10px;
   text-align: center;
+  text-transform: capitalize;
 `;
 
 const LocalizationWrapper = styled.div`
@@ -60,6 +61,7 @@ const Paragraph = styled.p`
   font-size: ${({ theme }) => theme.font.size.xs};
   font-size: ${({ theme }) => theme.font.weight.semiBold};
   color: ${({ theme }) => theme.font.weight.grey900};
+  text-transform: capitalize;
 `;
 
 const Institution = ({ name, localization, ...props }) => (

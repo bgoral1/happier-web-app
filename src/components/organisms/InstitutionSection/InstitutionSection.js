@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { graphql, useStaticQuery } from 'gatsby';
 import Label from 'components/atoms/Label/Label';
 import Institution from 'components/molecules/Institution/Institution';
 
@@ -22,16 +23,34 @@ const InstitutionWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const InstitutionSection = () => (
-  <StepsSectionWrapper id="institutions">
-    <Label toRight text="Instytucje biorące udział w programie" />
-    <InstitutionWrapper>
-      <Institution name="Schronisko Paluch" localization="Warszawa" />
-      <Institution name="Schronisko Paluch" localization="Warszawa" />
-      <Institution name="Schronisko Paluch" localization="Warszawa" />
-      <Institution name="Schronisko Paluch" localization="Warszawa" />
-    </InstitutionWrapper>
-  </StepsSectionWrapper>
-);
+const InstitutionSection = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      allInstitution {
+        edges {
+          node {
+            city
+            id
+          }
+        }
+      }
+    }
+  `);
+
+  return (
+    <StepsSectionWrapper id="institutions">
+      <Label toRight text="Instytucje biorące udział w programie" />
+      <InstitutionWrapper>
+        {data.allInstitution.edges.map(edge => (
+          <Institution
+            key={edge.node.id}
+            name={edge.node.id}
+            localization={edge.node.city}
+          />
+        ))}
+      </InstitutionWrapper>
+    </StepsSectionWrapper>
+  );
+};
 
 export default InstitutionSection;
