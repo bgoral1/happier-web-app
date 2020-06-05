@@ -14,13 +14,13 @@ const StyledBookmarks = styled.div`
 `;
 
 const BookmarksBar = () => {
-  const dispatch = useContext(FilterPetsDispatchContext);
+  const { toggleActivePet } = useContext(FilterPetsDispatchContext);
 
   const [on, setState] = useState(true);
 
   const changeActive = isActive => {
     if (isActive === false) {
-      dispatch({ type: 'TOOGLE_ACTIVE_PET' });
+      toggleActivePet();
       setState(!on);
     }
   };

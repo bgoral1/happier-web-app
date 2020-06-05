@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
-import { FilterPetsStateContext } from 'src/context/FilterPetsContextProvider';
+import {
+  FilterPetsStateContext,
+  FilterPetsDispatchContext,
+} from 'src/context/FilterPetsContextProvider';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import {
   mainDogFilters,
@@ -106,7 +109,12 @@ const Main = () => {
     cities.push(edge.node.city);
   });
 
-  const state = useContext(FilterPetsStateContext);
+  const { activePet, filtersDog, filtersCat, localization } = useContext(
+    FilterPetsStateContext
+  );
+  const { setFiltersCat, setFiltersDog, setLocalization } = useContext(
+    FilterPetsDispatchContext
+  );
 
   const [showAllFilters, setFiltersState] = useState(false);
 
@@ -116,20 +124,27 @@ const Main = () => {
 
   const handleInputChange = e => {
     e.persist();
-    // setErrMessage('');
-    // setFormValues(currentValues => ({
-    //   ...currentValues,
-    //   [e.target.name]: e.target.value,
-    // }));
+    if (activePet !== 'dog') {
+      setFiltersCat(e.target.name, e.target.value);
+    } else {
+      setFiltersDog(e.target.name, e.target.value);
+    }
+  };
+  const handleLocalizationChange = e => {
+    e.persist();
+    setLocalization(e.target.value);
   };
 
   const filterPets = e => {
-    // console.log(`Your choice is: ${event.target.value}`);
     e.preventDefault();
+    console.log(activePet);
+    console.log(filtersDog);
+    console.log(filtersCat);
+    console.log(localization);
   };
 
   const renderFilters = () => {
-    if (state.activePet === 'dog' && showAllFilters) {
+    if (activePet === 'dog' && showAllFilters) {
       return allDogFilters.map(item => (
         <InputSelect
           key={`${item.field}Dog`}
@@ -140,7 +155,7 @@ const Main = () => {
         />
       ));
     }
-    if (state.activePet === 'dog' && !showAllFilters) {
+    if (activePet === 'dog' && !showAllFilters) {
       return mainDogFilters.map(item => (
         <InputSelect
           key={`${item.field}Dog`}
@@ -151,7 +166,7 @@ const Main = () => {
         />
       ));
     }
-    if (state.activePet !== 'dog' && showAllFilters) {
+    if (activePet !== 'dog' && showAllFilters) {
       return allCatFilters.map(item => (
         <InputSelect
           key={`${item.field}Cat`}
@@ -176,11 +191,11 @@ const Main = () => {
   return (
     <>
       <BookmarksBar />
-      <MainBackground bigger={showAllFilters} paws activePet={state.activePet}>
-        {state.activePet === 'dog' ? <DogImage /> : <CatImage />}
+      <MainBackground bigger={showAllFilters} paws activePet={activePet}>
+        {activePet === 'dog' ? <DogImage /> : <CatImage />}
         <MainForm
           bigger={showAllFilters}
-          activePet={state.activePet}
+          activePet={activePet}
           onSubmit={filterPets}
         >
           {renderFilters()}
@@ -188,7 +203,7 @@ const Main = () => {
             field="localization"
             name="lokalizacja"
             values={cities}
-            onChange={handleInputChange}
+            onChange={handleLocalizationChange}
             mainPage
           />
           <ShowFiltersLink onClick={toggleFilters}>
