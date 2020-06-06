@@ -51,6 +51,13 @@ class Firebase {
       .get();
   }
 
+  // eslint-disable-next-line class-methods-use-this
+
+  // async getPets(query) {
+  //   const dbQuery = `this.db.collection('pets')${query}.get()`;
+  //   return dbQuery;
+  // }
+
   async addPet({
     species,
     name,

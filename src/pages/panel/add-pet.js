@@ -365,7 +365,7 @@ const AddPetPage = () => {
         });
     }
 
-    resetState();
+    // resetState();
   };
 
   return (

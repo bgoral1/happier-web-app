@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery, navigate } from 'gatsby';
 import {
   FilterPetsStateContext,
   FilterPetsDispatchContext,
@@ -63,35 +63,35 @@ const MainForm = styled.form`
   }
 `;
 
-const ShowFiltersLink = styled.button`
-  border: none;
-  background: none;
-  padding: 5px;
-  color: #2349b8;
-  font-weight: ${({ theme }) => theme.font.weight.semiBold};
-  cursor: pointer;
+const ShowFiltersWrapper = styled.div`
+  width: 100%;
   margin-top: 10px;
 
-  ${({ theme }) => theme.mq.tablet} {
-    margin-top: 30px;
-    margin-left: 20px;
-  }
+  p {
+    padding: 5px;
+    color: #2349b8;
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+    font-size: 1.4rem;
+    cursor: pointer;
+    ${({ theme }) => theme.mq.desktop} {
+      padding: 5px 10px;
+      margin: 0 auto 0 0;
+      width: 30%;
+    }
 
-  ${({ theme }) => theme.mq.desktop} {
-    margin: 0;
-  }
-
-  ${({ theme }) => theme.mq.large} {
-    margin-top: 30px;
-  }
-
-  :hover,
-  :focus {
-    color: ${({ theme }) => theme.accent};
+    :hover,
+    :focus {
+      color: ${({ theme }) => theme.accent};
+    }
   }
 `;
 
 const Main = () => {
+  const { activePet } = useContext(FilterPetsStateContext);
+  const { setFiltersCat, setFiltersDog, setLocalization } = useContext(
+    FilterPetsDispatchContext
+  );
+
   const data = useStaticQuery(graphql`
     query {
       allInstitution {
@@ -109,18 +109,7 @@ const Main = () => {
     cities.push(edge.node.city);
   });
 
-  const { activePet, filtersDog, filtersCat, localization } = useContext(
-    FilterPetsStateContext
-  );
-  const { setFiltersCat, setFiltersDog, setLocalization } = useContext(
-    FilterPetsDispatchContext
-  );
-
   const [showAllFilters, setFiltersState] = useState(false);
-
-  const toggleFilters = () => {
-    setFiltersState(!showAllFilters);
-  };
 
   const handleInputChange = e => {
     e.persist();
@@ -133,14 +122,6 @@ const Main = () => {
   const handleLocalizationChange = e => {
     e.persist();
     setLocalization(e.target.value);
-  };
-
-  const filterPets = e => {
-    e.preventDefault();
-    console.log(activePet);
-    console.log(filtersDog);
-    console.log(filtersCat);
-    console.log(localization);
   };
 
   const renderFilters = () => {
@@ -188,6 +169,15 @@ const Main = () => {
     ));
   };
 
+  const toggleFilters = () => {
+    setFiltersState(!showAllFilters);
+  };
+
+  const filterPets = e => {
+    e.preventDefault();
+    navigate('/pets');
+  };
+
   return (
     <>
       <BookmarksBar />
@@ -206,9 +196,15 @@ const Main = () => {
             onChange={handleLocalizationChange}
             mainPage
           />
-          <ShowFiltersLink onClick={toggleFilters}>
-            {showAllFilters ? 'Pokaż mniej filtrów' : 'Pokaż więcej filtrów'}
-          </ShowFiltersLink>
+          <ShowFiltersWrapper>
+            <p
+              onClick={toggleFilters}
+              onKeyDown={toggleFilters}
+              role="presentation"
+            >
+              {showAllFilters ? 'Pokaż mniej filtrów' : 'Pokaż więcej filtrów'}
+            </p>
+          </ShowFiltersWrapper>
           <Button type="submit" value="Submit">
             Szukaj
           </Button>
