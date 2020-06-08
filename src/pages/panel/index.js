@@ -52,10 +52,12 @@ const PanelPage = ({ data }) => {
 
   useEffect(() => {
     if (firebase && user) {
-      const { email } = user;
-      firebase.getInstitutionId({ email }).then(querySnapshot => {
-        setInstitutionId(querySnapshot.docs[0].id);
-      });
+      if (user.isInstitution === true) {
+        const { email } = user;
+        firebase.getInstitutionId({ email }).then(querySnapshot => {
+          setInstitutionId(querySnapshot.docs[0].id);
+        });
+      }
     }
   }, [firebase]);
 
