@@ -314,13 +314,6 @@ const AddPetPage = () => {
       petSpecies = 'cat';
     }
 
-    // console.log(petSpecies);
-    // console.log(petImage);
-    // console.log(formValues);
-    // console.log(filterValuesDog);
-    // console.log(filterValuesCat);
-    // console.log(institutionId);
-
     if (petSpecies === 'dog') {
       firebase
         .addPet({

@@ -35,7 +35,7 @@ const actions = {
   SET_FILTERS_DOG: 'SET_FILTERS_DOG',
   SET_FILTERS_CAT: 'SET_FILTERS_CAT',
   SET_LOCALIZATION: 'SET_LOCALIZATION',
-  // RESET: 'RESET',
+  RESET: 'RESET',
 };
 
 const reducer = (state, action) => {
@@ -64,8 +64,16 @@ const reducer = (state, action) => {
     }
     case actions.SET_LOCALIZATION:
       return { ...state, localization: action.value };
-    // case actions.RESET:
-    //   return { ...state, ...initialFiltersState };
+    case actions.RESET:
+      return {
+        ...state,
+        filtersDog: {
+          ...initialFiltersState.filtersDog,
+        },
+        filtersCat: {
+          ...initialFiltersState.filtersCat,
+        },
+      };
     default:
       throw new Error('Bad action type');
   }
@@ -99,9 +107,9 @@ const FilterPetsContextProvider = ({ children }) => {
     setLocalization: value => {
       dispatch({ type: 'SET_LOCALIZATION', value });
     },
-    // resetFilters: () => {
-    //   dispatch({ type: 'RESET' });
-    // },
+    resetFilters: () => {
+      dispatch({ type: 'RESET' });
+    },
   };
 
   return (

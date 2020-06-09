@@ -1,6 +1,7 @@
 import React from 'react';
 import MainTemplate from 'templates/MainTemplate/MainTemplate';
 import Main from 'components/organisms/Main/Main';
+import Button from 'components/atoms/Button/Button';
 import FeaturedSection from 'components/organisms/FeaturedSection/FeaturedSection';
 import AboutSection from 'components/organisms/AboutSection/AboutSection';
 import StepsSection from 'components/organisms/StepsSection/StepsSection';
@@ -9,7 +10,11 @@ import InstitutionSection from 'components/organisms/InstitutionSection/Institut
 
 const IndexPage = () => (
   <MainTemplate>
-    <Main />
+    <Main indexPage="true">
+      <Button type="submit" value="Submit">
+        Szukaj
+      </Button>
+    </Main>
     <FeaturedSection />
     <AboutSection />
     <StepsSection />
@@ -17,5 +22,4 @@ const IndexPage = () => (
     <InstitutionSection />
   </MainTemplate>
 );
-
 export default IndexPage;

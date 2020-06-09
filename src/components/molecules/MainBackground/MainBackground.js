@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -24,7 +25,8 @@ const MainWrapper = styled.main`
     background-image: ${({ activePet }) =>
       activePet === 'dog' ? `url(${pawsMainImg})` : `url(${pawsMainImgRev})`};
     position: relative;
-    min-height: ${({ bigger }) => (bigger ? '400px' : '300px')};
+    min-height: ${({ bigger, indexPage }) =>
+      bigger ? (indexPage ? '400px' : '350px') : indexPage ? '300px' : '260px'};
     width: 100%;
     margin-right: auto;
     margin-left: auto;
@@ -54,10 +56,21 @@ const MainWrapper = styled.main`
   }
 `;
 
-const MainBackground = ({ bigger, activePet, className, children }) => (
+const MainBackground = ({
+  bigger,
+  indexPage,
+  activePet,
+  className,
+  children,
+}) => (
   <>
     <BackgroundImg />
-    <MainWrapper bigger={bigger} activePet={activePet} className={className}>
+    <MainWrapper
+      bigger={bigger}
+      indexPage={indexPage}
+      activePet={activePet}
+      className={className}
+    >
       {children}
     </MainWrapper>
   </>
@@ -65,6 +78,7 @@ const MainBackground = ({ bigger, activePet, className, children }) => (
 
 MainBackground.propTypes = {
   bigger: PropTypes.bool,
+  indexPage: PropTypes.bool,
   activePet: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
@@ -75,6 +89,7 @@ MainBackground.propTypes = {
 
 MainBackground.defaultProps = {
   bigger: false,
+  indexPage: false,
   activePet: '',
   className: '',
   children: [],

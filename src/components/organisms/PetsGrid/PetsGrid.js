@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { FilterPetsStateContext } from 'src/context/FilterPetsContextProvider';
-// import { FirebaseContext } from 'components/Firebase/context';
 import styled from 'styled-components';
 import Card from 'components/molecules/Card/Card';
 
@@ -13,7 +12,8 @@ const PetsWrapper = styled.div`
   padding: 20px;
   background-color: ${({ theme }) => theme.white};
 
-  h1 {
+  h1,
+  p {
     width: 100%;
     text-align: center;
   }
@@ -22,7 +22,8 @@ const PetsWrapper = styled.div`
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 'header header header';
 
-    h1 {
+    h1,
+    p {
       grid-area: header;
     }
   }
@@ -83,81 +84,59 @@ const PetsGrid = () => {
     FilterPetsStateContext
   );
 
-  // let filterQuery = '';
-  // filterQuery += `edge.node.species === "${activePet}" && `;
+  let filtersValues;
+  let filteredPets = data.allPet.edges.filter(
+    edge => edge.node.species === activePet
+  );
 
-  // if (activePet !== 'dog') {
-  //   Object.entries(filtersCat)
-  //     .filter(([, value]) => !(value === 'all'))
-  //     .forEach(([key, value]) => {
-  //       filterQuery += `edge.node.filters.${key} === "${value}" && `;
-  //     });
-  // } else {
-  //   Object.entries(filtersDog)
-  //     .filter(([, value]) => !(value === 'all'))
-  //     .forEach(([key, value]) => {
-  //       filterQuery += `edge.node.filters.${key} === "${value}" && `;
-  //     });
-  // }
-
-  // if (localization !== 'all') {
-  //   filterQuery += `edge.node.institution.city === "${localization}"`;
-  // } else {
-  //   filterQuery = filterQuery.slice(0, -3);
-  // }
-
-  let query = `.where('species', '==', ${activePet})`;
   if (activePet !== 'dog') {
-    Object.entries(filtersCat)
-      .filter(([, value]) => !(value === 'all'))
-      .forEach(([key, value]) => {
-        query += `.where('${key}', '==', ${value})`;
-      });
+    filtersValues = Object.entries(filtersCat).filter(
+      ([, value]) => !(value === 'all')
+    );
   } else {
-    Object.entries(filtersDog)
-      .filter(([, value]) => !(value === 'all'))
-      .forEach(([key, value]) => {
-        query += `.where('${key}', '==', ${value})`;
-      });
+    filtersValues = Object.entries(filtersDog).filter(
+      ([, value]) => !(value === 'all')
+    );
   }
-  if (localization !== 'all') {
-    query += `.where('institution.city', '==', ${localization})`;
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < filtersValues.length; i++) {
+    const filter = filtersValues[i];
+    filteredPets = filteredPets.filter(
+      edge => edge.node.filters[filter[0]] === filter[1]
+    );
   }
 
-  // const { firebase } = useContext(FirebaseContext);
-  // useEffect(() => {
-  //   if (firebase) {
-  //     firebase.getPets(query).then(querySnapshot => {
-  //       querySnapshot.forEach(doc => {
-  //         // doc.data() is never undefined for query doc snapshots
-  //         console.log(doc);
-  //       });
-  //     });
-  //   }
-  // }, [firebase]);
+  if (localization !== 'all') {
+    filteredPets = filteredPets.filter(
+      edge => edge.node.institution.city === localization
+    );
+  }
 
   const renderPets = () => {
-    return (
-      data.allPet.edges
-        // eslint-disable-next-line no-unused-vars
-        // .filter(edge => filterQuery)
-        .map(edge => (
-          <Link key={edge.node.id} to={`/pet/${edge.node.id}`}>
-            <Card
-              petImage={edge.node.localImage.childImageSharp.fluid}
-              name={edge.node.name}
-              sex={edge.node.filters.sex}
-            />
-          </Link>
-        ))
-    );
+    if (filteredPets.length !== 0) {
+      return filteredPets.map(edge => (
+        <Link key={edge.node.id} to={`/pet/${edge.node.id}`}>
+          <Card
+            petImage={edge.node.localImage.childImageSharp.fluid}
+            name={edge.node.name}
+            sex={edge.node.filters.sex}
+          />
+        </Link>
+      ));
+    }
+    return null;
   };
 
   return (
     <PetsWrapper>
-      <h1>Do adopcji </h1>
+      {filteredPets.length !== 0 ? (
+        <h1>Do adopcji </h1>
+      ) : (
+        <p>
+          Brak zwierząt pasujących do wybranych filtrów. Zmień zaznaczony wybór.
+        </p>
+      )}
       {renderPets()}
-      {console.log(query)}
     </PetsWrapper>
   );
 };

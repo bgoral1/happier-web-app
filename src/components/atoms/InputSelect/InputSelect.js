@@ -42,10 +42,18 @@ const InputSelectLabel = styled.label`
   }
 `;
 
-const InputSelect = ({ field, name, values, opKey, onChange, mainPage }) => (
+const InputSelect = ({
+  field,
+  name,
+  values,
+  opKey,
+  onChange,
+  selectedValue,
+  mainPage,
+}) => (
   <InputSelectLabel htmlFor={field}>
     {name}
-    <select name={field} onChange={onChange}>
+    <select name={field} onChange={onChange} value={selectedValue.item}>
       {mainPage && <option value="all">Wszystkie</option>}
       {values.map(item => (
         <option key={`${item}${opKey}`} value={item}>
@@ -66,11 +74,13 @@ InputSelect.propTypes = {
   ]),
   mainPage: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
+  selectedValue: PropTypes.string,
 };
 
 InputSelect.defaultProps = {
   mainPage: false,
   opKey: '',
+  selectedValue: '',
 };
 
 export default InputSelect;

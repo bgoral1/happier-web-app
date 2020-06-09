@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery, navigate } from 'gatsby';
@@ -13,7 +14,6 @@ import {
   allCatFilters,
 } from 'src/data/filters';
 import MainBackground from 'components/molecules/MainBackground/MainBackground';
-import Button from 'components/atoms/Button/Button';
 import DogImage from 'components/atoms/DogImage/DogImage';
 import CatImage from 'components/atoms/CatImage/CatImage';
 import BookmarksBar from 'components/molecules/BookmarksBar/BookmarksBar';
@@ -21,7 +21,6 @@ import iconLocalization from 'images/icons/icon_localization.svg';
 import iconArrow from 'images/icons/icon_arrow.svg';
 
 const MainForm = styled.form`
-  height: 90%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -37,6 +36,7 @@ const MainForm = styled.form`
       background-position: 3% 50%, 90% 50%;
       background-size: 32px 23px, 16px 11px;
       padding-left: 45px;
+      text-transform: uppercase;
     }
   }
 
@@ -86,8 +86,10 @@ const ShowFiltersWrapper = styled.div`
   }
 `;
 
-const Main = () => {
-  const { activePet } = useContext(FilterPetsStateContext);
+const Main = ({ children, indexPage }) => {
+  const { activePet, filtersDog, filtersCat, localization } = useContext(
+    FilterPetsStateContext
+  );
   const { setFiltersCat, setFiltersDog, setLocalization } = useContext(
     FilterPetsDispatchContext
   );
@@ -131,6 +133,7 @@ const Main = () => {
           key={`${item.field}Dog`}
           opKey="Dog"
           {...item}
+          selectedValue={filtersCat}
           onChange={handleInputChange}
           mainPage
         />
@@ -142,6 +145,7 @@ const Main = () => {
           key={`${item.field}Dog`}
           opKey="Dog"
           {...item}
+          selectedValue={filtersDog}
           onChange={handleInputChange}
           mainPage
         />
@@ -153,6 +157,7 @@ const Main = () => {
           key={`${item.field}Cat`}
           opKey="Cat"
           {...item}
+          selectedValue={filtersDog}
           onChange={handleInputChange}
           mainPage
         />
@@ -164,6 +169,7 @@ const Main = () => {
         opKey="Cat"
         {...item}
         onChange={handleInputChange}
+        selectedValue={filtersCat}
         mainPage
       />
     ));
@@ -181,7 +187,12 @@ const Main = () => {
   return (
     <>
       <BookmarksBar />
-      <MainBackground bigger={showAllFilters} paws activePet={activePet}>
+      <MainBackground
+        indexPage={indexPage}
+        bigger={showAllFilters}
+        paws
+        activePet={activePet}
+      >
         {activePet === 'dog' ? <DogImage /> : <CatImage />}
         <MainForm
           bigger={showAllFilters}
@@ -189,11 +200,15 @@ const Main = () => {
           onSubmit={filterPets}
         >
           {renderFilters()}
+          {console.log(localization)}
+          {console.log(filtersDog)}
+          {console.log(filtersCat)}
           <InputSelect
             field="localization"
             name="lokalizacja"
             values={cities}
             onChange={handleLocalizationChange}
+            selectedValue={localization}
             mainPage
           />
           <ShowFiltersWrapper>
@@ -205,9 +220,7 @@ const Main = () => {
               {showAllFilters ? 'Pokaż mniej filtrów' : 'Pokaż więcej filtrów'}
             </p>
           </ShowFiltersWrapper>
-          <Button type="submit" value="Submit">
-            Szukaj
-          </Button>
+          {children}
         </MainForm>
       </MainBackground>
     </>
