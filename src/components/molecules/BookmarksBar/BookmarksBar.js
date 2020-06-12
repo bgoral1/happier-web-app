@@ -1,7 +1,10 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Bookmark from 'components/atoms/Bookmark/Bookmark';
-import { FilterPetsDispatchContext } from 'src/context/FilterPetsContextProvider';
+import {
+  FilterPetsDispatchContext,
+  FilterPetsStateContext,
+} from 'src/context/FilterPetsContextProvider';
 
 const StyledBookmarks = styled.div`
   display: flex;
@@ -10,15 +13,15 @@ const StyledBookmarks = styled.div`
   background-color: ${({ theme }) => theme.secondary};
   width: 100%;
   height: 55px;
-  margin-top: 73px;
+  margin-top: 74px;
 `;
 
 const BookmarksBar = () => {
   const { toggleActivePet, resetFilters } = useContext(
     FilterPetsDispatchContext
   );
-
-  const [on, setState] = useState(true);
+  const { activePet } = useContext(FilterPetsStateContext);
+  const [on, setState] = useState(activePet === 'dog');
 
   const changeActive = isActive => {
     if (isActive === false) {
@@ -30,6 +33,8 @@ const BookmarksBar = () => {
 
   return (
     <StyledBookmarks>
+      {console.log(activePet)}
+      {console.log(JSON.parse(window.localStorage.getItem('active_Pet')))}
       <Bookmark
         label="Szukaj psa"
         onClick={() => changeActive(on)}

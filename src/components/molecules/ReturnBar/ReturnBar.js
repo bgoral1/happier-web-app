@@ -9,7 +9,7 @@ const BarWrapper = styled.div`
   background-color: ${({ theme }) => theme.secondary};
   width: 100%;
   height: 55px;
-  margin-top: 73px;
+  margin-top: 74px;
 
   ${({ theme }) => theme.mq.desktop} {
     padding-left: 50px;

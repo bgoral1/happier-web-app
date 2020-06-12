@@ -411,6 +411,7 @@ const AddPetPage = () => {
               <StyledTextArea
                 as="textarea"
                 value={formValues.description}
+                maxlength="550"
                 name="description"
                 onChange={handleInputChange}
                 placeholder="Opis historii zwierzaka i jego usposobienia..."

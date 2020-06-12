@@ -40,7 +40,7 @@ const PetsWrapper = styled.div`
     grid-template-areas: 'header header header header';
   }
 
-  ${({ theme }) => theme.mq.large} {
+  ${({ theme }) => theme.mq.veryLarge} {
     grid-template-columns: repeat(5, 1fr);
     grid-template-areas: 'header header header header header';
   }

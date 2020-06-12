@@ -33,11 +33,18 @@ const ContactSectionWrapper = styled.div`
 
 const PetFeatureSection = styled.section`
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   width: 100%;
   min-height: 120px;
+  background-color: ${({ theme }) => theme.white};
+  ${({ theme }) => theme.mq.tablet} {
+    background-color: transparent;
+  }
   ${({ theme }) => theme.mq.desktop} {
     min-height: 80px;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -53,9 +60,14 @@ const PetDetails = styled.div`
   grid-template-columns: 1fr;
 
   ${({ theme }) => theme.mq.tablet} {
-    grid-template-columns: 2fr, 1fr;
+    grid-template-columns: 1fr, 2fr;
     background-color: ${({ theme }) => theme.primary};
-    grid-template-areas: 'section section img';
+    grid-template-areas: 'section img';
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    grid-template-columns: 2fr, 1fr;
+    grid-template-areas: 'section img';
   }
 `;
 
@@ -79,6 +91,13 @@ const PetDetailsImg = styled(Image)`
   height: 320px;
   object-fit: cover;
   object-position: 50% 0;
+
+  ${({ theme }) => theme.mq.tablet} {
+    height: 500px;
+  }
+  ${({ theme }) => theme.mq.desktop} {
+    height: 360px;
+  }
 
   ${({ theme }) => theme.mq.large} {
     width: 500px;
@@ -125,6 +144,10 @@ const PetDetailsDesc = styled.div`
     padding: 0 20px 20px 20px;
     width: 100%;
 
+    h2 {
+      padding: 15px 0;
+    }
+
     p:first-of-type {
       min-height: 100px;
     }
@@ -161,17 +184,16 @@ const PetTemplate = ({ data }) => (
           <article>
             <H2>{data.pet.lead}</H2>
             <Paragraph>{data.pet.description}</Paragraph>
-            <Paragraph>{data.pet.institution.email}</Paragraph>
           </article>
-          <PetFeatureSection>
-            {Object.entries(data.pet.filters)
-              .filter(([, value]) => !(value === null))
-              .map(([key, value]) => (
-                <PetFeature key={key}>{value}</PetFeature>
-              ))}
-          </PetFeatureSection>
         </PetDetailsDesc>
       </PetDetails>
+      <PetFeatureSection>
+        {Object.entries(data.pet.filters)
+          .filter(([, value]) => !(value === null))
+          .map(([key, value]) => (
+            <PetFeature key={key}>{value}</PetFeature>
+          ))}
+      </PetFeatureSection>
     </StyledMainBackground>
     <ContactSectionWrapper>
       <ContactSection

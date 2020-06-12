@@ -36,10 +36,12 @@ const PetsWrapper = styled.div`
   }
 
   ${({ theme }) => theme.mq.large} {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: 'header header header header';
     padding: 30px;
     width: 70%;
+  }
+  ${({ theme }) => theme.mq.veryLarge} {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 'header header header header';
   }
 `;
 

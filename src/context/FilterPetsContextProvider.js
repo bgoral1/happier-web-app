@@ -5,7 +5,7 @@ export const FilterPetsStateContext = createContext();
 export const FilterPetsDispatchContext = createContext();
 
 const initialFiltersState = {
-  activePet: 'dog',
+  activePet: JSON.parse(window.localStorage.getItem('active_Pet')) || 'dog',
   filtersDog: {
     size: 'all',
     age: 'all',
@@ -40,8 +40,13 @@ const actions = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case actions.TOOGLE_ACTIVE_PET:
-      return { ...state, activePet: state.activePet === 'dog' ? 'cat' : 'dog' };
+    case actions.TOOGLE_ACTIVE_PET: {
+      const activePet = state.activePet === 'dog' ? 'cat' : 'dog';
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('active_Pet', JSON.stringify(activePet));
+      }
+      return { ...state, activePet };
+    }
     case actions.SET_FILTERS_DOG: {
       const { name, value } = action.payload;
       return {
