@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SEO from 'components/molecules/SEO/seo';
 import MainTemplate from 'templates/MainTemplate/MainTemplate';
 import MainBackground from 'components/molecules/MainBackground/MainBackground';
 import ContactSection from 'components/organisms/ContactSection/ContactSection';
@@ -40,17 +41,24 @@ const BarWrapper = styled.div`
 `;
 
 const ContactPage = () => (
-  <MainTemplate>
-    <BarWrapper />
-    <StyledMainBackground>
-      <ContactSectionWrapper>
-        <StyledContactSection
-          labelText="Chcesz pomóc? Skontaktuj się z nami!"
-          headingText="Napisz wiadomość do organizatorów programu"
-        />
-      </ContactSectionWrapper>
-    </StyledMainBackground>
-  </MainTemplate>
+  <>
+    {' '}
+    <SEO
+      title="Chcesz pomóc? Skontaktuj się z organizatorami programu"
+      description="Zapraszamy chętnych do współtworzenia strony. Masz pomysł, jak możeż pomóc? Wyślij wiadomość i zacznij działać!"
+    />
+    <MainTemplate>
+      <BarWrapper />
+      <StyledMainBackground>
+        <ContactSectionWrapper>
+          <StyledContactSection
+            labelText="Chcesz pomóc? Skontaktuj się z nami!"
+            headingText="Napisz wiadomość do organizatorów programu"
+          />
+        </ContactSectionWrapper>
+      </StyledMainBackground>
+    </MainTemplate>
+  </>
 );
 
 export default ContactPage;

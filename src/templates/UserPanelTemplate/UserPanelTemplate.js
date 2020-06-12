@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
-import { FirebaseContext } from 'components/Firebase/context';
+import { FirebaseContext } from 'context/Firebase/context';
 
 const UserPanelTemplate = ({ children }) => {
   const { firebase } = useContext(FirebaseContext);

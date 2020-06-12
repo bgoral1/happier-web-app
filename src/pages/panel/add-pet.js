@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { navigate } from 'gatsby';
-import { FirebaseContext } from 'components/Firebase/context';
+import { FirebaseContext } from 'context/Firebase/context';
 import UserPanelTemplate from 'templates/UserPanelTemplate/UserPanelTemplate';
 import Bookmark from 'components/atoms/Bookmark/Bookmark';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';

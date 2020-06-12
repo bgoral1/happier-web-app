@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FilterPetsContextProvider from 'src/context/FilterPetsContextProvider';
+import FilterPetsContextProvider from 'context/FilterPetsContextProvider';
 import Header from 'components/organisms/Header/Header';
 import Footer from 'components/organisms/Footer/Footer';
 

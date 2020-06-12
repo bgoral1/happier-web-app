@@ -19,6 +19,7 @@
           ["pages", "./src/pages"],
           ["templates", "./src/templates"],
           ["components", "./src/components"],
+          ["context", "./src/context"],
           ["images", "./src/assets/images"],
           ["theme", "./src/theme"]
         ],

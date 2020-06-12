@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: `Happier`,
+    title: `Happier - Aplikacja Wspomagająca Adopcje Psów i Kotów`,
     description: `Happier to aplikacja internetowa wspomagająca proces adopcji zwierząt ze schronisk`,
     author: `Barbara Góral`,
   },
@@ -71,6 +71,7 @@ module.exports = {
         src: path.join(__dirname, 'src'),
         pages: path.join(__dirname, 'src/pages'),
         templates: path.join(__dirname, 'src/templates'),
+        context: path.join(__dirname, 'src/context'),
         components: path.join(__dirname, 'src/components'),
         images: path.join(__dirname, 'src/assets/images'),
         theme: path.join(__dirname, 'src/theme'),

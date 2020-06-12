@@ -38,6 +38,6 @@ export const theme = {
     tablet: '@media (min-width: 768px)',
     desktop: '@media (min-width: 1024px)',
     large: '@media (min-width: 1366px)',
-    veryLarge: '@media (min-width: 1920px)',
+    veryLarge: '@media (min-width: 1536px)',
   },
 };

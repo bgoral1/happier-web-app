@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { createContext } from 'react';
-import useAuth from 'components/Firebase/useAuth';
+import useAuth from 'context/Firebase/useAuth';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/MainTheme';

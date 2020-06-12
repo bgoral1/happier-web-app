@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, graphql } from 'gatsby';
-import { FirebaseContext } from 'components/Firebase/context';
+import { FirebaseContext } from 'context/Firebase/context';
 import UserPanelTemplate from 'templates/UserPanelTemplate/UserPanelTemplate';
 import AddInstitution from 'components/organisms/AddInstitution/AddInstitution';
 import Card from 'components/molecules/Card/Card';

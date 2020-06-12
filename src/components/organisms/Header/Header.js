@@ -10,7 +10,7 @@ import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
 import iconLogin from 'images/icons/icon_login.svg';
 import iconLogout from 'images/icons/icon_logout.svg';
 import Button from 'components/atoms/Button/Button';
-import { FirebaseContext } from 'components/Firebase/context';
+import { FirebaseContext } from 'context/Firebase/context';
 
 const StyledWrapper = styled.nav`
   display: flex;

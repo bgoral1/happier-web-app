@@ -5,7 +5,7 @@ import { graphql, useStaticQuery, navigate } from 'gatsby';
 import {
   FilterPetsStateContext,
   FilterPetsDispatchContext,
-} from 'src/context/FilterPetsContextProvider';
+} from 'context/FilterPetsContextProvider';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import {
   mainDogFilters,

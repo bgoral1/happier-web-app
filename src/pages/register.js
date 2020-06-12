@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { FirebaseContext } from 'components/Firebase/context';
+import { FirebaseContext } from 'context/Firebase/context';
 import { navigate } from 'gatsby';
 import AuthTemplate from 'templates/AuthTemplate/AuthTemplate';
 import H1 from 'components/atoms/H1/H1';

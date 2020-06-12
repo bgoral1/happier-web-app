@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import { FirebaseContext } from 'components/Firebase/context';
+import { FirebaseContext } from 'context/Firebase/context';
 import H1 from 'components/atoms/H1/H1';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';

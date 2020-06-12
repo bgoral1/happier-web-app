@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from 'components/molecules/SEO/seo';
 import MainTemplate from 'templates/MainTemplate/MainTemplate';
 import Main from 'components/organisms/Main/Main';
 import Button from 'components/atoms/Button/Button';
@@ -9,17 +10,23 @@ import MottoSection from 'components/molecules/MottoSection/MottoSection';
 import InstitutionSection from 'components/organisms/InstitutionSection/InstitutionSection';
 
 const IndexPage = () => (
-  <MainTemplate>
-    <Main indexPage="true">
-      <Button type="submit" value="Submit">
-        Szukaj
-      </Button>
-    </Main>
-    <FeaturedSection />
-    <AboutSection />
-    <StepsSection />
-    <MottoSection />
-    <InstitutionSection />
-  </MainTemplate>
+  <>
+    <SEO
+      title="Strona Główna"
+      description="Happier to aplikacja internetowa wspomagająca proces adopcji zwierząt ze schronisk"
+    />
+    <MainTemplate>
+      <Main indexPage="true">
+        <Button type="submit" value="Submit">
+          Szukaj
+        </Button>
+      </Main>
+      <FeaturedSection />
+      <AboutSection />
+      <StepsSection />
+      <MottoSection />
+      <InstitutionSection />
+    </MainTemplate>
+  </>
 );
 export default IndexPage;
