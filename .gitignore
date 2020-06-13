@@ -57,7 +57,7 @@ typings/
 # dotenv environment variable files
 .env*
 firebase.json
-src/components/Firebase/config.js
+src/context/Firebase/config.js
 
 # gatsby files
 .cache/
