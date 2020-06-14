@@ -46,6 +46,30 @@ const PetsWrapper = styled.div`
   }
 `;
 
+const PermissionDeniedWrapper = styled.div`
+  width: 50%;
+  height: 200px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid ${({ theme }) => theme.grey200};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  span {
+    text-align: center;
+  }
+  span:first-child {
+    color: ${({ theme }) => theme.accent};
+    font-weight: ${({ theme }) => theme.font.weight.bold};
+  }
+
+  a:hover {
+    color: ${({ theme }) => theme.primary};
+  }
+`;
+
 const PanelPage = ({ data }) => {
   const { user, firebase } = useContext(FirebaseContext);
   const [institutionId, setInstitutionId] = useState('');
@@ -63,21 +87,22 @@ const PanelPage = ({ data }) => {
 
   return (
     <>
-      {!user && (
+      {(user === null ||
+        (user !== null &&
+          user.isAdmin !== true &&
+          user.isInstitution !== true)) && (
         <>
-          {user.isAdmin !== true && user.isInstitution !== true && (
-            <>
-              <span>
-                Tylko zweryfikowane instytucje mogą zobaczyć tę stronę.
-              </span>
-              <span>
-                Jeśli jesteś przedstawicielem instytucji chcącej dołączyć do
-                programu, skontaktuj się z administratorem strony w celu
-                uzyskania dostępu do panelu.
-              </span>
-              <Link to="/">Wróć do strony głównej</Link>
-            </>
-          )}
+          <PermissionDeniedWrapper>
+            <span>
+              UWAGA: Tylko zweryfikowane instytucje mogą zobaczyć tę stronę.
+            </span>
+            <span>
+              Jeśli jesteś przedstawicielem instytucji chcącej dołączyć do
+              programu, skontaktuj się z administratorem strony w celu uzyskania
+              dostępu do panelu.
+            </span>
+            <Link to="/">Wróć do strony głównej</Link>
+          </PermissionDeniedWrapper>
         </>
       )}
       {user !== null && (
