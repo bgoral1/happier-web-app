@@ -133,7 +133,7 @@ const Main = ({ children, indexPage }) => {
           key={`${item.field}Dog`}
           opKey="Dog"
           {...item}
-          selectedValue={filtersCat}
+          selectedValue={filtersDog}
           onChange={handleInputChange}
           mainPage
         />
@@ -157,7 +157,7 @@ const Main = ({ children, indexPage }) => {
           key={`${item.field}Cat`}
           opKey="Cat"
           {...item}
-          selectedValue={filtersDog}
+          selectedValue={filtersCat}
           onChange={handleInputChange}
           mainPage
         />
