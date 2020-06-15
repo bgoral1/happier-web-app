@@ -80,12 +80,10 @@ const InstitutionPanel = () => {
 
   useEffect(() => {
     if (firebase && user) {
-      if (user.isInstitution === true) {
-        const { email } = user;
-        firebase.getInstitutionId({ email }).then(querySnapshot => {
-          setInstitutionId(querySnapshot.docs[0].id);
-        });
-      }
+      const { email } = user;
+      firebase.getInstitutionId({ email }).then(querySnapshot => {
+        setInstitutionId(querySnapshot.docs[0].id);
+      });
     }
   }, [firebase]);
 
