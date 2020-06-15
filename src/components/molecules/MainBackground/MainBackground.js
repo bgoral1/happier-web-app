@@ -33,6 +33,8 @@ const MainWrapper = styled.main`
   }
 
   ${({ theme }) => theme.mq.large} {
+    min-height: ${({ bigger, indexPage }) =>
+      bigger ? (indexPage ? '450px' : '410px') : indexPage ? '350px' : '290px'};
     width: 70%;
 
     :before,
