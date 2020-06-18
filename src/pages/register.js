@@ -16,6 +16,15 @@ const StyledLinkWhite = styled(StyledLink)`
   color: ${({ theme }) => theme.white};
 `;
 
+const AgreementWrappper = styled.div`
+  padding: 5px;
+  color: white;
+  font-size: ${({ theme }) => theme.font.size.xs};
+  input {
+    margin-right: 10px;
+  }
+`;
+
 const RegisterPage = () => {
   const { firebase } = useContext(FirebaseContext);
   const [errMessage, setErrMessage] = useState('');
@@ -101,6 +110,12 @@ const RegisterPage = () => {
         minLength={6}
         required
       />
+      <AgreementWrappper>
+        <label htmlFor="agreement">
+          <input type="checkbox" id="agreement" name="agreement" required />
+          Akceptuję Regulamin i Politykę prywatności
+        </label>
+      </AgreementWrappper>
       <Button type="submit">Zarejestruj się</Button>
       <StyledLinkWhite to="/login">
         Masz już konto? Zaloguj się!
