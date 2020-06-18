@@ -53,7 +53,7 @@ const InputSelect = ({
 }) => (
   <InputSelectLabel htmlFor={field}>
     {name}
-    <select name={field} onChange={onChange} value={selectedValue.item}>
+    <select name={field} onChange={onChange} value={selectedValue}>
       {mainPage && <option value="all">Wszystkie</option>}
       {values.map(item => (
         <option key={`${item}${opKey}`} value={item}>

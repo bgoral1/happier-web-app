@@ -4,7 +4,7 @@ import Bookmark from 'components/atoms/Bookmark/Bookmark';
 import {
   FilterPetsDispatchContext,
   FilterPetsStateContext,
-} from 'src/context/FilterPetsContextProvider';
+} from 'context/Firebase/context';
 
 const StyledBookmarks = styled.div`
   display: flex;
@@ -33,8 +33,6 @@ const BookmarksBar = () => {
 
   return (
     <StyledBookmarks>
-      {console.log(activePet)}
-      {console.log(JSON.parse(window.localStorage.getItem('active_Pet')))}
       <Bookmark
         label="Szukaj psa"
         onClick={() => changeActive(on)}

@@ -5,7 +5,7 @@ import { graphql, useStaticQuery, navigate } from 'gatsby';
 import {
   FilterPetsStateContext,
   FilterPetsDispatchContext,
-} from 'context/FilterPetsContextProvider';
+} from 'context/Firebase/context';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import {
   mainDogFilters,
@@ -111,7 +111,25 @@ const Main = ({ children, indexPage }) => {
     cities.push(edge.node.city);
   });
 
-  const [showAllFilters, setFiltersState] = useState(false);
+  let moreValues = false;
+
+  if (
+    filtersCat.bread !== 'all' ||
+    filtersCat.time !== 'all' ||
+    filtersCat.kids !== 'all' ||
+    filtersCat.tolerance !== 'all' ||
+    filtersCat.sex !== 'all' ||
+    filtersDog.bread !== 'all' ||
+    filtersDog.place !== 'all' ||
+    filtersDog.time !== 'all' ||
+    filtersDog.kids !== 'all' ||
+    filtersDog.tolerance !== 'all' ||
+    filtersDog.sex !== 'all'
+  ) {
+    moreValues = true;
+  }
+
+  const [showAllFilters, setFiltersState] = useState(moreValues);
 
   const handleInputChange = e => {
     e.persist();
@@ -133,7 +151,9 @@ const Main = ({ children, indexPage }) => {
           key={`${item.field}Dog`}
           opKey="Dog"
           {...item}
-          selectedValue={filtersDog}
+          selectedValue={Object.entries(filtersDog)
+            .find(([key]) => key === item.field)[1]
+            .toString()}
           onChange={handleInputChange}
           mainPage
         />
@@ -145,7 +165,9 @@ const Main = ({ children, indexPage }) => {
           key={`${item.field}Dog`}
           opKey="Dog"
           {...item}
-          selectedValue={filtersDog}
+          selectedValue={Object.entries(filtersDog)
+            .find(([key]) => key === item.field)[1]
+            .toString()}
           onChange={handleInputChange}
           mainPage
         />
@@ -157,7 +179,9 @@ const Main = ({ children, indexPage }) => {
           key={`${item.field}Cat`}
           opKey="Cat"
           {...item}
-          selectedValue={filtersCat}
+          selectedValue={Object.entries(filtersCat)
+            .find(([key]) => key === item.field)[1]
+            .toString()}
           onChange={handleInputChange}
           mainPage
         />
@@ -169,7 +193,9 @@ const Main = ({ children, indexPage }) => {
         opKey="Cat"
         {...item}
         onChange={handleInputChange}
-        selectedValue={filtersCat}
+        selectedValue={Object.entries(filtersCat)
+          .find(([key]) => key === item.field)[1]
+          .toString()}
         mainPage
       />
     ));
@@ -200,9 +226,7 @@ const Main = ({ children, indexPage }) => {
           onSubmit={filterPets}
         >
           {renderFilters()}
-          {console.log(localization)}
-          {console.log(filtersDog)}
-          {console.log(filtersCat)}
+          {/* {console.log(moreValues)} */}
           <InputSelect
             field="localization"
             name="lokalizacja"

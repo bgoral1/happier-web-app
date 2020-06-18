@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { navigate } from 'gatsby';

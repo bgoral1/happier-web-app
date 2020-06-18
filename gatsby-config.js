@@ -104,11 +104,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Happier - Aplikacja Wspomagajaca Proces Adopcji Zwierząt`,
+        short_name: `Happier`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#86C6C4`,
+        theme_color: `#E92063`,
         display: `minimal-ui`,
         icon: `src/assets/images/favicon.png`, // This path is relative to the root of the site.
       },
