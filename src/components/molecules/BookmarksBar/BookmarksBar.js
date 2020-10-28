@@ -4,7 +4,7 @@ import Bookmark from 'components/atoms/Bookmark/Bookmark';
 import {
   FilterPetsDispatchContext,
   FilterPetsStateContext,
-} from 'context/Firebase/context';
+} from 'context/FilterPetsContext/FilterPetsContext';
 
 const StyledBookmarks = styled.div`
   display: flex;

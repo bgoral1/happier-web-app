@@ -5,7 +5,7 @@ import { graphql, useStaticQuery, navigate } from 'gatsby';
 import {
   FilterPetsStateContext,
   FilterPetsDispatchContext,
-} from 'context/Firebase/context';
+} from 'context/FilterPetsContext/FilterPetsContext';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import {
   mainDogFilters,

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
-import { FilterPetsStateContext } from 'context/Firebase/context';
+import { FilterPetsStateContext } from 'context/FilterPetsContext/FilterPetsContext';
 import styled from 'styled-components';
 import Card from 'components/molecules/Card/Card';
 
