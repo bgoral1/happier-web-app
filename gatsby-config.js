@@ -78,18 +78,14 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          {
-            family: `Montserrat`,
-            variants: [`300`, `400`, `600`, `700`, `800`],
-          },
-          {
-            family: `Libre Baskerville`,
-            variants: [`700`],
-          },
-        ],
+<<<<<<< HEAD
+        fonts: [`Montserrat:300,400,600,700,800`,`Libre Baskerville:700`],
+=======
+        fonts: [`Montserrat\:300,400,600,700,800`,`Libre Baskerville\:700`],
+>>>>>>> 6d9f046262a35ece06177b2b6c5244350b20b6d5
+        display: 'swap'
       },
     },
     {
