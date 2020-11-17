@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Spring } from 'react-spring/renderprops';
+import VisibilitySensor from 'react-visibility-sensor';
 import Label from 'components/atoms/Label/Label';
 import Step from 'components/molecules/Step/Step';
 import pawsImg from 'images/pawsSteps.svg';
@@ -31,19 +33,6 @@ const StepsSectionWrapper = styled.div`
   }
 `;
 
-// const fade = keyframes`
-//   25%  {opacity: 1;}
-//   100% {opacity: 0;}
-// `;
-
-// const move = (toRight, dawn, turn = 180) => {
-//   const step = keyframes`
-//   0%  {transform: translate(0, 0) rotate(180deg);  }
-//   100% {transform: translate(${toRight}px, ${dawn}px) rotate(${turn}deg); opacity: 1; }
-// `;
-//   return step;
-// }
-
 const StepsWrapper = styled.div`
   padding: 50px 20px;
   margin-top: 80px;
@@ -53,27 +42,70 @@ const StepsWrapper = styled.div`
   grid-template-rows: 250px 250px 250px;
   grid-gap: 50px;
   position: relative;
+  overflow-x: hidden;
 `;
 
 const StepsSection = () => (
   <StepsSectionWrapper>
     <Label text="3 kroki do przygarnięcia pupila" />
     <StepsWrapper>
-      <Step
-        even
-        heading="First note of notes"
-        content="Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc"
-      />
-      <Step
-        odd
-        heading="Second note of notes"
-        content="Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc"
-      />
-      <Step
-        even
-        heading="Third note of notes "
-        content="Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc"
-      />
+      <VisibilitySensor partialVisibility>
+        {({ isVisible }) => (
+          <Spring
+            delay={400}
+            to={{
+              transform: isVisible ? 'translateX(0)' : 'translateX(50vw)',
+            }}
+          >
+            {props => (
+              <Step
+                even
+                heading="First note of notes"
+                content="Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc"
+                style={{ ...props }}
+              />
+            )}
+          </Spring>
+        )}
+      </VisibilitySensor>
+      <VisibilitySensor partialVisibility>
+        {({ isVisible }) => (
+          <Spring
+            delay={400}
+            to={{
+              transform: isVisible ? 'translateX(0)' : 'translateX(-40vw)',
+            }}
+          >
+            {props => (
+              <Step
+                odd
+                heading="Second note of notes"
+                content="Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc"
+                style={{ ...props }}
+              />
+            )}
+          </Spring>
+        )}
+      </VisibilitySensor>
+      <VisibilitySensor partialVisibility>
+        {({ isVisible }) => (
+          <Spring
+            delay={400}
+            to={{
+              transform: isVisible ? 'translateX(0)' : 'translateX(50vw)',
+            }}
+          >
+            {props => (
+              <Step
+                even
+                heading="Third note of notes "
+                content="Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc"
+                style={{ ...props }}
+              />
+            )}
+          </Spring>
+        )}
+      </VisibilitySensor>
     </StepsWrapper>
   </StepsSectionWrapper>
 );
