@@ -80,11 +80,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-<<<<<<< HEAD
         fonts: [`Montserrat:300,400,600,700,800`,`Libre Baskerville:700`],
-=======
-        fonts: [`Montserrat\:300,400,600,700,800`,`Libre Baskerville\:700`],
->>>>>>> 6d9f046262a35ece06177b2b6c5244350b20b6d5
         display: 'swap'
       },
     },
