@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { FirebaseContext } from 'context/Firebase/context';
 import AddInstitution from 'components/organisms/AddInstitution/AddInstitution';
 import InstitutionPanel from 'components/organisms/InstitutionPanel/InstitutionPanel';
+import UserPanel from 'components/organisms/UserPanel/UserPanel';
 import PermissionDeniedInfo from 'components/organisms/PermissionDeniedInfo/PermissionDeniedInfo';
 
 const PanelPage = () => {
@@ -10,12 +11,10 @@ const PanelPage = () => {
 
   return (
     <>
-      {(user === null ||
-        (user !== null &&
-          user.isAdmin !== true &&
-          user.isInstitution !== true)) && <PermissionDeniedInfo />}
+      {user === null && <PermissionDeniedInfo />}
       {user !== null && (
         <>
+          {!user.isAdmin && !user.isInstitution && <UserPanel />}
           {!!user.isAdmin && <AddInstitution />}
           {!!user.isInstitution && <InstitutionPanel />}
         </>

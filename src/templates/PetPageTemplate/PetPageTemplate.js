@@ -18,6 +18,8 @@ import iconFemale from 'images/icons/icon_sexFemale.svg';
 import LinkWithIcon from 'components/atoms/LinkWithIcon/LinkWithIcon';
 import ContactSection from 'components/organisms/ContactSection/ContactSection';
 import PetFeature from 'components/atoms/PetFeature/PetFeature';
+import logoHappierHeart from 'images/logo_happier_heart.svg';
+import { zoom } from 'components/molecules/Card/Card';
 
 const ContactSectionWrapper = styled.div`
   width: 100%;
@@ -73,6 +75,7 @@ const PetDetails = styled.div`
 
 const ImageWrapper = styled.div`
   background-color: ${({ theme }) => theme.primary};
+  position: relative;
 
   ${({ theme }) => theme.mq.tablet} {
     order: 2;
@@ -102,6 +105,24 @@ const PetDetailsImg = styled(Image)`
   ${({ theme }) => theme.mq.large} {
     width: 500px;
     height: 500px;
+  }
+
+  :hover img {
+    animation: ${zoom} 1s ease-in-out forwards;
+  }
+`;
+
+const WishIcon = styled(Icon)`
+  position: absolute;
+  top: 3vh;
+  right: 3vh;
+
+  :hover,
+  :focus {
+    cursor: pointer;
+    path {
+      fill: ${({ theme }) => theme.primary};
+    }
   }
 `;
 
@@ -158,6 +179,10 @@ const StyledIcon = styled(Icon)`
   margin-left: 15px;
 `;
 
+const addToWatched = id => {
+  console.log(id);
+};
+
 const PetTemplate = ({ data }) => (
   <>
     {/* <SEO /> */}
@@ -169,6 +194,11 @@ const PetTemplate = ({ data }) => (
           <PetDetailsImg
             fluid={data.pet.localImage.childImageSharp.fluid}
             alt="pet"
+          />
+          <WishIcon
+            src={logoHappierHeart}
+            title="Dodaj do obserwowanych"
+            onClick={() => addToWatched(data.pet.id)}
           />
         </ImageWrapper>
         <PetDetailsDesc>

@@ -22,6 +22,11 @@ class Firebase {
       .onSnapshot(onSnapshot);
   }
 
+  async checkLogin({ userName }) {
+    const checkLoginCallable = this.functions.httpsCallable('checkLogin');
+    return checkLoginCallable({ userName });
+  }
+
   async register({ email, password, userName }) {
     await this.auth.createUserWithEmailAndPassword(email, password);
     const createProfileCallable = this.functions.httpsCallable(

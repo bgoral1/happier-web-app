@@ -1,16 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { Link } from 'gatsby';
+import styled, { keyframes } from 'styled-components';
 import Image from 'gatsby-image';
 import Button from 'components/atoms/Button/Button';
 import Icon from 'components/atoms/Icon/Icon';
 import iconMale from 'images/icons/icon_sexMale.svg';
 import iconFemale from 'images/icons/icon_sexFemale.svg';
 
+export const zoom = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.25);
+  }
+`;
+
 const StyledWrapper = styled.div`
   box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
   border-radius: 7px;
   overflow: hidden;
+
+  :hover div img {
+    animation: ${zoom} 1s ease-in-out forwards;
+  }
+
+  :hover {
+    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -66,13 +84,17 @@ const StyledIcon = styled(Icon)`
   }
 `;
 
-const Card = ({ name, sex, petImage }) => (
-  <StyledWrapper title="Zobacz">
+// eslint-disable-next-line react/prop-types
+const Card = ({ name, sex, petImage, children, linkTo }) => (
+  <StyledWrapper>
     <ImageWrapper>
+      {children}
       <PetImg fluid={petImage} alt="dog" />
-      <StyledButton width="100px" height="32px">
-        Zobacz
-      </StyledButton>
+      <Link key={linkTo} to={`/pet/${linkTo}`}>
+        <StyledButton width="100px" height="32px">
+          Zobacz
+        </StyledButton>
+      </Link>
     </ImageWrapper>
     <HeadingWrapper>
       <H2>
@@ -101,10 +123,13 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   sex: PropTypes.string.isRequired,
   petImage: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
+  linkTo: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {
   petImage: [],
+  // eslint-disable-next-line react/default-props-match-prop-types
+  children: null,
 };
 
 export default Card;

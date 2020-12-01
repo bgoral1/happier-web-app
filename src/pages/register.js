@@ -2,12 +2,17 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { FirebaseContext } from 'context/Firebase/context';
-import { navigate } from 'gatsby';
+// import { navigate } from 'gatsby';
 import AuthTemplate from 'templates/AuthTemplate/AuthTemplate';
 import H1 from 'components/atoms/H1/H1';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import StyledLink from 'components/atoms/StyledLink/StyledLink';
+
+const ErrorMsg = styled.p`
+  background-color: #fff;
+  color: #ff0000;
+`;
 
 const H1White = styled(H1)`
   color: ${({ theme }) => theme.white};
@@ -47,20 +52,29 @@ const RegisterPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (formValues.password === formValues.confirmPassword) {
-      firebase
-        .register({
-          userName: formValues.userName,
-          email: formValues.email,
-          password: formValues.password,
-        })
-        .catch(err => {
-          if (isMounted) {
-            setErrMessage(err.message);
-          }
-        })
-        .then(() => navigate('/'));
-    } else setErrMessage('Password and confirmed password must match');
+    firebase
+      .checkLogin({ userName: formValues.userName })
+      .then(() => {
+        if (formValues.password === formValues.confirmPassword) {
+          firebase
+            .register({
+              userName: formValues.userName,
+              email: formValues.email,
+              password: formValues.password,
+            })
+            .catch(err => {
+              if (isMounted) {
+                setErrMessage(err.message);
+              }
+            });
+          // .then(() => navigate('/'));
+        } else setErrMessage('Password and confirmed password must match');
+      })
+      .catch(err => {
+        if (isMounted) {
+          setErrMessage(err.message);
+        }
+      });
   };
 
   const handleInputChange = e => {
@@ -72,14 +86,26 @@ const RegisterPage = () => {
     }));
   };
 
+  const handleLoginChange = () => {
+    firebase
+      .checkLogin({ userName: formValues.userName })
+      .then(() => setErrMessage('Login jest wolny'))
+      .catch(err => {
+        if (isMounted) {
+          setErrMessage(err.message);
+        }
+      });
+  };
+
   return (
     <AuthTemplate onSubmit={handleSubmit}>
       <H1White>Zarejestruj się</H1White>
-      {!!errMessage && <p color="red">{errMessage}</p>}
+      {!!errMessage && <ErrorMsg>{errMessage}</ErrorMsg>}
       <Input
-        value={formValues.userName}
+        value={formValues.userName.toLowerCase()}
         name="userName"
         onChange={handleInputChange}
+        onBlur={handleLoginChange}
         placeholder="user name"
         type="text"
         required

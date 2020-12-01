@@ -99,6 +99,7 @@ const InstitutionPanel = () => {
                 petImage={edge.node.localImage.childImageSharp.fluid}
                 name={edge.node.name}
                 sex={edge.node.filters.sex}
+                linkTo={edge.node.id}
               />
             </Link>
           ))}

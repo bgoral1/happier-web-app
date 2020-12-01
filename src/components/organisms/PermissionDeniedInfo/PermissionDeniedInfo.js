@@ -28,13 +28,14 @@ const PermissionDeniedWrapper = styled.div`
 
 const PermissionDeniedInfo = () => (
   <PermissionDeniedWrapper>
-    <span>UWAGA: Tylko zweryfikowane instytucje mogą zobaczyć tę stronę.</span>
+    <span>UWAGA: Tylko zalogowani użytkownicy mogą zobaczyć tę stronę.</span>
     <span>
       Jeśli jesteś przedstawicielem instytucji chcącej dołączyć do programu,
       skontaktuj się z administratorem strony w celu uzyskania dostępu do
       panelu.
     </span>
     <Link to="/">Wróć do strony głównej</Link>
+    <Link to="/login">Masz konto? Zaloguj się</Link>
   </PermissionDeniedWrapper>
 );
 

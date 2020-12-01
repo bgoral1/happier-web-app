@@ -1,15 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 export const theme = {
-  primary: 'hsl(178, 51%, 65%)',
-  primaryDark: 'hsl(178, 56%, 40%)',
-  secondary: 'hsl(179, 100%, 20%)',
-  accent: 'hsl(340, 82%, 52%)',
-  white: 'hsl(0, 0%, 100%)',
-  grey100: 'hsl(0, 0%, 96%)',
-  grey200: 'hsl(0, 0%, 90%)',
-  grey500: 'hsl(0, 0%, 51%)',
-  grey900: 'hsl(0, 0%, 15%)',
-  black: 'hsl(0, 0%, 0%)',
+  primary: '#78D3D0',
+  primaryDark: '#2DA19E',
+  secondary: '#006766',
+  accent: '#E91E63',
+  white: '#FFFFFF',
+  grey100: '#F4F4F4',
+  grey200: '#E6E6E6',
+  grey500: '#828282',
+  grey900: '#262626',
+  black: '#000000',
 
   font: {
     size: {

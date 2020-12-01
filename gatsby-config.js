@@ -34,6 +34,13 @@ module.exports = {
               city: doc.city,
             }),
           },
+          {
+            type: 'PublicProfiles',
+            collection: 'publicProfiles',
+            map: doc => ({
+              petsWatched___NODE: doc.petsWatched.map(pet => pet.id),
+            }),
+          },
         ],
       },
     },

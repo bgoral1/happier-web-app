@@ -91,8 +91,6 @@ const StyledButton = styled(Button)`
 
 const Header = () => {
   const { firebase, user } = useContext(FirebaseContext);
-  // eslint-disable-next-line no-console
-  console.log(user);
 
   const [isMenuOpen, setMenuState] = useState(false);
 
@@ -111,9 +109,7 @@ const Header = () => {
           <UserInfo>
             <span>Witaj, </span>
             <strong>{user.userName || user.email}</strong>
-            {(!!user.isAdmin || !!user.isInstitution) && (
-              <Link to="/panel">Panel</Link>
-            )}
+            <Link to="/panel">Panel</Link>
             <LinkWithIcon src={iconLogout} onClick={handleLogoutClick}>
               Wyloguj się
             </LinkWithIcon>

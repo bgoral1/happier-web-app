@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import { FirebaseContext } from 'context/Firebase/context';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import logoHeart from 'images/logo_happier_heart.svg';
 import iconPaw from 'images/icons/icon_paw.svg';
@@ -48,30 +49,36 @@ const SidebarWrapper = styled.div`
 `;
 
 // eslint-disable-next-line react/prop-types
-const Sidebar = ({ handleLogoutClick }) => (
-  <SidebarWrapper>
-    <ButtonIcon
-      logo
-      icon={logoHeart}
-      as={Link}
-      to="/"
-      title="Przejdź do strony głównej"
-    />
-    <div>
-      <ButtonIcon icon={iconPaw} title="Pupile" as={Link} to="/panel" />
+const Sidebar = ({ handleLogoutClick }) => {
+  const { user } = useContext(FirebaseContext);
+
+  return (
+    <SidebarWrapper>
       <ButtonIcon
-        icon={iconAdd}
-        title="Dodaj pupila do adopcji"
+        logo
+        icon={logoHeart}
         as={Link}
-        to="/panel/add-pet"
+        to="/"
+        title="Przejdź do strony głównej"
       />
-    </div>
-    <ButtonIcon
-      icon={iconLogout}
-      onClick={handleLogoutClick}
-      title="Wyloguj się"
-    />
-  </SidebarWrapper>
-);
+      {user.isInstitution && (
+        <div>
+          <ButtonIcon icon={iconPaw} title="Pupile" as={Link} to="/panel" />
+          <ButtonIcon
+            icon={iconAdd}
+            title="Dodaj pupila do adopcji"
+            as={Link}
+            to="/panel/add-pet"
+          />
+        </div>
+      )}
+      <ButtonIcon
+        icon={iconLogout}
+        onClick={handleLogoutClick}
+        title="Wyloguj się"
+      />
+    </SidebarWrapper>
+  );
+};
 
 export default Sidebar;
