@@ -2,17 +2,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { FirebaseContext } from 'context/Firebase/context';
-// import { navigate } from 'gatsby';
+import { navigate } from 'gatsby';
 import AuthTemplate from 'templates/AuthTemplate/AuthTemplate';
 import H1 from 'components/atoms/H1/H1';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import StyledLink from 'components/atoms/StyledLink/StyledLink';
-
-const ErrorMsg = styled.p`
-  background-color: #fff;
-  color: #ff0000;
-`;
+import MessageBox from 'components/atoms/MessageBox/MessageBox';
 
 const H1White = styled(H1)`
   color: ${({ theme }) => theme.white};
@@ -32,7 +28,7 @@ const AgreementWrappper = styled.div`
 
 const RegisterPage = () => {
   const { firebase } = useContext(FirebaseContext);
-  const [errMessage, setErrMessage] = useState('');
+  const [message, setMessage] = useState({ content: '', success: false });
 
   const [formValues, setFormValues] = useState({
     email: '',
@@ -64,22 +60,39 @@ const RegisterPage = () => {
             })
             .catch(err => {
               if (isMounted) {
-                setErrMessage(err.message);
+                setMessage({
+                  content: err.message,
+                  success: false,
+                });
               }
-            });
-          // .then(() => navigate('/'));
-        } else setErrMessage('Password and confirmed password must match');
+            })
+            .then(() =>
+              setMessage({
+                content:
+                  'Zostałeś zarejsterowany, za chwilę nastąpi przekierowanie do Twojego panelu',
+                success: true,
+              })
+            )
+            .then(() => setTimeout(() => navigate('/panel'), 3000));
+        } else
+          setMessage({
+            content: 'Password and confirmed password must match',
+            success: false,
+          });
       })
       .catch(err => {
         if (isMounted) {
-          setErrMessage(err.message);
+          setMessage({
+            content: err.message,
+            success: false,
+          });
         }
       });
   };
 
   const handleInputChange = e => {
     e.persist();
-    setErrMessage('');
+    setMessage('');
     setFormValues(currentValues => ({
       ...currentValues,
       [e.target.name]: e.target.value,
@@ -89,10 +102,18 @@ const RegisterPage = () => {
   const handleLoginChange = () => {
     firebase
       .checkLogin({ userName: formValues.userName })
-      .then(() => setErrMessage('Login jest wolny'))
+      .then(() =>
+        setMessage({
+          content: 'Login jest wolny',
+          success: true,
+        })
+      )
       .catch(err => {
         if (isMounted) {
-          setErrMessage(err.message);
+          setMessage({
+            content: err.message,
+            success: false,
+          });
         }
       });
   };
@@ -100,7 +121,9 @@ const RegisterPage = () => {
   return (
     <AuthTemplate onSubmit={handleSubmit}>
       <H1White>Zarejestruj się</H1White>
-      {!!errMessage && <ErrorMsg>{errMessage}</ErrorMsg>}
+      {!!message.content && (
+        <MessageBox success={message.success}>{message.content}</MessageBox>
+      )}
       <Input
         value={formValues.userName.toLowerCase()}
         name="userName"
