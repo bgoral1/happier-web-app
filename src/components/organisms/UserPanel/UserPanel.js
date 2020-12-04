@@ -5,7 +5,8 @@ import { FirebaseContext } from 'context/Firebase/context';
 import UserPanelTemplate from 'templates/UserPanelTemplate/UserPanelTemplate';
 import Card from 'components/molecules/Card/Card';
 import H1 from 'components/atoms/H1/H1';
-import Hamburger from 'components/atoms/Hamburger/Hamburger';
+import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
+import iconClose from 'images/icons/icon_close.svg';
 
 const PetsWrapper = styled.div`
   width: 100%;
@@ -45,20 +46,18 @@ const PetsWrapper = styled.div`
   }
 `;
 
-const StyledHamburger = styled(Hamburger)`
+const ButtonIconWrapper = styled(ButtonIcon)`
+  width: 36px;
+  height: 36px;
+  padding: 5px;
   z-index: 1;
   position: absolute;
-  right: 20px;
-  top: 0;
+  right: 5px;
+  top: 5px;
   background-color: ${({ theme }) => theme.grey200};
-  border-radius: 0 0 7px 7px;
-  cursor: pointer;
 
   :hover {
     background-color: ${({ theme }) => theme.white};
-  }
-  ${({ theme }) => theme.mq.desktop} {
-    display: block;
   }
 `;
 
@@ -94,10 +93,12 @@ const UserPanel = () => {
   const { firebase, user } = useContext(FirebaseContext);
 
   const deleteItem = id => {
-    firebase
-      .removeFromPetToWatched({ petId: id, userName: user.userName })
-      .then(() => window.alert('Usunięty z obserwowanych'))
-      .catch(err => window.alert(err.message));
+    if (window.confirm('Czy na pewno chcesz usunąć zwierzę z obserowanych?')) {
+      firebase
+        .removeFromPetToWatched({ petId: id, userName: user.userName })
+        .then(() => window.alert('Usunięty z obserwowanych'))
+        .catch(err => window.alert(err.message));
+    }
   };
 
   return (
@@ -115,9 +116,9 @@ const UserPanel = () => {
                 linkTo={pet.id}
                 key={pet.id}
               >
-                <StyledHamburger
+                <ButtonIconWrapper
+                  icon={iconClose}
                   onClick={() => deleteItem(pet.id)}
-                  isOpen
                   title="Usuń z obserwowanych"
                 />
               </Card>

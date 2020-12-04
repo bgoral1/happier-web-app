@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { graphql, Link } from 'gatsby';
 import Image from 'gatsby-image';
@@ -120,6 +120,11 @@ const WishIcon = styled(Icon)`
   right: 3vh;
   z-index: 3000;
 
+  path {
+    fill: ${({ isClicked, theme }) =>
+      isClicked ? theme.primary : theme.accent};
+  }
+
   &:hover,
   &:focus {
     cursor: pointer;
@@ -193,18 +198,47 @@ const StyledIcon = styled(Icon)`
 const PetTemplate = ({ data }) => {
   const { firebase, user } = useContext(FirebaseContext);
 
+  const [isClicked, setIsClicked] = useState(false);
+  const [notification, setNotification] = useState('');
+
   const addToWatched = id => {
+    setIsClicked(true);
     if (user) {
       firebase
         .addPetToWatched({ petId: id, userName: user.userName })
-        .then(() => window.alert('Dodany do obserwowanych'))
-        .catch(err => window.alert(err.message));
+        .then(() => {
+          setNotification('Dodano do obserwowanych.');
+        })
+        .catch(() =>
+          setNotification(
+            'Przepraszamy, wystąpił błąd. Spróbuj ponownie później.'
+          )
+        );
     } else {
-      console.log(
-        'Musisz być zalogowany, aby móc dodawać zwierzęta do obserwowanych'
-      );
+      setNotification('Tylko zalogowani użytkownicy mogą używać tej funkcji.');
     }
   };
+
+  const renderNotification = () => (
+    <NotificationBox
+      header={notification}
+      closeNotification={() => {
+        setNotification('');
+        setIsClicked(false);
+      }}
+    >
+      {user && (
+        <p>
+          Przejdź do <StyledLink to="/panel">Twojego panelu</StyledLink>.
+        </p>
+      )}
+      {!user && (
+        <p>
+          <StyledLink to="/login">Zaloguj się</StyledLink>, aby obserwować.
+        </p>
+      )}
+    </NotificationBox>
+  );
 
   return (
     <>
@@ -221,27 +255,10 @@ const PetTemplate = ({ data }) => {
             <WishIcon
               src={logoHappierHeart}
               title="Dodaj do obserwowanych"
+              isClicked={isClicked}
               onClick={() => addToWatched(data.pet.id)}
             />
-            <NotificationBox
-              notification={
-                user
-                  ? 'Dodano do obserwowanych'
-                  : 'Tylko zalogowani użytkownicy mogą używać tej funkcji'
-              }
-            >
-              {user && (
-                <p>
-                  Przejdź do <StyledLink to="/panel">Twojego panelu</StyledLink>
-                </p>
-              )}
-              {!user && (
-                <p>
-                  <StyledLink to="/login">Zaloguj się</StyledLink>, aby
-                  obserwować
-                </p>
-              )}
-            </NotificationBox>
+            {notification !== '' && renderNotification()}
           </ImageWrapper>
           <PetDetailsDesc>
             <H1>

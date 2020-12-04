@@ -19,6 +19,7 @@ const NotificationWrapper = styled.div`
   background-color: #fac314;
   color: #222;
   max-width: 100%;
+  border-radius: 5px;
   box-shadow: 0 10px 26px 0 rgba(58, 78, 88, 0.41),
     0 8px 7px 0 rgba(58, 78, 88, 0.36);
   z-index: 2000;
@@ -48,16 +49,17 @@ const ButtonIconWrapper = styled(ButtonIcon)`
   margin-bottom: 0;
 `;
 
-const NotificationBox = ({ notification, children }) => (
+const NotificationBox = ({ header, closeNotification, children }) => (
   <NotificationWrapper>
-    <ButtonIconWrapper icon={iconClose} />
-    <h4>{notification}</h4>
+    <ButtonIconWrapper icon={iconClose} onClick={closeNotification} />
+    <h4>{header}</h4>
     {children}
   </NotificationWrapper>
 );
 
 NotificationBox.propTypes = {
-  notification: PropTypes.string.isRequired,
+  header: PropTypes.string.isRequired,
+  closeNotification: PropTypes.func.isRequired,
   children: PropTypes.string.isRequired,
 };
 
