@@ -91,9 +91,14 @@ const UserPanel = () => {
     }
   `);
 
-  const { user } = useContext(FirebaseContext);
+  const { firebase, user } = useContext(FirebaseContext);
 
-  const deleteItem = id => console.log(`deleted item ${id}`);
+  const deleteItem = id => {
+    firebase
+      .removeFromPetToWatched({ petId: id, userName: user.userName })
+      .then(() => window.alert('Usunięty z obserwowanych'))
+      .catch(err => window.alert(err.message));
+  };
 
   return (
     <UserPanelTemplate>

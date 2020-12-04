@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Image from 'gatsby-image';
 // import SEO from 'components/SEO/seo';
+import { FirebaseContext } from 'context/Firebase/context';
 import Header from 'components/organisms/Header/Header';
 import ReturnBar from 'components/molecules/ReturnBar/ReturnBar';
 import MainBackground from 'components/molecules/MainBackground/MainBackground';
@@ -20,6 +21,7 @@ import ContactSection from 'components/organisms/ContactSection/ContactSection';
 import PetFeature from 'components/atoms/PetFeature/PetFeature';
 import logoHappierHeart from 'images/logo_happier_heart.svg';
 import { zoom } from 'components/molecules/Card/Card';
+import NotificationBox from 'components/atoms/NotificationBox/NotificationBox';
 
 const ContactSectionWrapper = styled.div`
   width: 100%;
@@ -116,13 +118,22 @@ const WishIcon = styled(Icon)`
   position: absolute;
   top: 3vh;
   right: 3vh;
+  z-index: 3000;
 
-  :hover,
-  :focus {
+  &:hover,
+  &:focus {
     cursor: pointer;
     path {
       fill: ${({ theme }) => theme.primary};
     }
+  }
+`;
+
+const StyledLink = styled(Link)`
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+
+  &:hover {
+    color: ${({ theme }) => theme.accent};
   }
 `;
 
@@ -179,61 +190,93 @@ const StyledIcon = styled(Icon)`
   margin-left: 15px;
 `;
 
-const addToWatched = id => {
-  console.log(id);
-};
+const PetTemplate = ({ data }) => {
+  const { firebase, user } = useContext(FirebaseContext);
 
-const PetTemplate = ({ data }) => (
-  <>
-    {/* <SEO /> */}
-    <Header />
-    <ReturnBar />
-    <StyledMainBackground>
-      <PetDetails>
-        <ImageWrapper>
-          <PetDetailsImg
-            fluid={data.pet.localImage.childImageSharp.fluid}
-            alt="pet"
-          />
-          <WishIcon
-            src={logoHappierHeart}
-            title="Dodaj do obserwowanych"
-            onClick={() => addToWatched(data.pet.id)}
-          />
-        </ImageWrapper>
-        <PetDetailsDesc>
-          <H1>
-            {data.pet.name}
-            <StyledIcon
-              src={data.pet.filters.sex === 'samiec' ? iconMale : iconFemale}
+  const addToWatched = id => {
+    if (user) {
+      firebase
+        .addPetToWatched({ petId: id, userName: user.userName })
+        .then(() => window.alert('Dodany do obserwowanych'))
+        .catch(err => window.alert(err.message));
+    } else {
+      console.log(
+        'Musisz być zalogowany, aby móc dodawać zwierzęta do obserwowanych'
+      );
+    }
+  };
+
+  return (
+    <>
+      {/* <SEO /> */}
+      <Header />
+      <ReturnBar />
+      <StyledMainBackground>
+        <PetDetails>
+          <ImageWrapper>
+            <PetDetailsImg
+              fluid={data.pet.localImage.childImageSharp.fluid}
+              alt="pet"
             />
-          </H1>
-          <LinkWithIcon src={iconLocalization}>
-            {data.pet.institution.city}, {data.pet.institution.id}
-          </LinkWithIcon>
-          <article>
-            <H2>{data.pet.lead}</H2>
-            <Paragraph>{data.pet.description}</Paragraph>
-          </article>
-        </PetDetailsDesc>
-      </PetDetails>
-      <PetFeatureSection>
-        {Object.entries(data.pet.filters)
-          .filter(([, value]) => !(value === null))
-          .map(([key, value]) => (
-            <PetFeature key={key}>{value}</PetFeature>
-          ))}
-      </PetFeatureSection>
-    </StyledMainBackground>
-    <ContactSectionWrapper>
-      <ContactSection
-        labelText="Zapytaj o możliwość adopcji"
-        headingText="Napisz wiadomość do schroniska"
-      />
-    </ContactSectionWrapper>
-    <Footer />
-  </>
-);
+            <WishIcon
+              src={logoHappierHeart}
+              title="Dodaj do obserwowanych"
+              onClick={() => addToWatched(data.pet.id)}
+            />
+            <NotificationBox
+              notification={
+                user
+                  ? 'Dodano do obserwowanych'
+                  : 'Tylko zalogowani użytkownicy mogą używać tej funkcji'
+              }
+            >
+              {user && (
+                <p>
+                  Przejdź do <StyledLink to="/panel">Twojego panelu</StyledLink>
+                </p>
+              )}
+              {!user && (
+                <p>
+                  <StyledLink to="/login">Zaloguj się</StyledLink>, aby
+                  obserwować
+                </p>
+              )}
+            </NotificationBox>
+          </ImageWrapper>
+          <PetDetailsDesc>
+            <H1>
+              {data.pet.name}
+              <StyledIcon
+                src={data.pet.filters.sex === 'samiec' ? iconMale : iconFemale}
+              />
+            </H1>
+            <LinkWithIcon src={iconLocalization}>
+              {data.pet.institution.city}, {data.pet.institution.id}
+            </LinkWithIcon>
+            <article>
+              <H2>{data.pet.lead}</H2>
+              <Paragraph>{data.pet.description}</Paragraph>
+            </article>
+          </PetDetailsDesc>
+        </PetDetails>
+        <PetFeatureSection>
+          {Object.entries(data.pet.filters)
+            .filter(([, value]) => !(value === null))
+            .map(([key, value]) => (
+              <PetFeature key={key}>{value}</PetFeature>
+            ))}
+        </PetFeatureSection>
+      </StyledMainBackground>
+      <ContactSectionWrapper>
+        <ContactSection
+          labelText="Zapytaj o możliwość adopcji"
+          headingText="Napisz wiadomość do schroniska"
+        />
+      </ContactSectionWrapper>
+      <Footer />
+    </>
+  );
+};
 
 export const query = graphql`
   query PetQuery($petId: String!) {

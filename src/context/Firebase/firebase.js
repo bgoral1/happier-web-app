@@ -56,6 +56,20 @@ class Firebase {
       .get();
   }
 
+  async addPetToWatched({ petId, userName }) {
+    const addToPetsWatchedCallable = this.functions.httpsCallable(
+      'addToPetsWatched'
+    );
+    return addToPetsWatchedCallable({ petId, userName });
+  }
+
+  async removeFromPetToWatched({ petId, userName }) {
+    const removeFromPetsWatchedCallable = this.functions.httpsCallable(
+      'removeFromPetsWatched'
+    );
+    return removeFromPetsWatchedCallable({ petId, userName });
+  }
+
   async addPet({
     species,
     name,
