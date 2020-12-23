@@ -1,48 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { FirebaseContext } from 'context/Firebase/context';
 import UserPanelTemplate from 'templates/UserPanelTemplate/UserPanelTemplate';
 import Card from 'components/molecules/Card/Card';
-import H1 from 'components/atoms/H1/H1';
-
-const PetsWrapper = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 20px;
-  padding: 0 20px;
-  background-color: ${({ theme }) => theme.white};
-
-  > a > div {
-    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  div > div:first-child {
-    background-color: ${({ theme }) => theme.primaryDark};
-  }
-
-  ${({ theme }) => theme.mq.tablet} {
-    width: calc(100% - 110px);
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 'header header header';
-    margin-left: 110px;
-
-    h1 {
-      grid-area: header;
-    }
-  }
-
-  ${({ theme }) => theme.mq.desktop} {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: 'header header header header';
-  }
-
-  ${({ theme }) => theme.mq.veryLarge} {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-areas: 'header header header header header';
-  }
-`;
+import { PetsGrid } from 'components/organisms/PetsGrid/PetsGrid';
+import Heading from 'components/atoms/Heading/Heading';
 
 const InstitutionPanel = () => {
   const data = useStaticQuery(graphql`
@@ -87,23 +49,38 @@ const InstitutionPanel = () => {
     }
   }, [firebase]);
 
+  //   const [pets, setPets] = useState([]);
+
+  // useEffect(() => {
+  //   const unsubscribe = firebase.subscribeToPets({onSnapshot: (snapshot) => {
+  //     const snapshotPets = [];
+  //     snapshot.forEach(doc => snapshotPets.push(doc.id);
+  //     setPets(snapshotPets);
+  //   }})
+
+  //   return () => {
+  //     if(unsubscribe) {
+  //       unsubscribe();
+  //     }
+  //   }
+  //  }, []);
+
   return (
     <UserPanelTemplate>
-      <PetsWrapper>
-        <H1>Do adopcji</H1>
+      <Heading>Do adopcji</Heading>
+      <PetsGrid>
         {data.allPet.edges
           .filter(edge => edge.node.institution.id === institutionId)
           .map(edge => (
-            <Link key={edge.node.id} to={`/pet/${edge.node.id}`}>
-              <Card
-                petImage={edge.node.localImage.childImageSharp.fluid}
-                name={edge.node.name}
-                sex={edge.node.filters.sex}
-                linkTo={edge.node.id}
-              />
-            </Link>
+            <Card
+              key={edge.node.id}
+              petImage={edge.node.localImage.childImageSharp.fluid}
+              name={edge.node.name}
+              sex={edge.node.filters.sex}
+              linkTo={edge.node.id}
+            />
           ))}
-      </PetsWrapper>
+      </PetsGrid>
     </UserPanelTemplate>
   );
 };

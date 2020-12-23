@@ -70,6 +70,17 @@ class Firebase {
     return removeFromPetsWatchedCallable({ petId, userName });
   }
 
+  // subscribeToPets({onSnapshot}) {
+  //   return this.db.collection('pets').where('email', '==', email).onSnapshot(onSnapshot);
+  // }
+
+  subscribeToPets({ userName, onSnapshot }) {
+    return this.db
+      .collection('publicProfiles')
+      .doc(userName)
+      .onSnapshot(onSnapshot);
+  }
+
   async addPet({
     species,
     name,

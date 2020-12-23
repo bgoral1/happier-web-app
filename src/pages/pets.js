@@ -2,7 +2,7 @@ import React from 'react';
 import SEO from 'components/molecules/SEO/seo';
 import MainTemplate from 'templates/MainTemplate/MainTemplate';
 import Main from 'components/organisms/Main/Main';
-import PetsGrid from 'components/organisms/PetsGrid/PetsGrid';
+import DisplayFilteredPets from 'components/organisms/DisplayFilteredPets/DisplayFilteredPets';
 
 const PetsPage = () => (
   <>
@@ -12,7 +12,7 @@ const PetsPage = () => (
     />
     <MainTemplate>
       <Main />
-      <PetsGrid />
+      <DisplayFilteredPets />
     </MainTemplate>
   </>
 );

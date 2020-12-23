@@ -8,16 +8,8 @@ import Bookmark from 'components/atoms/Bookmark/Bookmark';
 import InputSelect from 'components/atoms/InputSelect/InputSelect';
 import { allDogFilters, allCatFilters } from 'src/data/filters';
 import Button from 'components/atoms/Button/Button';
-import H1 from 'components/atoms/H1/H1';
+import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
-
-const Heading = styled(H1)`
-  padding: 15px 0 10px 20px;
-  ${({ theme }) => theme.mq.tablet} {
-    margin-left: 110px;
-    padding-left: 0;
-  }
-`;
 
 const MainFormWrapper = styled.div`
   display: flex;

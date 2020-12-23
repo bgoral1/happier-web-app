@@ -19,6 +19,7 @@ const UserPanelTemplate = ({ children }) => {
     </>
   );
 };
+
 UserPanelTemplate.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

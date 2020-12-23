@@ -89,7 +89,7 @@ const Card = ({ name, sex, petImage, children, linkTo }) => (
   <StyledWrapper>
     <ImageWrapper>
       {children}
-      <PetImg fluid={petImage} alt="dog" />
+      {<PetImg fluid={petImage} alt="pet" />}
       <Link key={linkTo} to={`/pet/${linkTo}`}>
         <StyledButton width="100px" height="32px">
           Zobacz
