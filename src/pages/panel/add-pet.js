@@ -219,7 +219,6 @@ const AddPetPage = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [filterValuesDog, setFilterValuesDog] = useState(initialValuesDog);
   const [filterValuesCat, setFilterValuesCat] = useState(initialValuesCat);
-  const [institutionId, setInstitutionId] = useState('');
   const [petImage, setPetImage] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -228,15 +227,6 @@ const AddPetPage = () => {
       setPetImage(fileReader.result);
     });
   }, []);
-
-  useEffect(() => {
-    if (firebase && user) {
-      const { email } = user;
-      firebase.getInstitutionId({ email }).then(querySnapshot => {
-        setInstitutionId(querySnapshot.docs[0].id);
-      });
-    }
-  }, [firebase]);
 
   const toggleFilters = (isActive, e) => {
     e.preventDefault();
@@ -314,7 +304,7 @@ const AddPetPage = () => {
           name: formValues.name,
           lead: formValues.lead,
           description: formValues.description,
-          institutionId,
+          institutionId: user.userName,
           filters: filterValuesDog,
           petImage,
         })
@@ -335,7 +325,7 @@ const AddPetPage = () => {
           name: formValues.name,
           lead: formValues.lead,
           description: formValues.description,
-          institutionId,
+          institutionId: user.userName,
           filters: filterValuesCat,
           petImage,
         })

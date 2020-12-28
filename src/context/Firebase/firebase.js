@@ -49,13 +49,6 @@ class Firebase {
     return addToInstitutionsCallable({ name, email, city });
   }
 
-  async getInstitutionId({ email }) {
-    return this.db
-      .collection('institutions')
-      .where('email', '==', email)
-      .get();
-  }
-
   async addPetToWatched({ petId, userName }) {
     const addToPetsWatchedCallable = this.functions.httpsCallable(
       'addToPetsWatched'
@@ -70,14 +63,18 @@ class Firebase {
     return removeFromPetsWatchedCallable({ petId, userName });
   }
 
-  // subscribeToPets({onSnapshot}) {
-  //   return this.db.collection('pets').where('email', '==', email).onSnapshot(onSnapshot);
-  // }
-
-  subscribeToPets({ userName, onSnapshot }) {
+  subscribeToWatchedPets({ userName, onSnapshot }) {
     return this.db
       .collection('publicProfiles')
       .doc(userName)
+      .onSnapshot(onSnapshot);
+  }
+
+  subscribeToInstitutionPets({ userName, onSnapshot }) {
+    const institutionRef = this.db.collection('institutions').doc(userName);
+    return this.db
+      .collection('pets')
+      .where('institution', '==', institutionRef)
       .onSnapshot(onSnapshot);
   }
 
@@ -101,6 +98,13 @@ class Firebase {
       petImage,
     });
   }
+
+  // async removePet({ petId, userName }) {
+  //   const removeFromPetsWatchedCallable = this.functions.httpsCallable(
+  //     'removeFromPetsWatched'
+  //   );
+  //   return removeFromPetsWatchedCallable({ petId, userName });
+  // }
 
   async login({ email, password }) {
     return this.auth.signInWithEmailAndPassword(email, password);

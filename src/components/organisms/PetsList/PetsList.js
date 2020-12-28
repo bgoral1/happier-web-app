@@ -3,11 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
+import { PetsGrid } from 'components/organisms/PetsGrid/PetsGrid';
+import Heading from 'components/atoms/Heading/Heading';
 import Card from 'components/molecules/Card/Card';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import iconClose from 'images/icons/icon_close.svg';
-import Heading from 'components/atoms/Heading/Heading';
-import { PetsGrid } from 'components/organisms/PetsGrid/PetsGrid';
+import iconEdit from 'images/icons/icon_edit.svg';
 
 const ButtonIconWrapper = styled(ButtonIcon)`
   width: 36px;
@@ -15,11 +16,15 @@ const ButtonIconWrapper = styled(ButtonIcon)`
   padding: 5px;
   z-index: 1;
   position: absolute;
-  right: 5px;
+  right: 50px;
   top: 5px;
   background-color: ${({ theme }) => theme.grey200};
   :hover {
     background-color: ${({ theme }) => theme.white};
+  }
+
+  :last-of-type {
+    right: 5px;
   }
 `;
 
@@ -56,39 +61,70 @@ const PetsList = ({ firebase, user }) => {
 
   const [pets, setPets] = useState([]);
 
-  useEffect(() => {
-    const unsubscribe = firebase.subscribeToPets({
-      userName: user.userName,
-      onSnapshot: snapshot => {
-        const snapshotPets = [];
-        snapshot.data().petsWatched.forEach(doc => snapshotPets.push(doc.id));
-        setPets(snapshotPets);
-      },
-    });
+  if (user.isInstitution) {
+    useEffect(() => {
+      const unsubscribe = firebase.subscribeToInstitutionPets({
+        userName: user.userName,
+        onSnapshot: snapshot => {
+          const snapshotPets = [];
+          snapshot.forEach(doc => snapshotPets.push(doc.id));
+          setPets(snapshotPets);
+        },
+      });
 
-    return () => {
-      if (unsubscribe) {
-        unsubscribe();
-      }
-    };
-  }, []);
+      return () => {
+        if (unsubscribe) {
+          unsubscribe();
+        }
+      };
+    }, []);
+  } else {
+    useEffect(() => {
+      const unsubscribe = firebase.subscribeToWatchedPets({
+        userName: user.userName,
+        onSnapshot: snapshot => {
+          const snapshotPets = [];
+          snapshot.data().petsWatched.forEach(doc => snapshotPets.push(doc.id));
+          setPets(snapshotPets);
+        },
+      });
+
+      return () => {
+        if (unsubscribe) {
+          unsubscribe();
+        }
+      };
+    }, []);
+  }
 
   const deleteItem = id => {
-    if (window.confirm('Czy na pewno chcesz usunąć zwierzę z obserowanych?')) {
-      firebase
-        .removeFromPetToWatched({ petId: id, userName: user.userName })
-        .then(() => window.alert('Usunięty z obserwowanych'))
-        .catch(err => window.alert(err.message));
+    if (window.confirm('Czy na pewno chcesz usunąć wybrane zwierzę?')) {
+      if (user.isInstitution) {
+        console.log(id);
+      } else {
+        firebase
+          .removeFromPetToWatched({ petId: id, userName: user.userName })
+          .then(() => window.alert('Usunięty z obserwowanych'))
+          .catch(err => window.alert(err.message));
+      }
     }
   };
 
   return (
     <>
-      <Heading>
-        {pets.length === 0
-          ? 'Nie obserwujesz jeszcze żadnych zwierząt'
-          : 'Obserwowane zwierzęta'}
-      </Heading>
+      {user.isInstitution ? (
+        <Heading>
+          {pets.length === 0
+            ? 'Ta instytujca nie ma dodanych zwierząt'
+            : 'Zwierzęta do adopcji'}
+        </Heading>
+      ) : (
+        <Heading>
+          {pets.length === 0
+            ? 'Nie obserwujesz jeszcze żadnych zwierząt'
+            : 'Obserwowane zwierzęta'}
+        </Heading>
+      )}
       <PetsGrid>
         {data.allPet.edges
           .filter(edge => pets.indexOf(edge.node.id) > -1)
@@ -100,6 +136,13 @@ const PetsList = ({ firebase, user }) => {
               sex={edge.node.filters.sex}
               linkTo={edge.node.id}
             >
+              {user.isInstitution && (
+                <ButtonIconWrapper
+                  icon={iconEdit}
+                  onClick={() => console.log(edge.node.id)}
+                  title="Edit pet"
+                />
+              )}
               <ButtonIconWrapper
                 icon={iconClose}
                 onClick={() => deleteItem(edge.node.id)}

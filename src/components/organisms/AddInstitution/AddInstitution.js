@@ -82,7 +82,7 @@ const AddInstitution = () => {
     setSuccess(false);
     setFormValues(currentValues => ({
       ...currentValues,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.toLowerCase(),
     }));
   };
 
