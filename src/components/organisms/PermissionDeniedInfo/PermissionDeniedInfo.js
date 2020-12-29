@@ -7,7 +7,7 @@ const PermissionDeniedWrapper = styled.div`
   height: 200px;
   margin: 50px auto;
   padding: 20px;
-  border: 2px solid ${({ theme }) => theme.grey200};
+  border: 2px solid ${({ theme }) => theme.gray200};
   display: flex;
   flex-direction: column;
   justify-content: space-around;

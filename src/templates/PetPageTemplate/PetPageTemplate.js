@@ -25,7 +25,7 @@ import NotificationBox from 'components/atoms/NotificationBox/NotificationBox';
 
 const ContactSectionWrapper = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.grey200};
+  background-color: ${({ theme }) => theme.gray200};
   padding: 16px 0;
   position: relative;
 
@@ -157,7 +157,7 @@ const PetDetailsDesc = styled.div`
   }
 
   ${H1} {
-    border-bottom: 3px solid ${({ theme }) => theme.grey200};
+    border-bottom: 3px solid ${({ theme }) => theme.gray200};
     display: flex;
     justify-content: center;
     width: 90%;
@@ -167,7 +167,7 @@ const PetDetailsDesc = styled.div`
 
   ${LinkWithIcon} p {
     display: inline-block;
-    color: ${({ theme }) => theme.grey300};
+    color: ${({ theme }) => theme.gray300};
     font-size: ${({ theme }) => theme.font.size.s};
     font-weight: ${({ theme }) => theme.font.weight.semiBold};
     text-transform: capitalize;

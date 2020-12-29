@@ -18,7 +18,7 @@ const ButtonIconWrapper = styled(ButtonIcon)`
   position: absolute;
   right: 50px;
   top: 5px;
-  background-color: ${({ theme }) => theme.grey200};
+  background-color: ${({ theme }) => theme.gray200};
   :hover {
     background-color: ${({ theme }) => theme.white};
   }

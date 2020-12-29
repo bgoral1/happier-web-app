@@ -6,13 +6,13 @@ const Input = styled.input`
   margin-bottom: 10px;
   font-size: ${({ theme }) => theme.font.size.xs};
   font-weight: ${({ theme }) => theme.font.weight.regular};
-  background-color: ${({ theme }) => theme.grey100};
+  background-color: ${({ theme }) => theme.gray100};
   border: none;
   border-radius: 50px;
   width: 100%;
 
   ::placeholder {
-    color: ${({ theme }) => theme.grey500};
+    color: ${({ theme }) => theme.gray500};
     text-transform: uppercase;
     letter-spacing: 1px;
   }

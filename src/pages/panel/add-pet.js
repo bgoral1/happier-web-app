@@ -14,7 +14,7 @@ import Input from 'components/atoms/Input/Input';
 const MainFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.grey200};
+  background-color: ${({ theme }) => theme.gray200};
   padding: 20px;
   margin-bottom: 100px;
 
@@ -115,7 +115,7 @@ const BookmarkWrapper = styled.div`
 const StyledBookmark = styled(Bookmark)`
   padding: 5px 0px;
   background-color: ${({ isActive, theme }) =>
-    isActive ? theme.secondary : theme.grey100};
+    isActive ? theme.secondary : theme.gray100};
   text-transform: uppercase;
   font-weight: ${({ theme }) => theme.font.weight.semiBold};
   font-size: ${({ theme }) => theme.font.size.s};
@@ -164,7 +164,7 @@ const InputLabel = styled.label`
 `;
 
 const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.grey100};
+  background-color: ${({ theme }) => theme.gray100};
   width: 140px;
   height: 36px;
   color: ${({ theme }) => theme.black};

@@ -46,7 +46,7 @@ const LogoWrapper = styled(Link)`
   justify-content: center;
 
   :hover {
-    background-color: ${({ theme }) => theme.grey100};
+    background-color: ${({ theme }) => theme.gray100};
   }
 `;
 
@@ -58,9 +58,9 @@ const FormWrapper = styled.form`
   padding: 0 20px 20px 20px;
   min-height: 55vh;
 
-  ${({ theme }) => theme.mq.tablet} {
+  /* ${({ theme }) => theme.mq.tablet} {
     min-height: 45vh;
-  }
+  } */
 `;
 
 const AuthTemplate = ({ onSubmit, children }) => {

@@ -33,7 +33,7 @@ const IconWrappper = styled.div`
     height: 65px;
 
     path {
-      fill: ${({ theme }) => theme.grey900};
+      fill: ${({ theme }) => theme.gray900};
     }
   }
 `;
@@ -60,7 +60,7 @@ const LocalizationWrapper = styled.div`
 const Paragraph = styled.p`
   font-size: ${({ theme }) => theme.font.size.xs};
   font-size: ${({ theme }) => theme.font.weight.semiBold};
-  color: ${({ theme }) => theme.font.weight.grey900};
+  color: ${({ theme }) => theme.font.weight.gray900};
   text-transform: capitalize;
 `;
 

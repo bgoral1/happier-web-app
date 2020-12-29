@@ -5,10 +5,10 @@ export const theme = {
   secondary: '#006766',
   accent: '#E91E63',
   white: '#FFFFFF',
-  grey100: '#F4F4F4',
-  grey200: '#E6E6E6',
-  grey500: '#828282',
-  grey900: '#262626',
+  gray100: '#F4F4F4',
+  gray200: '#E6E6E6',
+  gray500: '#828282',
+  gray900: '#262626',
   black: '#000000',
 
   font: {

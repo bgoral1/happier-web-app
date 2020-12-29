@@ -8,7 +8,7 @@ const StepsSectionWrapper = styled.div`
   position: relative;
   width: 100%;
   padding-top: 16px;
-  background-color: ${({ theme }) => theme.grey100};
+  background-color: ${({ theme }) => theme.gray100};
 
   ${({ theme }) => theme.mq.desktop} {
     width: 70%;

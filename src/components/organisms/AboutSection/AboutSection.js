@@ -8,7 +8,7 @@ import pawsImg from 'images/paws.svg';
 
 const AboutSectionWrapper = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.grey100};
+  background-color: ${({ theme }) => theme.gray100};
   padding: 32px 31px 39px 31px;
   position: relative;
 

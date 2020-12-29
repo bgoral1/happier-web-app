@@ -24,7 +24,7 @@ const MenuWrapper = styled.ul`
     font-size: ${({ theme }) => theme.font.size.m};
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid ${({ theme }) => theme.grey100};
+    border-bottom: 1px solid ${({ theme }) => theme.gray100};
 
     ${({ theme }) => theme.mq.desktop} {
       border-bottom: none;

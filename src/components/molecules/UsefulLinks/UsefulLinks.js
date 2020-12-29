@@ -11,7 +11,7 @@ const UsefulLinksWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 34px;
-  background-color: ${({ theme }) => theme.grey100};
+  background-color: ${({ theme }) => theme.gray100};
   padding: 0 20px;
   transform: translateY(
     ${({ isOpenMobileMenu }) => (isOpenMobileMenu ? '-100%' : '0')}

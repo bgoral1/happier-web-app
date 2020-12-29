@@ -8,6 +8,7 @@ import H1 from 'components/atoms/H1/H1';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import StyledLink from 'components/atoms/StyledLink/StyledLink';
+import DemoUsers from 'components/organisms/DemoUsers/DemoUsers';
 
 const H1White = styled(H1)`
   color: ${({ theme }) => theme.white};
@@ -74,6 +75,7 @@ const LoginPage = () => {
       <StyledLinkWhite to="/register">
         Nie masz konta? Zarejestruj się!
       </StyledLinkWhite>
+      <DemoUsers />
     </AuthTemplate>
   );
 };

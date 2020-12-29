@@ -23,7 +23,7 @@ const FormWrapper = styled.form`
   justify-content: space-around;
   padding: 0 20px 20px 20px;
   min-height: 55vh;
-  background-color: ${({ theme }) => theme.grey200};
+  background-color: ${({ theme }) => theme.gray200};
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.25);
   border-radius: 7px;
   overflow: hidden;

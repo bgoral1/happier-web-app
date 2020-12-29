@@ -72,7 +72,7 @@ const HeadingWrapper = styled.div`
 `;
 
 const H2 = styled.h2`
-  color: ${({ theme }) => theme.grey900};
+  color: ${({ theme }) => theme.gray900};
 `;
 
 const StyledIcon = styled(Icon)`

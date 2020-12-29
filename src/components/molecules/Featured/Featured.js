@@ -7,13 +7,19 @@ const FeaturedWrapper = styled.div`
   height: 120px;
   width: 50%;
   background-color: ${({ theme }) => theme.white};
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  font-size: ${({ theme }) => theme.font.size.xs};
+  border: 1px solid ${({ theme }) => theme.gray200};
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  font-weight: ${({ theme }) => theme.font.weight.semiBold};
-  font-size: ${({ theme }) => theme.font.size.xs};
-  border: 1px solid ${({ theme }) => theme.grey200};
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 
   ${({ theme }) => theme.mq.tablet} {
     width: 25%;
@@ -34,8 +40,7 @@ const FeaturedWrapper = styled.div`
 
 const Featured = ({ iconsrc, text, ...props }) => (
   <FeaturedWrapper {...props}>
-    <Icon src={iconsrc} />
-    <p>{text}</p>
+    <Icon src={iconsrc}>{text}</Icon>
   </FeaturedWrapper>
 );
 

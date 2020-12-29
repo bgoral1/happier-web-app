@@ -7,7 +7,7 @@ import ContactSection from 'components/organisms/ContactSection/ContactSection';
 
 const ContactSectionWrapper = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.grey200};
+  background-color: ${({ theme }) => theme.gray200};
   padding: 16px 0;
   position: relative;
 `;
