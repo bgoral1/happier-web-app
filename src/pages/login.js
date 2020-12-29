@@ -9,6 +9,7 @@ import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import StyledLink from 'components/atoms/StyledLink/StyledLink';
 import DemoUsers from 'components/organisms/DemoUsers/DemoUsers';
+import { demoUsersData } from 'src/data/demoUsers';
 
 const H1White = styled(H1)`
   color: ${({ theme }) => theme.white};
@@ -51,6 +52,25 @@ const LoginPage = () => {
     }));
   };
 
+  const chooseDemoUser = type => {
+    if (type === 'commonUser') {
+      setFormValues({
+        email: demoUsersData[0].email,
+        password: demoUsersData[0].password,
+      });
+    } else if (type === 'animalShelter') {
+      setFormValues({
+        email: demoUsersData[1].email,
+        password: demoUsersData[1].password,
+      });
+    } else {
+      setFormValues({
+        email: demoUsersData[2].email,
+        password: demoUsersData[2].password,
+      });
+    }
+  };
+
   return (
     <AuthTemplate onSubmit={handleSubmit}>
       <H1White>Zaloguj się</H1White>
@@ -75,7 +95,7 @@ const LoginPage = () => {
       <StyledLinkWhite to="/register">
         Nie masz konta? Zarejestruj się!
       </StyledLinkWhite>
-      <DemoUsers />
+      <DemoUsers chooseDemoUser={chooseDemoUser} />
     </AuthTemplate>
   );
 };
