@@ -21,7 +21,7 @@ import ContactSection from 'components/organisms/ContactSection/ContactSection';
 import PetFeature from 'components/atoms/PetFeature/PetFeature';
 import logoHappierHeart from 'images/logo_happier_heart.svg';
 import { zoom } from 'components/molecules/Card/Card';
-import NotificationBox from 'components/atoms/NotificationBox/NotificationBox';
+import { NotificationBox } from 'components/atoms/NotificationBox/NotificationBox';
 
 const ContactSectionWrapper = styled.div`
   width: 100%;
@@ -198,11 +198,10 @@ const StyledIcon = styled(Icon)`
 const PetTemplate = ({ data }) => {
   const { firebase, user } = useContext(FirebaseContext);
 
-  const [isClicked, setIsClicked] = useState(false);
-  const [notification, setNotification] = useState('');
+  const [isWishIconClicked, setWishIconClicked] = useState(false);
+  const [notification, setNotification] = useState(null);
 
   const addToWatched = id => {
-    setIsClicked(true);
     if (user) {
       firebase
         .addPetToWatched({ petId: id, userName: user.userName })
@@ -221,22 +220,24 @@ const PetTemplate = ({ data }) => {
 
   const renderNotification = () => (
     <NotificationBox
-      header={notification}
+      header={notification !== null ? notification : ''}
       closeNotification={() => {
-        setNotification('');
-        setIsClicked(false);
+        setNotification(null);
+        setWishIconClicked(false);
       }}
     >
-      {user && (
-        <p>
-          Przejdź do <StyledLink to="/panel">Twojego panelu</StyledLink>.
-        </p>
-      )}
-      {!user && (
-        <p>
-          <StyledLink to="/login">Zaloguj się</StyledLink>, aby obserwować.
-        </p>
-      )}
+      <>
+        {user && (
+          <span>
+            Przejdź do <StyledLink to="/panel">Twojego panelu</StyledLink>.
+          </span>
+        )}
+        {!user && (
+          <span>
+            <StyledLink to="/login">Zaloguj się</StyledLink>, aby obserwować.
+          </span>
+        )}
+      </>
     </NotificationBox>
   );
 
@@ -255,10 +256,13 @@ const PetTemplate = ({ data }) => {
             <WishIcon
               src={logoHappierHeart}
               title="Dodaj do obserwowanych"
-              isClicked={isClicked}
-              onClick={() => addToWatched(data.pet.id)}
+              isClicked={isWishIconClicked}
+              onClick={() => {
+                setWishIconClicked(true);
+                addToWatched(data.pet.id);
+              }}
             />
-            {notification !== '' && renderNotification()}
+            {isWishIconClicked && renderNotification()}
           </ImageWrapper>
           <PetDetailsDesc>
             <H1>

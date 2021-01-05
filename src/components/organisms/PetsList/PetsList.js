@@ -9,6 +9,8 @@ import Card from 'components/molecules/Card/Card';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import iconClose from 'images/icons/icon_close.svg';
 import iconEdit from 'images/icons/icon_edit.svg';
+import { NotificationModal } from 'components/atoms/NotificationBox/NotificationBox';
+import Button from 'components/atoms/Button/Button';
 
 const ButtonIconWrapper = styled(ButtonIcon)`
   width: 36px;
@@ -60,6 +62,8 @@ const PetsList = ({ firebase, user }) => {
   `);
 
   const [pets, setPets] = useState([]);
+  const [notification, setNotification] = useState(null);
+  const [petToDelete, setPetToDelete] = useState(null);
 
   if (user.isInstitution) {
     useEffect(() => {
@@ -98,17 +102,60 @@ const PetsList = ({ firebase, user }) => {
   }
 
   const deleteItem = id => {
-    if (window.confirm('Czy na pewno chcesz usunąć wybrane zwierzę?')) {
-      if (user.isInstitution) {
-        console.log(id);
-      } else {
-        firebase
-          .removeFromPetToWatched({ petId: id, userName: user.userName })
-          .then(() => window.alert('Usunięty z obserwowanych'))
-          .catch(err => window.alert(err.message));
-      }
+    if (user.isInstitution) {
+      console.log(id);
+      setNotification(null);
+    } else {
+      firebase
+        .removeFromPetToWatched({ petId: id, userName: user.userName })
+        .then(() => setNotification('Usunięty z obserwowanych'))
+        .catch(err => setNotification(err.message));
     }
   };
+
+  const renderNotification = () => (
+    <NotificationModal
+      header={notification}
+      closeNotification={() => {
+        setNotification(null);
+      }}
+    >
+      {' '}
+      {notification === 'Czy na pewno chcesz usunąć wybrane zwierzę?' ? (
+        <>
+          <Button
+            width="140px"
+            height="36px"
+            dismiss
+            onClick={() => setNotification(null)}
+          >
+            Anuluj
+          </Button>
+          <Button
+            type="submit"
+            value="Submit"
+            width="140px"
+            height="36px"
+            onClick={() => {
+              setNotification('');
+              deleteItem(petToDelete);
+            }}
+          >
+            Usuń
+          </Button>
+        </>
+      ) : (
+        <Button
+          width="140px"
+          height="36px"
+          dismiss
+          onClick={() => setNotification(null)}
+        >
+          Ok
+        </Button>
+      )}
+    </NotificationModal>
+  );
 
   return (
     <>
@@ -125,6 +172,7 @@ const PetsList = ({ firebase, user }) => {
             : 'Obserwowane zwierzęta'}
         </Heading>
       )}
+      {notification !== null && renderNotification()}
       <PetsGrid>
         {data.allPet.edges
           .filter(edge => pets.indexOf(edge.node.id) > -1)
@@ -145,7 +193,12 @@ const PetsList = ({ firebase, user }) => {
               )}
               <ButtonIconWrapper
                 icon={iconClose}
-                onClick={() => deleteItem(edge.node.id)}
+                onClick={() => {
+                  setNotification(
+                    'Czy na pewno chcesz usunąć wybrane zwierzę?'
+                  );
+                  setPetToDelete(edge.node.id);
+                }}
                 title="Usuń z obserwowanych"
               />
             </Card>

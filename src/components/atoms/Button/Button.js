@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledButton = styled.button`
-  background-color: ${({ theme }) => theme.accent};
+  background-color: ${({ theme, dismiss }) =>
+    dismiss ? theme.grey100 : theme.accent};
   width: ${({ width }) => width || '280px'};
   height: ${({ height }) => height || '50px'};
   border: none;
@@ -11,7 +12,7 @@ const StyledButton = styled.button`
   font-family: ${({ theme }) => theme.font.family.montserrat};
   font-size: ${({ theme }) => theme.font.size.s};
   font-weight: ${({ theme }) => theme.font.weight.semiBold};
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme, dismiss }) => (dismiss ? theme.black : theme.white)};
   text-transform: uppercase;
   transition: box-shadow 0.3s ease;
   cursor: pointer;

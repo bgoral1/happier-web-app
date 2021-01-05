@@ -48,6 +48,11 @@ const RegisterPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    setMessage({
+      content: '',
+      success: true,
+    });
+
     firebase
       .checkLogin({ userName: formValues.userName })
       .then(() => {
@@ -58,14 +63,6 @@ const RegisterPage = () => {
               email: formValues.email,
               password: formValues.password,
             })
-            .catch(err => {
-              if (isMounted) {
-                setMessage({
-                  content: err.message,
-                  success: false,
-                });
-              }
-            })
             .then(() =>
               setMessage({
                 content:
@@ -73,7 +70,15 @@ const RegisterPage = () => {
                 success: true,
               })
             )
-            .then(() => setTimeout(() => navigate('/panel'), 3000));
+            .then(() => setTimeout(() => navigate('/panel'), 1000))
+            .catch(err => {
+              if (isMounted) {
+                setMessage({
+                  content: err.message,
+                  success: false,
+                });
+              }
+            });
         } else
           setMessage({
             content: 'Password and confirmed password must match',
@@ -92,7 +97,7 @@ const RegisterPage = () => {
 
   const handleInputChange = e => {
     e.persist();
-    setMessage('');
+    setMessage({ content: null });
     setFormValues(currentValues => ({
       ...currentValues,
       [e.target.name]: e.target.value.toLowerCase(),
@@ -121,7 +126,7 @@ const RegisterPage = () => {
   return (
     <AuthTemplate onSubmit={handleSubmit}>
       <H1White>Zarejestruj się</H1White>
-      {!!message.content && (
+      {message.content !== null && (
         <MessageBox success={message.success}>{message.content}</MessageBox>
       )}
       <Input

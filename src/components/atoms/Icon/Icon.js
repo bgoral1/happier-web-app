@@ -3,7 +3,7 @@ import SVG from 'react-inlinesvg';
 import PropTypes from 'prop-types';
 import StyledLink from 'components/atoms/StyledLink/StyledLink';
 
-const Icon = ({ src, children, to, ...props }) => (
+const Icon = ({ src, children, to, isClicked, ...props }) => (
   <>
     {to ? (
       <StyledLink to={to} {...props}>
@@ -23,10 +23,12 @@ Icon.propTypes = {
   src: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   to: PropTypes.string,
+  isClicked: PropTypes.bool,
 };
 
 Icon.defaultProps = {
   children: '',
   to: null,
+  isClicked: false,
 };
 export default Icon;

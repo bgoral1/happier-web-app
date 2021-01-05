@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
 
-const ErrorMsg = styled.div`
+const MsgWrapper = styled.div`
   color: ${({ success }) => (success ? '#155724' : '#721c24')};
   background-color: ${({ success }) => (success ? '#d4edda' : '#f8d7da')};
   border-color: ${({ success }) => (success ? '#c3e6cb' : '#f5c6cb')};
@@ -11,14 +12,25 @@ const ErrorMsg = styled.div`
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  width: 100%;
   text-align: center;
+  width: 100%;
 `;
 
 const MessageBox = ({ success, children }) => (
-  <ErrorMsg success={success}>{children}</ErrorMsg>
+  <MsgWrapper success={success}>
+    {children === '' ? (
+      <Loader
+        type="ThreeDots"
+        color="#006766"
+        timeout={10000}
+        height={50}
+        width={50}
+      />
+    ) : (
+      children
+    )}
+  </MsgWrapper>
 );
-
 MessageBox.propTypes = {
   success: PropTypes.bool.isRequired,
   children: PropTypes.string.isRequired,

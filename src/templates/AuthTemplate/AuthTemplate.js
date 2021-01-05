@@ -35,6 +35,10 @@ const LoginWrapper = styled.div`
   ${({ theme }) => theme.mq.desktop} {
     width: 40%;
   }
+
+  ${({ theme }) => theme.mq.large} {
+    width: 35%;
+  }
 `;
 
 const LogoWrapper = styled(Link)`
@@ -57,10 +61,11 @@ const FormWrapper = styled.form`
   justify-content: space-around;
   padding: 0 20px 20px 20px;
   min-height: 55vh;
+  width: 100%;
 
-  /* ${({ theme }) => theme.mq.tablet} {
-    min-height: 45vh;
-  } */
+  ${({ theme }) => theme.mq.tablet} {
+    width: 80%;
+  }
 `;
 
 const AuthTemplate = ({ onSubmit, children }) => {

@@ -9,6 +9,7 @@ import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import StyledLink from 'components/atoms/StyledLink/StyledLink';
 import DemoUsers from 'components/organisms/DemoUsers/DemoUsers';
+import MessageBox from 'components/atoms/MessageBox/MessageBox';
 import { demoUsersData } from 'src/data/demoUsers';
 
 const H1White = styled(H1)`
@@ -20,7 +21,7 @@ const StyledLinkWhite = styled(StyledLink)`
 
 const LoginPage = () => {
   const { firebase } = useContext(FirebaseContext);
-  const [errMessage, setErrMessage] = useState('');
+  const [message, setMessage] = useState({ content: null, success: false });
   const [formValues, setFormValues] = useState({ email: '', password: '' });
 
   let isMounted = true;
@@ -33,19 +34,33 @@ const LoginPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setMessage({
+      content: '',
+      success: true,
+    });
     firebase
       .login({ email: formValues.email, password: formValues.password })
+      .then(() =>
+        setMessage({
+          content:
+            'Zostałeś zalogowany, za chwilę nastąpi przekierowanie do Twojego panelu',
+          success: true,
+        })
+      )
+      .then(() => setTimeout(() => navigate('/panel'), 1000))
       .catch(err => {
         if (isMounted) {
-          setErrMessage(err.message);
+          setMessage({
+            content: err.message,
+            success: false,
+          });
         }
-      })
-      .then(() => navigate('/'));
+      });
   };
 
   const handleInputChange = e => {
     e.persist();
-    setErrMessage('');
+    setMessage({ content: null });
     setFormValues(currentValues => ({
       ...currentValues,
       [e.target.name]: e.target.value.toLowerCase(),
@@ -53,6 +68,7 @@ const LoginPage = () => {
   };
 
   const chooseDemoUser = type => {
+    setMessage({ content: null });
     if (type === 'commonUser') {
       setFormValues({
         email: demoUsersData[0].email,
@@ -74,7 +90,9 @@ const LoginPage = () => {
   return (
     <AuthTemplate onSubmit={handleSubmit}>
       <H1White>Zaloguj się</H1White>
-      {!!errMessage && <p color="red">{errMessage}</p>}
+      {message.content !== null && (
+        <MessageBox success={message.success}>{message.content}</MessageBox>
+      )}
       <Input
         value={formValues.email}
         name="email"
