@@ -92,14 +92,14 @@ const Card = ({ name, sex, petImage, children, linkTo }) => (
       {<PetImg fluid={petImage} alt="pet" />}
       <Link key={linkTo} to={`/pet/${linkTo}`}>
         <StyledButton width="100px" height="32px">
-          Zobacz
+          See more
         </StyledButton>
       </Link>
     </ImageWrapper>
     <HeadingWrapper>
       <H2>
         {name}
-        <StyledIcon src={sex === 'samiec' ? iconMale : iconFemale} />
+        <StyledIcon src={sex === 'male' ? iconMale : iconFemale} />
       </H2>
     </HeadingWrapper>
   </StyledWrapper>

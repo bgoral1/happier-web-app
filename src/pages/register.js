@@ -23,12 +23,13 @@ const AgreementWrappper = styled.div`
   font-size: ${({ theme }) => theme.font.size.xs};
   input {
     margin-right: 10px;
+    cursor: pointer;
   }
 `;
 
 const RegisterPage = () => {
   const { firebase } = useContext(FirebaseContext);
-  const [message, setMessage] = useState({ content: '', success: false });
+  const [message, setMessage] = useState({ content: null, success: false });
 
   const [formValues, setFormValues] = useState({
     email: '',
@@ -66,7 +67,7 @@ const RegisterPage = () => {
             .then(() =>
               setMessage({
                 content:
-                  'Zostałeś zarejsterowany, za chwilę nastąpi przekierowanie do Twojego panelu',
+                  'You have been registered, in a moment there will be a redirection to your panel',
                 success: true,
               })
             )
@@ -109,7 +110,7 @@ const RegisterPage = () => {
       .checkLogin({ userName: formValues.userName })
       .then(() =>
         setMessage({
-          content: 'Login jest wolny',
+          content: 'Username is available',
           success: true,
         })
       )
@@ -125,7 +126,7 @@ const RegisterPage = () => {
 
   return (
     <AuthTemplate onSubmit={handleSubmit}>
-      <H1White>Zarejestruj się</H1White>
+      <H1White>Create an account</H1White>
       {message.content !== null && (
         <MessageBox success={message.success}>{message.content}</MessageBox>
       )}
@@ -166,14 +167,12 @@ const RegisterPage = () => {
       />
       <AgreementWrappper>
         <label htmlFor="agreement">
-          <input type="checkbox" id="agreement" name="agreement" required />
-          Akceptuję Regulamin i Politykę prywatności
+          <input type="checkbox" id="agreement" name="agreement" required />I
+          accept the Terms of Use and Privacy Policy
         </label>
       </AgreementWrappper>
-      <Button type="submit">Zarejestruj się</Button>
-      <StyledLinkWhite to="/login">
-        Masz już konto? Zaloguj się!
-      </StyledLinkWhite>
+      <Button type="submit">Sign up</Button>
+      <StyledLinkWhite to="/login">Already a member? Sign in</StyledLinkWhite>
     </AuthTemplate>
   );
 };

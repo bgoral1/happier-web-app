@@ -28,14 +28,13 @@ const PermissionDeniedWrapper = styled.div`
 
 const PermissionDeniedInfo = () => (
   <PermissionDeniedWrapper>
-    <span>UWAGA: Tylko zalogowani użytkownicy mogą zobaczyć tę stronę.</span>
+    <span>NOTE: Only singned-in users can see this page.</span>
     <span>
-      Jeśli jesteś przedstawicielem instytucji chcącej dołączyć do programu,
-      skontaktuj się z administratorem strony w celu uzyskania dostępu do
-      panelu.
+      If you are a representative of an animal shelter wishing to join the
+      program, contact the site administrator in order to gain access to panel.
     </span>
-    <Link to="/">Wróć do strony głównej</Link>
-    <Link to="/login">Masz konto? Zaloguj się</Link>
+    <Link to="/">Return to home page</Link>
+    <Link to="/login">Already a member? Sign in</Link>
   </PermissionDeniedWrapper>
 );
 

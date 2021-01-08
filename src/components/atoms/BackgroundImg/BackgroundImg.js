@@ -35,7 +35,7 @@ const BackgroundImg = () => {
     <BackgroundImgWrappper
       fluid={data.file.childImageSharp.fluid}
       role="img"
-      aria-label="Szczeniaki w kartonie"
+      aria-label="Puppies in a box"
     />
   );
 };

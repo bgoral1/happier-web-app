@@ -80,7 +80,7 @@ const ContactSection = ({ labelText, headingText, paragraphText }) => {
             value={formValues.topic}
             name="topic"
             onChange={handleInputChange}
-            placeholder="temat"
+            placeholder="topic"
             type="text"
             required
           />
@@ -88,7 +88,7 @@ const ContactSection = ({ labelText, headingText, paragraphText }) => {
             value={formValues.email}
             name="email"
             onChange={handleInputChange}
-            placeholder="twój email"
+            placeholder="your email"
             type="email"
             required
           />
@@ -97,11 +97,11 @@ const ContactSection = ({ labelText, headingText, paragraphText }) => {
             value={formValues.message}
             name="message"
             onChange={handleInputChange}
-            placeholder="treść wiadomości"
+            placeholder="your message"
             type="textarea"
             required
           />
-          <Button type="submit">Wyślij</Button>
+          <Button type="submit">Send</Button>
         </form>
       </MessageWrappper>
     </>

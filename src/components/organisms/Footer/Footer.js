@@ -87,8 +87,8 @@ const Footer = () => (
       </a>
     </FooterRowWrapper>
     <FooterRowWrapper>
-      <FooterLink to="/">Regulamin</FooterLink>
-      <FooterLink to="/">Polityka prywatności</FooterLink>
+      <FooterLink to="/">Terms of Use</FooterLink>
+      <FooterLink to="/">Privacy Policy</FooterLink>
       <FooterText>© 2020 Happier. All rights reserved</FooterText>
     </FooterRowWrapper>
   </FooterWrapper>

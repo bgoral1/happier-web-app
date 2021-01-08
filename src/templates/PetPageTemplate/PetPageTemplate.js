@@ -206,15 +206,13 @@ const PetTemplate = ({ data }) => {
       firebase
         .addPetToWatched({ petId: id, userName: user.userName })
         .then(() => {
-          setNotification('Dodano do obserwowanych.');
+          setNotification('Added to favourities');
         })
         .catch(() =>
-          setNotification(
-            'Przepraszamy, wystąpił błąd. Spróbuj ponownie później.'
-          )
+          setNotification('Sorry, an error occurred. Please try again later.')
         );
     } else {
-      setNotification('Tylko zalogowani użytkownicy mogą używać tej funkcji.');
+      setNotification('Only logged-in users can use this feature.');
     }
   };
 
@@ -229,12 +227,13 @@ const PetTemplate = ({ data }) => {
       <>
         {user && (
           <span>
-            Przejdź do <StyledLink to="/panel">Twojego panelu</StyledLink>.
+            Go to <StyledLink to="/panel">your panel</StyledLink>.
           </span>
         )}
         {!user && (
           <span>
-            <StyledLink to="/login">Zaloguj się</StyledLink>, aby obserwować.
+            <StyledLink to="/login">Sign in</StyledLink>, to add to your
+            favourites.
           </span>
         )}
       </>
@@ -255,7 +254,7 @@ const PetTemplate = ({ data }) => {
             />
             <WishIcon
               src={logoHappierHeart}
-              title="Dodaj do obserwowanych"
+              title="Favorite pet"
               isClicked={isWishIconClicked}
               onClick={() => {
                 setWishIconClicked(true);
@@ -268,7 +267,7 @@ const PetTemplate = ({ data }) => {
             <H1>
               {data.pet.name}
               <StyledIcon
-                src={data.pet.filters.sex === 'samiec' ? iconMale : iconFemale}
+                src={data.pet.filters.sex === 'male' ? iconMale : iconFemale}
               />
             </H1>
             <LinkWithIcon src={iconLocalization}>
@@ -290,8 +289,8 @@ const PetTemplate = ({ data }) => {
       </StyledMainBackground>
       <ContactSectionWrapper>
         <ContactSection
-          labelText="Zapytaj o możliwość adopcji"
-          headingText="Napisz wiadomość do schroniska"
+          labelText={`Ask about ${data.pet.name}`}
+          headingText={`Send a message to the ${data.pet.institution.id}`}
         />
       </ContactSectionWrapper>
       <Footer />

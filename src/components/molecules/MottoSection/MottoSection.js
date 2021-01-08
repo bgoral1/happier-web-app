@@ -113,11 +113,11 @@ const MottoSection = () => {
     <MottoSectionWrapper
       fluid={data.file.childImageSharp.fluid}
       role="img"
-      aria-label="Szczeniaki"
+      aria-label="Puppies"
     >
       <Motto>
         <blockquote>
-          Szczęście to jedyna rzecz, która się mnoży, jeśli się ją dzieli.
+          Happiness is the only thing that multiplies if you share it.
         </blockquote>
         <figcaption>Albert Schweitzer</figcaption>
       </Motto>

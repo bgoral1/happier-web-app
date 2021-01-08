@@ -89,13 +89,13 @@ const AddInstitution = () => {
   return (
     <Background>
       <FormWrapper onSubmit={handleSubmit}>
-        <H1>Nadaj prawa instytucji</H1>
+        <H1>Add Animal Shelter</H1>
         {!!errMessage && <p color="red">{errMessage}</p>}
         <Input
           value={formValues.name}
           name="name"
           onChange={handleInputChange}
-          placeholder="nazwa instytucji"
+          placeholder="Shelter name"
           type="name"
           required
         />
@@ -111,13 +111,13 @@ const AddInstitution = () => {
           value={formValues.city}
           name="city"
           onChange={handleInputChange}
-          placeholder="miasto"
+          placeholder="city"
           type="city"
           required
         />
-        {!!success && <span>Instytucja została dodana do bazy</span>}
-        <Button type="submit">Zatwierdź</Button>
-        <Link to="/">Wróć do strony głównej</Link>
+        {!!success && <span>The institution was added to the database</span>}
+        <Button type="submit">Confirm</Button>
+        <Link to="/">Return to home page</Link>
       </FormWrapper>
     </Background>
   );

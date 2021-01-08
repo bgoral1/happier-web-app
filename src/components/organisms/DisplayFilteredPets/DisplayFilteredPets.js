@@ -117,10 +117,10 @@ const DisplayFilteredPets = () => {
   return (
     <PetsWrapper>
       {filteredPets.length !== 0 ? (
-        <h1>Do adopcji </h1>
+        <h1>For adoption</h1>
       ) : (
         <p>
-          Brak zwierząt pasujących do wybranych filtrów. Zmień zaznaczony wybór.
+          No pets matching the selected filters. Change the selected filters.
         </p>
       )}
       {renderPets()}

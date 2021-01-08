@@ -29,7 +29,7 @@ const CatImage = () => {
     }
   `);
 
-  return <CatImg fluid={data.file.childImageSharp.fluid} alt="Kot" />;
+  return <CatImg fluid={data.file.childImageSharp.fluid} alt="Cat" />;
 };
 
 export default CatImage;

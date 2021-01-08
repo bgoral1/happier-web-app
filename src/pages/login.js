@@ -43,7 +43,7 @@ const LoginPage = () => {
       .then(() =>
         setMessage({
           content:
-            'Zostałeś zalogowany, za chwilę nastąpi przekierowanie do Twojego panelu',
+            'You have been signed in, in a moment there will be a redirection to your panel',
           success: true,
         })
       )
@@ -89,7 +89,7 @@ const LoginPage = () => {
 
   return (
     <AuthTemplate onSubmit={handleSubmit}>
-      <H1White>Zaloguj się</H1White>
+      <H1White>Sign in</H1White>
       {message.content !== null && (
         <MessageBox success={message.success}>{message.content}</MessageBox>
       )}
@@ -109,10 +109,8 @@ const LoginPage = () => {
         type="password"
         required
       />
-      <Button type="submit">Zaloguj się</Button>
-      <StyledLinkWhite to="/register">
-        Nie masz konta? Zarejestruj się!
-      </StyledLinkWhite>
+      <Button type="submit">Sign in</Button>
+      <StyledLinkWhite to="/register">Not a member? Sign up</StyledLinkWhite>
       <DemoUsers chooseDemoUser={chooseDemoUser} />
     </AuthTemplate>
   );

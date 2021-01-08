@@ -39,16 +39,16 @@ const MenuWrapper = styled.ul`
 const Menu = () => (
   <MenuWrapper>
     <li>
-      <AnchorLink to="/#about">O programie</AnchorLink>
+      <AnchorLink to="/#about">About</AnchorLink>
     </li>
     <li>
-      <Link to="/pets">Do adopcji</Link>
+      <Link to="/pets">For adoption</Link>
     </li>
     <li>
-      <AnchorLink to="/#institutions">Instytucje</AnchorLink>
+      <AnchorLink to="/#institutions">Shelters</AnchorLink>
     </li>
     <li>
-      <Link to="/contact">Kontakt</Link>
+      <Link to="/contact">Contact</Link>
     </li>
   </MenuWrapper>
 );

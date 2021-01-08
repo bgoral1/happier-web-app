@@ -19,7 +19,7 @@ const H2 = styled.h2`
 const AboutProgram = ({ className, children }) => (
   <AboutWrapper className={className}>
     {children}
-    <H2>O programie</H2>
+    <H2>About Happier</H2>
     <Paragraph>
       Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce
       sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc,

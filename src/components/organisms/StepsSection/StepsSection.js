@@ -47,7 +47,7 @@ const StepsWrapper = styled.div`
 
 const StepsSection = () => (
   <StepsSectionWrapper>
-    <Label text="3 kroki do przygarnięcia pupila" />
+    <Label text="3 steps to adopt a pet" />
     <StepsWrapper>
       <VisibilitySensor partialVisibility>
         {({ isVisible }) => (
@@ -60,7 +60,7 @@ const StepsSection = () => (
             {props => (
               <Step
                 even
-                heading="First note of notes"
+                heading="First step"
                 content="Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc"
                 style={{ ...props }}
               />
@@ -79,7 +79,7 @@ const StepsSection = () => (
             {props => (
               <Step
                 odd
-                heading="Second note of notes"
+                heading="Second step"
                 content="Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc"
                 style={{ ...props }}
               />
@@ -98,7 +98,7 @@ const StepsSection = () => (
             {props => (
               <Step
                 even
-                heading="Third note of notes "
+                heading="Third step "
                 content="Aenean pharetra enim eu metus mollis bibendum tincidunt in dolor. Fusce sollicitudin, metus non consectetur posuere, lorem nunc porttitor nunc"
                 style={{ ...props }}
               />

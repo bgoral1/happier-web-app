@@ -19,10 +19,10 @@ const FeaturedWrapper = styled.div`
 
 const FeaturedSection = () => (
   <FeaturedWrapper>
-    <Featured iconsrc={iconLocalization} text="Wybór lokalizacji" />
-    <Featured iconsrc={iconPaw} text="Kochający pupile" />
-    <Featured iconsrc={logoHappierHeart} text="Przyjazny program" />
-    <Featured iconsrc={iconInstitution} text="Wiarygodne instytucje" />
+    <Featured iconsrc={iconLocalization} text="Location selection" />
+    <Featured iconsrc={iconPaw} text="Loving pets" />
+    <Featured iconsrc={logoHappierHeart} text="Friendly program" />
+    <Featured iconsrc={iconInstitution} text="Proven institutions" />
   </FeaturedWrapper>
 );
 

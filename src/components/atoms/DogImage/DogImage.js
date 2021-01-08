@@ -29,7 +29,7 @@ const DogImage = () => {
     }
   `);
 
-  return <DogImg fluid={data.file.childImageSharp.fluid} alt="Pies" />;
+  return <DogImg fluid={data.file.childImageSharp.fluid} alt="Dog" />;
 };
 
 export default DogImage;

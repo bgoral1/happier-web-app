@@ -229,7 +229,7 @@ const Main = ({ children, indexPage }) => {
           {/* {console.log(moreValues)} */}
           <InputSelect
             field="localization"
-            name="lokalizacja"
+            name="localization"
             values={cities}
             onChange={handleLocalizationChange}
             selectedValue={localization}
@@ -241,7 +241,7 @@ const Main = ({ children, indexPage }) => {
               onKeyDown={toggleFilters}
               role="presentation"
             >
-              {showAllFilters ? 'Pokaż mniej filtrów' : 'Pokaż więcej filtrów'}
+              {showAllFilters ? 'Show less filters' : 'Show all filters'}
             </p>
           </ShowFiltersWrapper>
           {children}

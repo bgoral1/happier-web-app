@@ -88,7 +88,7 @@ const AuthTemplate = ({ onSubmit, children }) => {
       aria-label="Dog and human shaking hands"
     >
       <LoginWrapper>
-        <LogoWrapper to="/" title="Wróć do strony głównej">
+        <LogoWrapper to="/" title="Return to home page">
           <Logo />
         </LogoWrapper>
         <FormWrapper onSubmit={onSubmit}>{children}</FormWrapper>

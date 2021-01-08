@@ -107,17 +107,17 @@ const Header = () => {
       <UsefulLinks isOpenMobileMenu={isMenuOpen}>
         {!!user && !!user.email && (
           <UserInfo>
-            <span>Witaj, </span>
+            <span>Hi, </span>
             <strong>{user.userName || user.email}</strong>
             <Link to="/panel">Panel</Link>
             <LinkWithIcon src={iconLogout} onClick={handleLogoutClick}>
-              Wyloguj się
+              Sign out
             </LinkWithIcon>
           </UserInfo>
         )}
         {(!user || !user.email) && (
           <LinkWithIcon to="/login" src={iconLogin}>
-            Zaloguj się
+            Sign in
           </LinkWithIcon>
         )}
       </UsefulLinks>
@@ -130,12 +130,12 @@ const Header = () => {
         <MobileMenu isOpen={isMenuOpen}>
           {!!user && !!user.email && (
             <StyledButton as={Link} to="/login" onClick={handleLogoutClick}>
-              Wyloguj się
+              Sign out
             </StyledButton>
           )}
           {(!user || !user.email) && (
             <StyledButton as={Link} to="/login">
-              Zaloguj się
+              Sign in
             </StyledButton>
           )}
         </MobileMenu>

@@ -39,7 +39,7 @@ const InstitutionSection = () => {
 
   return (
     <StepsSectionWrapper id="institutions">
-      <Label toRight text="Instytucje biorące udział w programie" />
+      <Label toRight text="Shelters participating in the programme" />
       <InstitutionWrapper>
         {data.allInstitution.edges.map(edge => (
           <Institution

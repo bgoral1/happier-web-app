@@ -59,14 +59,14 @@ const Sidebar = ({ handleLogoutClick }) => {
         icon={logoHeart}
         as={Link}
         to="/"
-        title="Przejdź do strony głównej"
+        title="Go to the home page"
       />
       {user.isInstitution && (
         <div>
-          <ButtonIcon icon={iconPaw} title="Pupile" as={Link} to="/panel" />
+          <ButtonIcon icon={iconPaw} title="Pets" as={Link} to="/panel" />
           <ButtonIcon
             icon={iconAdd}
-            title="Dodaj pupila do adopcji"
+            title="Add pet for adoption"
             as={Link}
             to="/panel/add-pet"
           />
@@ -75,7 +75,7 @@ const Sidebar = ({ handleLogoutClick }) => {
       <ButtonIcon
         icon={iconLogout}
         onClick={handleLogoutClick}
-        title="Wyloguj się"
+        title="Sign out"
       />
     </SidebarWrapper>
   );

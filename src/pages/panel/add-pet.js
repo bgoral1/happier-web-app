@@ -193,26 +193,26 @@ const AddPetPage = () => {
   };
 
   const initialValuesDog = {
-    size: 'mały',
-    age: 'szczenię',
-    activity: 'kanapowiec',
-    bread: 'mieszaniec',
-    place: 'mieszkanie',
+    size: 'samall',
+    age: 'puppy',
+    activity: 'lazy',
+    bread: 'mixed breed',
+    place: 'apartment',
     time: '<6h',
-    kids: 'w każdym wieku',
-    tolerance: 'niekonfliktowy',
-    sex: 'samiec',
+    kids: 'at any age',
+    tolerance: 'all pets',
+    sex: 'male',
   };
 
   const initialValuesCat = {
-    age: 'kocię',
-    activity: 'kanapowiec',
-    color: 'mieszane',
-    bread: 'mieszaniec',
+    age: 'kitty',
+    activity: 'lazy',
+    color: 'mixed',
+    bread: 'mixed breed',
     time: '<6h',
-    kids: 'w każdym wieku',
-    tolerance: 'niekonfliktowy',
-    sex: 'samiec',
+    kids: 'at any age',
+    tolerance: 'all pets',
+    sex: 'male',
   };
 
   const [activeDog, setActiveDog] = useState(true);
@@ -346,16 +346,16 @@ const AddPetPage = () => {
 
   return (
     <UserPanelTemplate>
-      <Heading>Dodaj zwierzę</Heading>
+      <Heading>Add pet</Heading>
       <MainFormWrapper>
         <BookmarkWrapper>
           <StyledBookmark
-            label="Pies"
+            label="Dog"
             onClick={e => toggleFilters(activeDog, e)}
             isActive={activeDog}
           />
           <StyledBookmark
-            label="Kot"
+            label="Cat"
             onClick={e => toggleFilters(!activeDog, e)}
             isActive={!activeDog}
           />
@@ -368,41 +368,41 @@ const AddPetPage = () => {
           <FiltersWrappper>{renderFilters()}</FiltersWrappper>
           <PetDescWrapper>
             <InputLabel htmlFor="name">
-              Imię zwierzaka
+              Pet name
               <Input
                 value={formValues.name}
                 name="name"
                 onChange={handleInputChange}
-                placeholder="Imię zwierzaka"
+                placeholder="Pet name"
                 type="text"
                 required
               />
             </InputLabel>
             <InputLabel htmlFor="lead">
-              Nagłówek opisu
+              Lead
               <Input
                 value={formValues.lead}
                 name="lead"
                 onChange={handleInputChange}
-                placeholder='Lead (np. "Przyjacielski i chętny do zabawy")'
+                placeholder='Lead (ex. "Friendly and eager to play")'
                 type="text"
                 required
               />
             </InputLabel>
             <InputLabel htmlFor="description">
-              Opis zwierzaka
+              Pet description
               <StyledTextArea
                 as="textarea"
                 value={formValues.description}
                 maxlength="550"
                 name="description"
                 onChange={handleInputChange}
-                placeholder="Opis historii zwierzaka i jego usposobienia..."
+                placeholder="Description of the history of the animal and its disposition..."
                 required
               />
             </InputLabel>
             <InputLabel htmlFor="photo">
-              Zdjęcie
+              Photo
               <Input
                 type="file"
                 name="photo"
@@ -413,20 +413,20 @@ const AddPetPage = () => {
                 }}
               />
             </InputLabel>
-            {!!success && <span>Zwierzak został dodany do bazy</span>}
+            {!!success && <span>The pet was added to the database</span>}
           </PetDescWrapper>
           <ButtonsWrapper>
             <Button type="submit" value="Submit" width="140px" height="36px">
-              Dodaj
+              Add
             </Button>
             <StyledButton
-              value="Anuluj"
+              value="Cancel"
               onClick={() => {
                 resetState();
                 navigate('/panel');
               }}
             >
-              Anuluj
+              Cancel
             </StyledButton>
           </ButtonsWrapper>
         </MainForm>

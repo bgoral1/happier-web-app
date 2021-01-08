@@ -34,12 +34,12 @@ const BookmarksBar = () => {
   return (
     <StyledBookmarks>
       <Bookmark
-        label="Szukaj psa"
+        label="Find a dog"
         onClick={() => changeActive(on)}
         isActive={on}
       />
       <Bookmark
-        label="Szukaj kota"
+        label="Find a cat"
         onClick={() => changeActive(!on)}
         isActive={!on}
       />

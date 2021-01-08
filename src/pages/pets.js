@@ -7,8 +7,8 @@ import DisplayFilteredPets from 'components/organisms/DisplayFilteredPets/Displa
 const PetsPage = () => (
   <>
     <SEO
-      title="Sprawdź, psy i koty do adopcji"
-      description="Chcesz adoptować pupila? W naszje bazie znajdziesz zwierzęta czekające na kochający dom!"
+      title="Find pets for adoption"
+      description="You want to adopt a pet? In our base you will find animals waiting for a loving home!"
     />
     <MainTemplate>
       <Main />

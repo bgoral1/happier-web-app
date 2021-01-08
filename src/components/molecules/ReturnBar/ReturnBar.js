@@ -34,7 +34,7 @@ const StyledLinkWithIcon = styled(LinkWithIcon)`
 const ReturnBar = () => (
   <BarWrapper>
     <StyledLinkWithIcon to="/pets" src={iconArrow}>
-      Wróć do wyszukiwania
+      Return to search
     </StyledLinkWithIcon>
   </BarWrapper>
 );

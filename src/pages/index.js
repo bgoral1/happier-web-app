@@ -12,13 +12,13 @@ import InstitutionSection from 'components/organisms/InstitutionSection/Institut
 const IndexPage = () => (
   <>
     <SEO
-      title="Strona Główna"
-      description="Happier to aplikacja internetowa wspomagająca proces adopcji zwierząt ze schronisk"
+      title="Happier home page"
+      description="Happier is a web application supporting the process of adoption of animals from shelters."
     />
     <MainTemplate>
       <Main indexPage="true">
         <Button type="submit" value="Submit">
-          Szukaj
+          Search
         </Button>
       </Main>
       <FeaturedSection />

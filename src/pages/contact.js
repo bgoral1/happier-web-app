@@ -44,16 +44,16 @@ const ContactPage = () => (
   <>
     {' '}
     <SEO
-      title="Chcesz pomóc? Skontaktuj się z organizatorami programu"
-      description="Zapraszamy chętnych do współtworzenia strony. Masz pomysł, jak możeż pomóc? Wyślij wiadomość i zacznij działać!"
+      title="Do you want to help? Contact organizators of the Happier program"
+      description="We invite those willing to contribute to the website. Do you have any idea how you can help? Send a message and start acting!"
     />
     <MainTemplate>
       <BarWrapper />
       <StyledMainBackground>
         <ContactSectionWrapper>
           <StyledContactSection
-            labelText="Chcesz pomóc? Skontaktuj się z nami!"
-            headingText="Napisz wiadomość do organizatorów programu"
+            labelText="Do you want to help? Contact us!"
+            headingText="Write a message to organizators of the Happier program"
           />
         </ContactSectionWrapper>
       </StyledMainBackground>

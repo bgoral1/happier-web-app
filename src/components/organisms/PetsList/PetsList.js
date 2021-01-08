@@ -108,7 +108,7 @@ const PetsList = ({ firebase, user }) => {
     } else {
       firebase
         .removeFromPetToWatched({ petId: id, userName: user.userName })
-        .then(() => setNotification('Usunięty z obserwowanych'))
+        .then(() => setNotification('Removed from favourited'))
         .catch(err => setNotification(err.message));
     }
   };
@@ -121,7 +121,7 @@ const PetsList = ({ firebase, user }) => {
       }}
     >
       {' '}
-      {notification === 'Czy na pewno chcesz usunąć wybrane zwierzę?' ? (
+      {notification === 'Are you sure you want to remove the selected pet?' ? (
         <>
           <Button
             width="140px"
@@ -129,7 +129,7 @@ const PetsList = ({ firebase, user }) => {
             dismiss
             onClick={() => setNotification(null)}
           >
-            Anuluj
+            cancel
           </Button>
           <Button
             type="submit"
@@ -141,7 +141,7 @@ const PetsList = ({ firebase, user }) => {
               deleteItem(petToDelete);
             }}
           >
-            Usuń
+            remove
           </Button>
         </>
       ) : (
@@ -161,15 +161,11 @@ const PetsList = ({ firebase, user }) => {
     <>
       {user.isInstitution ? (
         <Heading>
-          {pets.length === 0
-            ? 'Ta instytujca nie ma dodanych zwierząt'
-            : 'Zwierzęta do adopcji'}
+          {pets.length === 0 ? 'No animals added' : 'Pets for adoption'}
         </Heading>
       ) : (
         <Heading>
-          {pets.length === 0
-            ? 'Nie obserwujesz jeszcze żadnych zwierząt'
-            : 'Obserwowane zwierzęta'}
+          {pets.length === 0 ? 'No animals added' : 'Favourites pets'}
         </Heading>
       )}
       {notification !== null && renderNotification()}
@@ -195,11 +191,11 @@ const PetsList = ({ firebase, user }) => {
                 icon={iconClose}
                 onClick={() => {
                   setNotification(
-                    'Czy na pewno chcesz usunąć wybrane zwierzę?'
+                    'Are you sure you want to remove the selected pet?'
                   );
                   setPetToDelete(edge.node.id);
                 }}
-                title="Usuń z obserwowanych"
+                title="Remove from favourities"
               />
             </Card>
           ))}
