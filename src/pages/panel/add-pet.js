@@ -163,13 +163,6 @@ const InputLabel = styled.label`
   }
 `;
 
-const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.gray100};
-  width: 140px;
-  height: 36px;
-  color: ${({ theme }) => theme.black};
-`;
-
 let fileReader;
 if (typeof window !== 'undefined') {
   fileReader = new window.FileReader();
@@ -419,15 +412,18 @@ const AddPetPage = () => {
             <Button type="submit" value="Submit" width="140px" height="36px">
               Add
             </Button>
-            <StyledButton
+            <Button
+              dismiss
               value="Cancel"
+              width="140px"
+              height="36px"
               onClick={() => {
                 resetState();
                 navigate('/panel');
               }}
             >
               Cancel
-            </StyledButton>
+            </Button>
           </ButtonsWrapper>
         </MainForm>
       </MainFormWrapper>

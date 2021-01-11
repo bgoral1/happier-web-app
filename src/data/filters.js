@@ -92,7 +92,7 @@ export const mainCatFilters = [
   {
     field: 'color',
     name: 'Color',
-    values: ['mixed', 'white', 'black', 'grey', 'red'],
+    values: ['mixed', 'white', 'black', 'gray', 'red'],
   },
 ];
 
@@ -110,7 +110,7 @@ export const allCatFilters = [
   {
     field: 'color',
     name: 'Color',
-    values: ['mixed', 'white', 'black', 'grey', 'red'],
+    values: ['mixed', 'white', 'black', 'gray', 'red'],
   },
   {
     field: 'bread',

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const StyledButton = styled.button`
   background-color: ${({ theme, dismiss }) =>
-    dismiss ? theme.grey100 : theme.accent};
+    dismiss ? theme.gray100 : theme.accent};
   width: ${({ width }) => width || '280px'};
   height: ${({ height }) => height || '50px'};
   border: none;
@@ -20,6 +20,8 @@ const StyledButton = styled.button`
 
   :hover {
     box-shadow: 0 10px 20px -15px #000;
+    background-color: ${({ theme, dismiss }) =>
+      dismiss ? theme.white : '#ed457d'};
   }
 `;
 
