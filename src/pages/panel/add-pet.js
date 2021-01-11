@@ -10,6 +10,7 @@ import { allDogFilters, allCatFilters } from 'src/data/filters';
 import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
+import MessageBox from 'components/atoms/MessageBox/MessageBox';
 
 const MainFormWrapper = styled.div`
   display: flex;
@@ -212,8 +213,8 @@ const AddPetPage = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [filterValuesDog, setFilterValuesDog] = useState(initialValuesDog);
   const [filterValuesCat, setFilterValuesCat] = useState(initialValuesCat);
-  const [petImage, setPetImage] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [petImage, setPetImage] = useState(null);
+  const [message, setMessage] = useState({ content: null, success: false });
 
   useEffect(() => {
     fileReader.addEventListener('load', () => {
@@ -224,6 +225,7 @@ const AddPetPage = () => {
   const toggleFilters = (isActive, e) => {
     e.preventDefault();
     if (!isActive) {
+      setMessage({ content: null });
       setActiveDog(!activeDog);
     }
   };
@@ -236,7 +238,7 @@ const AddPetPage = () => {
 
   const handleFilterInputChange = e => {
     e.persist();
-    setSuccess(false);
+    setMessage({ content: null });
     if (!activeDog) {
       setFilterValuesCat(currentValues => ({
         ...currentValues,
@@ -252,7 +254,7 @@ const AddPetPage = () => {
 
   const handleInputChange = e => {
     e.persist();
-    setSuccess(false);
+    setMessage({ content: null });
     setFormValues(currentValues => ({
       ...currentValues,
       [e.target.name]: e.target.value,
@@ -266,6 +268,9 @@ const AddPetPage = () => {
           key={`${item.field}Dog`}
           opKey="Dog"
           {...item}
+          selectedValue={Object.entries(filterValuesDog)
+            .find(([key]) => key === item.field)[1]
+            .toString()}
           onChange={handleFilterInputChange}
         />
       ));
@@ -275,6 +280,9 @@ const AddPetPage = () => {
         key={`${item.field}Cat`}
         opKey="Cat"
         {...item}
+        selectedValue={Object.entries(filterValuesCat)
+          .find(([key]) => key === item.field)[1]
+          .toString()}
         onChange={handleFilterInputChange}
       />
     ));
@@ -282,6 +290,25 @@ const AddPetPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setMessage({
+      content: '',
+      success: true,
+    });
+
+    if (petImage === null) {
+      try {
+        throw new Error('You must add a photo of an animal');
+      } catch (err) {
+        if (isMounted) {
+          setMessage({
+            content: err.message,
+            success: false,
+          });
+          return;
+        }
+      }
+    }
+
     let petSpecies;
 
     if (activeDog) {
@@ -303,12 +330,18 @@ const AddPetPage = () => {
         })
         .then(() => {
           if (isMounted) {
-            setSuccess(true);
+            setMessage({
+              content: 'The pet was added to the database',
+              success: true,
+            });
           }
         })
         .catch(err => {
           if (isMounted) {
-            console.log(err.message);
+            setMessage({
+              content: err.message,
+              success: false,
+            });
           }
         });
     } else {
@@ -324,23 +357,33 @@ const AddPetPage = () => {
         })
         .then(() => {
           if (isMounted) {
-            setSuccess(true);
+            setMessage({
+              content:
+                'The pet was added to the database and will be visible in the system for several minutes.',
+              success: true,
+            });
           }
         })
         .catch(err => {
           if (isMounted) {
-            console.log(err.message);
+            setMessage({
+              content: err.message,
+              success: false,
+            });
           }
         });
     }
 
-    // resetState();
+    resetState();
   };
 
   return (
     <UserPanelTemplate>
       <Heading>Add pet</Heading>
       <MainFormWrapper>
+        {message.content !== null && (
+          <MessageBox success={message.success}>{message.content}</MessageBox>
+        )}
         <BookmarkWrapper>
           <StyledBookmark
             label="Dog"
@@ -401,12 +444,11 @@ const AddPetPage = () => {
                 name="photo"
                 onChange={e => {
                   e.persist();
-                  setSuccess(false);
+                  setMessage({ content: null });
                   fileReader.readAsDataURL(e.target.files[0]);
                 }}
               />
             </InputLabel>
-            {!!success && <span>The pet was added to the database</span>}
           </PetDescWrapper>
           <ButtonsWrapper>
             <Button type="submit" value="Submit" width="140px" height="36px">
