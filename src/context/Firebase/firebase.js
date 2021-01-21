@@ -99,12 +99,10 @@ class Firebase {
     });
   }
 
-  // async removePet({ petId, userName }) {
-  //   const removeFromPetsWatchedCallable = this.functions.httpsCallable(
-  //     'removeFromPetsWatched'
-  //   );
-  //   return removeFromPetsWatchedCallable({ petId, userName });
-  // }
+  async removePet({ petId }) {
+    const removePetCallable = this.functions.httpsCallable('removePet');
+    return removePetCallable({ petId });
+  }
 
   async login({ email, password }) {
     return this.auth.signInWithEmailAndPassword(email, password);

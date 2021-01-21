@@ -40,7 +40,17 @@ const PetsList = ({ firebase, user }) => {
             description
             lead
             name
+            species
             filters {
+              activity
+              age
+              color
+              bread
+              kids
+              place
+              size
+              time
+              tolerance
               sex
             }
             localImage {
@@ -103,8 +113,10 @@ const PetsList = ({ firebase, user }) => {
 
   const deleteItem = id => {
     if (user.isInstitution) {
-      console.log(id);
-      setNotification(null);
+      firebase
+        .removePet({ petId: id })
+        .then(() => setNotification('The pet has been removed'))
+        .catch(err => setNotification(err.message));
     } else {
       firebase
         .removeFromPetToWatched({ petId: id, userName: user.userName })
@@ -120,7 +132,6 @@ const PetsList = ({ firebase, user }) => {
         setNotification(null);
       }}
     >
-      {' '}
       {notification === 'Are you sure you want to remove the selected pet?' ? (
         <>
           <Button
@@ -183,7 +194,7 @@ const PetsList = ({ firebase, user }) => {
               {user.isInstitution && (
                 <ButtonIconWrapper
                   icon={iconEdit}
-                  onClick={() => console.log(edge.node.id)}
+                  onClick={() => console.log(edge.node.name, edge.node.id)}
                   title="Edit pet"
                 />
               )}
