@@ -1,6 +1,7 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 import { PetsGrid } from 'components/organisms/PetsGrid/PetsGrid';
@@ -8,7 +9,7 @@ import Heading from 'components/atoms/Heading/Heading';
 import Card from 'components/molecules/Card/Card';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import iconClose from 'images/icons/icon_close.svg';
-import iconEdit from 'images/icons/icon_edit.svg';
+import iconUpdate from 'images/icons/icon_edit.svg';
 import { NotificationModal } from 'components/atoms/NotificationBox/NotificationBox';
 import Button from 'components/atoms/Button/Button';
 
@@ -30,7 +31,7 @@ const ButtonIconWrapper = styled(ButtonIcon)`
   }
 `;
 
-const PetsList = ({ firebase, user }) => {
+const PetsList = ({ firebase, user, updatePet }) => {
   const data = useStaticQuery(graphql`
     query {
       allPet {
@@ -193,9 +194,18 @@ const PetsList = ({ firebase, user }) => {
             >
               {user.isInstitution && (
                 <ButtonIconWrapper
-                  icon={iconEdit}
-                  onClick={() => console.log(edge.node.name, edge.node.id)}
-                  title="Edit pet"
+                  icon={iconUpdate}
+                  onClick={() =>
+                    updatePet({
+                      id: edge.node.id,
+                      name: edge.node.name,
+                      species: edge.node.species,
+                      lead: edge.node.lead,
+                      description: edge.node.description,
+                      filters: edge.node.filters,
+                    })
+                  }
+                  title="Update pet"
                 />
               )}
               <ButtonIconWrapper
@@ -213,6 +223,12 @@ const PetsList = ({ firebase, user }) => {
       </PetsGrid>
     </>
   );
+};
+
+PetsList.propTypes = {
+  firebase: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  updatePet: PropTypes.func.isRequired,
 };
 
 export default PetsList;

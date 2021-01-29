@@ -117,7 +117,8 @@ const DisplayFilteredPets = () => {
   return (
     <PetsWrapper>
       {filteredPets.length !== 0 ? (
-        <h1>For adoption</h1>
+        <h1>{`${activePet.charAt(0).toUpperCase() +
+          activePet.slice(1)}s for adoption`}</h1>
       ) : (
         <p>
           No pets matching the selected filters. Change the selected filters.

@@ -3,8 +3,8 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: `Happier - Aplikacja Wspomagająca Adopcje Psów i Kotów`,
-    description: `Happier to aplikacja internetowa wspomagająca proces adopcji zwierząt ze schronisk`,
+    title: `Happier - Adoption Assistance App for Dogs and Cats`,
+    description: `Happier is a web application supporting the process of adoption of animals from shelters`,
     author: `Barbara Góral`,
   },
   plugins: [
@@ -103,7 +103,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Happier - Aplikacja Wspomagajaca Proces Adopcji Zwierząt`,
+        name: `Happier - a web application supporting the process of adoption of animals from shelters`,
         short_name: `Happier`,
         start_url: `/`,
         background_color: `#86C6C4`,

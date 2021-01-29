@@ -99,6 +99,11 @@ class Firebase {
     });
   }
 
+  async updatePet({ petId, petDataToUpdate, petImage }) {
+    const updatePetCallable = this.functions.httpsCallable('updatePet');
+    return updatePetCallable({ petId, petDataToUpdate, petImage });
+  }
+
   async removePet({ petId }) {
     const removePetCallable = this.functions.httpsCallable('removePet');
     return removePetCallable({ petId });
