@@ -89,7 +89,9 @@ const Footer = () => (
     <FooterRowWrapper>
       <FooterLink to="/">Terms of Use</FooterLink>
       <FooterLink to="/">Privacy Policy</FooterLink>
-      <FooterText>© 2020 Happier. All rights reserved</FooterText>
+      <FooterText>
+        © {new Date().getFullYear()} Happier. All rights reserved
+      </FooterText>
     </FooterRowWrapper>
   </FooterWrapper>
 );
