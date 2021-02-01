@@ -495,7 +495,7 @@ PetForm.propTypes = {
       tolerance: PropTypes.string,
     }),
   }),
-  resetUpdate: PropTypes.func.isRequired,
+  resetUpdate: PropTypes.func,
   message: PropTypes.shape({
     content: PropTypes.string,
     success: PropTypes.bool,
@@ -504,6 +504,7 @@ PetForm.propTypes = {
 };
 
 PetForm.defaultProps = {
+  resetUpdate: null,
   petToUpdate: null,
   message: {
     content: null,

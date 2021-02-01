@@ -36,14 +36,11 @@ const MobileMenu = ({ isOpen, children }) => (
 
 MobileMenu.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.node,
 };
 
 MobileMenu.defaultProps = {
-  children: [],
+  children: null,
 };
 
 export default MobileMenu;

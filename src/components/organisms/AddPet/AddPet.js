@@ -85,7 +85,7 @@ const AddPet = ({ petToUpdate, resetUpdate }) => {
             name: formValues.name,
             lead: formValues.lead,
             description: formValues.description,
-            institutionId: user.userName,
+            institutionId: user.uid,
             filters: filterValuesDog,
             petImage,
           })
@@ -114,7 +114,7 @@ const AddPet = ({ petToUpdate, resetUpdate }) => {
             name: formValues.name,
             lead: formValues.lead,
             description: formValues.description,
-            institutionId: user.userName,
+            institutionId: user.uid,
             filters: filterValuesCat,
             petImage,
           })
@@ -178,11 +178,12 @@ AddPet.propTypes = {
       tolerance: PropTypes.string,
     }),
   }),
-  resetUpdate: PropTypes.func.isRequired,
+  resetUpdate: PropTypes.func,
 };
 
 AddPet.defaultProps = {
   petToUpdate: null,
+  resetUpdate: null,
 };
 
 export default AddPet;

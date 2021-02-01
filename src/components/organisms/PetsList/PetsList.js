@@ -62,7 +62,7 @@ const PetsList = ({ firebase, user, updatePet }) => {
               }
             }
             institution {
-              id
+              name
               email
               city
             }
@@ -79,7 +79,8 @@ const PetsList = ({ firebase, user, updatePet }) => {
   if (user.isInstitution) {
     useEffect(() => {
       const unsubscribe = firebase.subscribeToInstitutionPets({
-        userName: user.userName,
+        uid: user.uid,
+        // userName: user.userName,
         onSnapshot: snapshot => {
           const snapshotPets = [];
           snapshot.forEach(doc => snapshotPets.push(doc.id));

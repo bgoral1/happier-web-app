@@ -89,7 +89,7 @@ const Card = ({ name, sex, petImage, children, linkTo }) => (
   <StyledWrapper>
     <ImageWrapper>
       {children}
-      {<PetImg fluid={petImage} alt="pet" />}
+      <PetImg fluid={petImage} alt="pet" />
       <Link key={linkTo} to={`/pet/${linkTo}`}>
         <StyledButton width="100px" height="32px">
           See more
@@ -123,12 +123,12 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   sex: PropTypes.string.isRequired,
   petImage: PropTypes.oneOfType([fluidObject, PropTypes.arrayOf(fluidObject)]),
+  children: PropTypes.node,
   linkTo: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {
   petImage: [],
-  // eslint-disable-next-line react/default-props-match-prop-types
   children: null,
 };
 

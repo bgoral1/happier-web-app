@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { createContext } from 'react';
+import PropTypes from 'prop-types';
 import useAuth from 'context/Firebase/useAuth';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
@@ -16,6 +16,14 @@ const FirebaseContextProvider = ({ children }) => {
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </FirebaseContext.Provider>
   );
+};
+
+FirebaseContextProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+FirebaseContextProvider.defaultProps = {
+  children: null,
 };
 
 export default FirebaseContextProvider;

@@ -34,15 +34,12 @@ const AboutProgram = ({ className, children }) => (
 
 AboutProgram.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.node,
 };
 
 AboutProgram.defaultProps = {
   className: '',
-  children: [],
+  children: null,
 };
 
 export default AboutProgram;

@@ -48,6 +48,7 @@ module.exports = {
             map: doc => ({
               email: doc.email,
               city: doc.city,
+              name: doc.name,
             }),
           },
           {

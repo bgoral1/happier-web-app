@@ -47,14 +47,11 @@ const UsefulLinks = ({ isOpenMobileMenu, children }) => (
 
 UsefulLinks.propTypes = {
   isOpenMobileMenu: PropTypes.bool.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.node,
 };
 
 UsefulLinks.defaultProps = {
-  children: [],
+  children: null,
 };
 
 export default UsefulLinks;

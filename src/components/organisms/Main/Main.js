@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { graphql, useStaticQuery, navigate } from 'gatsby';
 import {
@@ -226,7 +226,6 @@ const Main = ({ children, indexPage }) => {
           onSubmit={filterPets}
         >
           {renderFilters()}
-          {/* {console.log(moreValues)} */}
           <InputSelect
             field="localization"
             name="localization"
@@ -249,6 +248,16 @@ const Main = ({ children, indexPage }) => {
       </MainBackground>
     </>
   );
+};
+
+Main.propTypes = {
+  children: PropTypes.node,
+  indexPage: PropTypes.string,
+};
+
+Main.defaultProps = {
+  children: null,
+  indexPage: 'false',
 };
 
 export default Main;

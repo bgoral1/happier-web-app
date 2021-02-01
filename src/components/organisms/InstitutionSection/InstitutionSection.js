@@ -30,7 +30,7 @@ const InstitutionSection = () => {
         edges {
           node {
             city
-            id
+            name
           }
         }
       }
@@ -43,8 +43,8 @@ const InstitutionSection = () => {
       <InstitutionWrapper>
         {data.allInstitution.edges.map(edge => (
           <Institution
-            key={edge.node.id}
-            name={edge.node.id}
+            key={edge.node.name}
+            name={edge.node.name}
             localization={edge.node.city}
           />
         ))}

@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { graphql, Link } from 'gatsby';
 import Image from 'gatsby-image';
-// import SEO from 'components/SEO/seo';
+import SEO from 'components/molecules/SEO/seo';
 import { FirebaseContext } from 'context/Firebase/context';
 import Header from 'components/organisms/Header/Header';
 import ReturnBar from 'components/molecules/ReturnBar/ReturnBar';
@@ -242,7 +242,10 @@ const PetTemplate = ({ data }) => {
 
   return (
     <>
-      {/* <SEO /> */}
+      <SEO
+        title={`Happier - Adopt ${data.pet.name}`}
+        description={`Happier is a web application supporting the process of adoption of animals from shelters. Ypu can adopt ${data.pet.name} here!`}
+      />
       <Header />
       <ReturnBar />
       <StyledMainBackground>
@@ -271,7 +274,7 @@ const PetTemplate = ({ data }) => {
               />
             </H1>
             <LinkWithIcon src={iconLocalization}>
-              {data.pet.institution.city}, {data.pet.institution.id}
+              {data.pet.institution.city}, {data.pet.institution.name}
             </LinkWithIcon>
             <article>
               <H2>{data.pet.lead}</H2>
@@ -290,7 +293,7 @@ const PetTemplate = ({ data }) => {
       <ContactSectionWrapper>
         <ContactSection
           labelText={`Ask about ${data.pet.name}`}
-          headingText={`Send a message to the ${data.pet.institution.id}`}
+          headingText={`Send a message to the ${data.pet.institution.name.toUpperCase()}`}
         />
       </ContactSectionWrapper>
       <Footer />
@@ -324,7 +327,7 @@ export const query = graphql`
         }
       }
       institution {
-        id
+        name
         email
         city
       }

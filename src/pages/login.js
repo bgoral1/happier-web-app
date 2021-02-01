@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { FirebaseContext } from 'context/Firebase/context';

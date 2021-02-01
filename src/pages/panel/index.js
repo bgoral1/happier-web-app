@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import { FirebaseContext } from 'context/Firebase/context';
 import AddInstitution from 'components/organisms/AddInstitution/AddInstitution';

@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { useReducer, createContext } from 'react';
+import PropTypes from 'prop-types';
 
 export const FilterPetsStateContext = createContext();
 export const FilterPetsDispatchContext = createContext();
@@ -121,6 +121,14 @@ const FilterPetsContext = ({ children }) => {
       </FilterPetsDispatchContext.Provider>
     </FilterPetsStateContext.Provider>
   );
+};
+
+FilterPetsContext.propTypes = {
+  children: PropTypes.node,
+};
+
+FilterPetsContext.defaultProps = {
+  children: null,
 };
 
 export default FilterPetsContext;

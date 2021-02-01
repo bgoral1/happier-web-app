@@ -80,21 +80,18 @@ const MainBackground = ({
 
 MainBackground.propTypes = {
   bigger: PropTypes.bool,
-  indexPage: PropTypes.bool,
+  indexPage: PropTypes.string,
   activePet: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.node,
 };
 
 MainBackground.defaultProps = {
   bigger: false,
-  indexPage: false,
+  indexPage: 'false',
   activePet: '',
   className: '',
-  children: [],
+  children: null,
 };
 
 export default MainBackground;

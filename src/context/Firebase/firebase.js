@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import firebaseConfig from './config';
 
 class Firebase {
@@ -70,8 +69,17 @@ class Firebase {
       .onSnapshot(onSnapshot);
   }
 
-  subscribeToInstitutionPets({ userName, onSnapshot }) {
-    const institutionRef = this.db.collection('institutions').doc(userName);
+  // subscribeToInstitutionPets({ userName, onSnapshot }) {
+  //   const institutionRef = this.db.collection('institutions').doc(userName);
+  //   return this.db
+  //     .collection('pets')
+  //     .where('institution', '==', institutionRef)
+  //     .onSnapshot(onSnapshot);
+  // }
+
+  subscribeToInstitutionPets({ uid, onSnapshot }) {
+    const institutionRef = this.db.collection('institutions').doc(uid);
+
     return this.db
       .collection('pets')
       .where('institution', '==', institutionRef)

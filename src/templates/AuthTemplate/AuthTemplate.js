@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
@@ -95,6 +95,15 @@ const AuthTemplate = ({ onSubmit, children }) => {
       </LoginWrapper>
     </LoginBackground>
   );
+};
+
+AuthTemplate.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.node,
+};
+
+AuthTemplate.defaultProps = {
+  children: null,
 };
 
 export default AuthTemplate;

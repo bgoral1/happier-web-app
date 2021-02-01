@@ -21,14 +21,11 @@ const UserPanelTemplate = ({ children }) => {
 };
 
 UserPanelTemplate.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.node,
 };
 
 UserPanelTemplate.defaultProps = {
-  children: [],
+  children: null,
 };
 
 export default UserPanelTemplate;

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { FilterPetsStateContext } from 'context/FilterPetsContext/FilterPetsContext';
 import { PetsGrid } from 'components/organisms/PetsGrid/PetsGrid';
 import Card from 'components/molecules/Card/Card';
@@ -101,14 +101,13 @@ const DisplayFilteredPets = () => {
   const renderPets = () => {
     if (filteredPets.length !== 0) {
       return filteredPets.map(edge => (
-        <Link key={edge.node.id} to={`/pet/${edge.node.id}`}>
-          <Card
-            petImage={edge.node.localImage.childImageSharp.fluid}
-            name={edge.node.name}
-            sex={edge.node.filters.sex}
-            linkTo={edge.node.id}
-          />
-        </Link>
+        <Card
+          key={edge.node.id}
+          petImage={edge.node.localImage.childImageSharp.fluid}
+          name={edge.node.name}
+          sex={edge.node.filters.sex}
+          linkTo={edge.node.id}
+        />
       ));
     }
     return null;
