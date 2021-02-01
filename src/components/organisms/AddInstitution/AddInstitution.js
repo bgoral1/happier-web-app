@@ -5,6 +5,7 @@ import { FirebaseContext } from 'context/Firebase/context';
 import H1 from 'components/atoms/H1/H1';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
+import MessageBox from 'components/atoms/MessageBox/MessageBox';
 
 const Background = styled.div`
   width: 100%;
@@ -31,8 +32,7 @@ const FormWrapper = styled.form`
 
 const AddInstitution = () => {
   const { firebase } = useContext(FirebaseContext);
-  const [errMessage, setErrMessage] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState({ content: null, success: false });
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -49,6 +49,10 @@ const AddInstitution = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setMessage({
+      content: '',
+      success: true,
+    });
 
     firebase
       .addInstitutionRole({
@@ -56,7 +60,10 @@ const AddInstitution = () => {
       })
       .catch(err => {
         if (isMounted) {
-          setErrMessage(err.message);
+          setMessage({
+            content: err.message,
+            success: false,
+          });
         }
       });
 
@@ -67,19 +74,24 @@ const AddInstitution = () => {
         city: formValues.city,
       })
       .then(() => {
-        setSuccess(true);
+        setMessage({
+          content: `${formValues.name.toUpperCase()} has been successfully added to database`,
+          success: true,
+        });
       })
       .catch(err => {
         if (isMounted) {
-          setErrMessage(err.message);
+          setMessage({
+            content: err.message,
+            success: false,
+          });
         }
       });
   };
 
   const handleInputChange = e => {
     e.persist();
-    setErrMessage('');
-    setSuccess(false);
+    setMessage({ content: null });
     setFormValues(currentValues => ({
       ...currentValues,
       [e.target.name]: e.target.value.toLowerCase(),
@@ -90,7 +102,9 @@ const AddInstitution = () => {
     <Background>
       <FormWrapper onSubmit={handleSubmit}>
         <H1>Add Animal Shelter</H1>
-        {!!errMessage && <p color="red">{errMessage}</p>}
+        {message.content !== null && (
+          <MessageBox success={message.success}>{message.content}</MessageBox>
+        )}
         <Input
           value={formValues.name}
           name="name"
@@ -115,7 +129,6 @@ const AddInstitution = () => {
           type="city"
           required
         />
-        {!!success && <span>The institution was added to the database</span>}
         <Button type="submit">Confirm</Button>
         <Link to="/">Return to home page</Link>
       </FormWrapper>

@@ -6,11 +6,11 @@ import Loader from 'react-loader-spinner';
 const MsgWrapper = styled.div`
   color: ${({ success }) => (success ? '#155724' : '#721c24')};
   background-color: ${({ success }) => (success ? '#d4edda' : '#f8d7da')};
+  border: 1px solid;
   border-color: ${({ success }) => (success ? '#c3e6cb' : '#f5c6cb')};
   position: relative;
   padding: 0.75rem 1.25rem;
   margin-bottom: 1rem;
-  border: 1px solid transparent;
   border-radius: 0.25rem;
   text-align: center;
   width: 100%;
@@ -21,8 +21,8 @@ const MessageBox = ({ success, children }) => (
     {children === '' ? (
       <Loader
         type="ThreeDots"
-        color="#006766"
-        timeout={10000}
+        color={`${({ theme }) => theme.secondary}`}
+        timeout={15000}
         height={50}
         width={50}
       />

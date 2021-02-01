@@ -21,7 +21,7 @@ const StyledButton = styled.button`
   :hover {
     box-shadow: 0 10px 20px -15px #000;
     background-color: ${({ theme, dismiss }) =>
-      dismiss ? theme.white : '#ed457d'};
+      dismiss ? theme.white : theme.accentLight};
   }
 `;
 
