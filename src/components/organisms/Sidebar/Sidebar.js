@@ -61,16 +61,20 @@ const Sidebar = ({ handleLogoutClick }) => {
         to="/"
         title="Go to the home page"
       />
-      {user.isInstitution && (
-        <div>
-          <ButtonIcon icon={iconPaw} title="Pets" as={Link} to="/panel" />
-          <ButtonIcon
-            icon={iconAdd}
-            title="Add pet for adoption"
-            as={Link}
-            to="/panel/add-pet"
-          />
-        </div>
+      {user !== null && (
+        <>
+          {user.isInstitution && (
+            <div>
+              <ButtonIcon icon={iconPaw} title="Pets" as={Link} to="/panel" />
+              <ButtonIcon
+                icon={iconAdd}
+                title="Add pet for adoption"
+                as={Link}
+                to="/panel/add-pet"
+              />
+            </div>
+          )}
+        </>
       )}
       <ButtonIcon
         icon={iconLogout}
