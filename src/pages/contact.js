@@ -42,7 +42,6 @@ const BarWrapper = styled.div`
 
 const ContactPage = () => (
   <>
-    {' '}
     <SEO
       title="Do you want to help? Contact organizators of the Happier program"
       description="We invite those willing to contribute to the website. Do you have any idea how you can help? Send a message and start acting!"

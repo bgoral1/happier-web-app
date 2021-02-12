@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import SEO from 'components/molecules/SEO/seo';
 import { FirebaseContext } from 'context/Firebase/context';
 import { navigate } from 'gatsby';
 import AuthTemplate from 'templates/AuthTemplate/AuthTemplate';
@@ -87,31 +88,34 @@ const LoginPage = () => {
   };
 
   return (
-    <AuthTemplate onSubmit={handleSubmit}>
-      <H1White>Sign in</H1White>
-      {message.content !== null && (
-        <MessageBox success={message.success}>{message.content}</MessageBox>
-      )}
-      <Input
-        value={formValues.email}
-        name="email"
-        onChange={handleInputChange}
-        placeholder="email"
-        type="email"
-        required
-      />
-      <Input
-        value={formValues.password}
-        name="password"
-        onChange={handleInputChange}
-        placeholder="password"
-        type="password"
-        required
-      />
-      <Button type="submit">Sign in</Button>
-      <StyledLinkWhite to="/register">Not a member? Sign up</StyledLinkWhite>
-      <DemoUsers chooseDemoUser={chooseDemoUser} />
-    </AuthTemplate>
+    <>
+      <SEO />
+      <AuthTemplate onSubmit={handleSubmit}>
+        <H1White>Sign in</H1White>
+        {message.content !== null && (
+          <MessageBox success={message.success}>{message.content}</MessageBox>
+        )}
+        <Input
+          value={formValues.email}
+          name="email"
+          onChange={handleInputChange}
+          placeholder="email"
+          type="email"
+          required
+        />
+        <Input
+          value={formValues.password}
+          name="password"
+          onChange={handleInputChange}
+          placeholder="password"
+          type="password"
+          required
+        />
+        <Button type="submit">Sign in</Button>
+        <StyledLinkWhite to="/register">Not a member? Sign up</StyledLinkWhite>
+        <DemoUsers chooseDemoUser={chooseDemoUser} />
+      </AuthTemplate>
+    </>
   );
 };
 

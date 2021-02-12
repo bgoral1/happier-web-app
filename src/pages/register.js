@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import SEO from 'components/molecules/SEO/seo';
 import styled from 'styled-components';
 import { FirebaseContext } from 'context/Firebase/context';
 import { navigate } from 'gatsby';
@@ -124,55 +125,58 @@ const RegisterPage = () => {
   };
 
   return (
-    <AuthTemplate onSubmit={handleSubmit}>
-      <H1White>Create an account</H1White>
-      {message.content !== null && (
-        <MessageBox success={message.success}>{message.content}</MessageBox>
-      )}
-      <Input
-        value={formValues.userName.toLowerCase()}
-        name="userName"
-        onChange={handleInputChange}
-        onBlur={handleLoginChange}
-        placeholder="user name"
-        type="text"
-        required
-      />
-      <Input
-        value={formValues.email}
-        name="email"
-        onChange={handleInputChange}
-        placeholder="email"
-        type="email"
-        required
-      />
-      <Input
-        value={formValues.password}
-        name="password"
-        onChange={handleInputChange}
-        placeholder="password"
-        type="password"
-        minLength={6}
-        required
-      />
-      <Input
-        value={formValues.confirmPassword}
-        name="confirmPassword"
-        onChange={handleInputChange}
-        placeholder="confirm password"
-        type="password"
-        minLength={6}
-        required
-      />
-      <AgreementWrappper>
-        <label htmlFor="agreement">
-          <input type="checkbox" id="agreement" name="agreement" required />I
-          accept the Terms of Use and Privacy Policy
-        </label>
-      </AgreementWrappper>
-      <Button type="submit">Sign up</Button>
-      <StyledLinkWhite to="/login">Already a member? Sign in</StyledLinkWhite>
-    </AuthTemplate>
+    <>
+      <SEO />
+      <AuthTemplate onSubmit={handleSubmit}>
+        <H1White>Create an account</H1White>
+        {message.content !== null && (
+          <MessageBox success={message.success}>{message.content}</MessageBox>
+        )}
+        <Input
+          value={formValues.userName.toLowerCase()}
+          name="userName"
+          onChange={handleInputChange}
+          onBlur={handleLoginChange}
+          placeholder="user name"
+          type="text"
+          required
+        />
+        <Input
+          value={formValues.email}
+          name="email"
+          onChange={handleInputChange}
+          placeholder="email"
+          type="email"
+          required
+        />
+        <Input
+          value={formValues.password}
+          name="password"
+          onChange={handleInputChange}
+          placeholder="password"
+          type="password"
+          minLength={6}
+          required
+        />
+        <Input
+          value={formValues.confirmPassword}
+          name="confirmPassword"
+          onChange={handleInputChange}
+          placeholder="confirm password"
+          type="password"
+          minLength={6}
+          required
+        />
+        <AgreementWrappper>
+          <label htmlFor="agreement">
+            <input type="checkbox" id="agreement" name="agreement" required />I
+            accept the Terms of Use and Privacy Policy
+          </label>
+        </AgreementWrappper>
+        <Button type="submit">Sign up</Button>
+        <StyledLinkWhite to="/login">Already a member? Sign in</StyledLinkWhite>
+      </AuthTemplate>
+    </>
   );
 };
 

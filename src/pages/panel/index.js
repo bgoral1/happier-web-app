@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import SEO from 'components/molecules/SEO/seo';
 import { FirebaseContext } from 'context/Firebase/context';
 import AddInstitution from 'components/organisms/AddInstitution/AddInstitution';
 import UserPanel from 'components/organisms/UserPanel/UserPanel';
@@ -9,6 +10,7 @@ const PanelPage = () => {
 
   return (
     <>
+      <SEO />
       {user === null && <PermissionDeniedInfo />}
       {user !== null && (
         <>
