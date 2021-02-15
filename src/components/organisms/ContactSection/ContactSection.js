@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Label from 'components/atoms/Label/Label';
@@ -52,12 +52,29 @@ const StyledTextArea = styled(Input)`
 `;
 
 const ContactSection = ({ labelText, headingText, paragraphText }) => {
-  const [formValues, setFormValues] = useState({
-    topic: '',
+  const initialFormValues = {
+    subject: '',
     email: '',
     message: '',
-  });
+  };
+
+  const [formValues, setFormValues] = useState(initialFormValues);
   const [message, setMessage] = useState({ content: null, success: false });
+  let isMounted = true;
+
+  useEffect(() => {
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const resetFormVelues = () => setFormValues(initialFormValues);
+
+  const encode = data => {
+    return Object.keys(data)
+      .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+      .join('&');
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -65,14 +82,29 @@ const ContactSection = ({ labelText, headingText, paragraphText }) => {
       content: '',
       success: true,
     });
-    setTimeout(
-      () =>
+
+    // eslint-disable-next-line no-undef
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'contact', ...formValues }),
+    })
+      .then(() =>
         setMessage({
-          content: 'Done',
+          content: 'Message has been sent, thank you for your interest.',
           success: true,
-        }),
-      3000
-    );
+        })
+      )
+      .catch(err => {
+        if (isMounted) {
+          setMessage({
+            content: err.message,
+            success: false,
+          });
+        }
+      });
+
+    resetFormVelues();
   };
 
   const handleInputChange = e => {
@@ -93,12 +125,19 @@ const ContactSection = ({ labelText, headingText, paragraphText }) => {
         )}
         <H2>{headingText}</H2>
         <Paragraph>{paragraphText}</Paragraph>
-        <form onSubmit={handleSubmit}>
+        <form
+          name="contact"
+          method="post"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
+        >
+          <input type="hidden" name="form-name" value="contact" />
           <Input
-            value={formValues.topic}
-            name="topic"
+            value={formValues.subject}
+            name="subject"
             onChange={handleInputChange}
-            placeholder="topic"
+            placeholder="subject"
             type="text"
             required
           />
