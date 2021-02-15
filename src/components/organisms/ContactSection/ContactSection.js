@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Label from 'components/atoms/Label/Label';
+import MessageBox from 'components/atoms/MessageBox/MessageBox';
 import H2 from 'components/atoms/H2/H2';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 
 const MessageWrappper = styled.div`
-  padding: 0 20px 20px 20px;
+  padding: 15px 20px 20px 20px;
   margin: 80px 20px 20px 20px;
   background-color: ${({ theme }) => theme.white};
   box-shadow: -10px 0 15px rgba(0, 0, 0, 0.06);
@@ -56,13 +57,27 @@ const ContactSection = ({ labelText, headingText, paragraphText }) => {
     email: '',
     message: '',
   });
+  const [message, setMessage] = useState({ content: null, success: false });
 
   const handleSubmit = e => {
     e.preventDefault();
+    setMessage({
+      content: '',
+      success: true,
+    });
+    setTimeout(
+      () =>
+        setMessage({
+          content: 'Done',
+          success: true,
+        }),
+      3000
+    );
   };
 
   const handleInputChange = e => {
     e.persist();
+    setMessage({ content: null });
     setFormValues(currentValues => ({
       ...currentValues,
       [e.target.name]: e.target.value,
@@ -73,6 +88,9 @@ const ContactSection = ({ labelText, headingText, paragraphText }) => {
     <>
       <Label text={labelText} />
       <MessageWrappper>
+        {message.content !== null && (
+          <MessageBox success={message.success}>{message.content}</MessageBox>
+        )}
         <H2>{headingText}</H2>
         <Paragraph>{paragraphText}</Paragraph>
         <form onSubmit={handleSubmit}>
