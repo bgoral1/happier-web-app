@@ -1,5 +1,6 @@
 {
   "parser": "babel-eslint",
+  "plugins": ["jest"],
   "extends": [
     "airbnb",
     "eslint:recommended",
@@ -9,7 +10,10 @@
   ],
   "globals": {
     "window": true,
-    "document": true
+    "documen": true
+  },
+  "env": {
+    "jest/globals": true
   },
   "settings": {
     "import/resolver": {
