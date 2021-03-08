@@ -12,6 +12,8 @@ The application was designed to supports the adoption process for animals from s
 
 React, Gatsby, Styled-components and Firebase.
 
+Methodologies: Atomic Design and Mobile First Design.
+
 ## Key features
 
 - Advanced search for pets
