@@ -1,16 +1,22 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["jest"],
+  "plugins": [
+    "jest",
+    "testing-library",
+    "jest-dom"],
   "extends": [
     "airbnb",
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:testing-library/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
     "prettier",
     "prettier/react"
   ],
   "globals": {
     "window": true,
-    "documen": true
+    "document": true
   },
   "env": {
     "jest/globals": true
