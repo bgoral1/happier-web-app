@@ -5,6 +5,8 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@testing-library/dom": "^7.30.0",
+    "@testing-library/user-event": "^13.0.15",
     "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.10.7",
     "eslint-plugin-jest-dom": "^3.6.5",
