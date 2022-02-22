@@ -6,7 +6,7 @@
 
 The application was designed to supports the adoption process for animals from shelters.
 
-- demo available at [happier-pet.life](https://happier-pet.life)
+- demo available at [happier-pet-life](https://happier-pet-life.netlify.app/)
 
 ## Technology stack
 
