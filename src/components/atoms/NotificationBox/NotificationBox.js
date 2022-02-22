@@ -109,5 +109,5 @@ NotificationContent.propTypes = {
 };
 
 NotificationContent.defaultProps = {
-  children: '',
+  children: null,
 };
